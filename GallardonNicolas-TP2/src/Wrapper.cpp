@@ -144,3 +144,8 @@ void Wrapper::SetForeColor(Color color, float opacity)
 void Wrapper::SetAdditiveBlend(bool enable)
 {
 }
+
+int Wrapper::GetRandom(int min, int max)
+{
+	return rand() % (max + 1 - min) + min;
+}

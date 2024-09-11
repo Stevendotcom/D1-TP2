@@ -80,5 +80,7 @@ namespace Wrapper
 	void SetForeColor(Color color, float opacity);
 	void SetAdditiveBlend(bool enable);
 		
+	//Utility
+	int GetRandom(int min, int max);
 }
 
