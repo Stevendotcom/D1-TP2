@@ -113,11 +113,6 @@ namespace Wrapper
 	bool IsKeyPressing(Key key);
 	bool IsKeyReleasing(Key key);
 	Vector2 GetMousePos();
-	
-	//Time
-
-	float GetDeltaTime();
-	float TimeFromStart();
 
 	//Rendering
 

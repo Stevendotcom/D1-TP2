@@ -43,15 +43,6 @@ Wrapper::Vector2 Wrapper::GetMousePos()
 	return position;
 }
 
-float Wrapper::GetDeltaTime()
-{
-	return 0.0f;
-}
-
-float Wrapper::TimeFromStart()
-{
-	return 0.0f;
-}
 
 void Wrapper::Render()
 {
