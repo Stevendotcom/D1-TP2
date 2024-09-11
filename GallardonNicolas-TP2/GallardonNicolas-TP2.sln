@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GallardonNicolas-TP2", "GallardonNicolas-TP2\GallardonNicolas-TP2.vcxproj", "{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}"
 EndProject
 Global
@@ -12,9 +15,17 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}.Debug|Win32.ActiveCfg = Debug|Win32
 		{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}.Debug|Win32.Build.0 = Debug|Win32
-		{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}.Release|Win32.ActiveCfg = Release|Win32
-		{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}.Release|Win32.Build.0 = Release|Win32
 		{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}.Debug|x64.ActiveCfg = Debug|Win32
 		{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}.Debug|x64.Build.0 = Debug|Win32
+		{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}.Release|Win32.ActiveCfg = Release|Win32
+		{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}.Release|Win32.Build.0 = Release|Win32
+		{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}.Release|x64.ActiveCfg = Release|Win32
+		{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}.Release|x64.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DFBB35D-5EA9-4625-A0D5-5F7917E14150}
 	EndGlobalSection
 EndGlobal
