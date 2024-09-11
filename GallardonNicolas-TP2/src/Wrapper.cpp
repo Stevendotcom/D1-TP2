@@ -4,40 +4,43 @@
 void Wrapper::InitWindow(int width, int height, std::string title, bool fullScreen)
 {
 	srand(time(nullptr));
+	slWindow(width, height, title.c_str(), fullScreen);
 }
 
 void Wrapper::CloseWindow()
 {
+	slClose();
 }
 
 bool Wrapper::ShouldWindowClose()
 {
-	return false;
+	return static_cast<bool>(slShouldClose());
 }
 
-bool Wrapper::IsKeyDown(int key)
+bool Wrapper::IsKeyDown(Key key)
 {
 	return false;
 }
 
-bool Wrapper::IsKeyUp(int key)
+bool Wrapper::IsKeyUp(Key key)
 {
 	return false;
 }
 
-bool Wrapper::IsKeyPressing(int key)
+bool Wrapper::IsKeyPressing(Key key)
 {
 	return false;
 }
 
-bool Wrapper::IsKeyReleasing(int key)
+bool Wrapper::IsKeyReleasing(Key key)
 {
 	return false;
 }
 
 Wrapper::Vector2 Wrapper::GetMousePos()
 {
-	return Vector2();
+	Vector2 position = { slGetMouseX(),slGetMouseY() };
+	return position;
 }
 
 float Wrapper::GetDeltaTime()
@@ -112,7 +115,7 @@ void Wrapper::SetSpriteScroll(Vector2 position)
 {
 }
 
-void Wrapper::LoadSprite(int texture, Vector2 position, double width, double height)
+void Wrapper::LoadSprite(Texture texture, Vector2 position, float width, float height)
 {
 }
 
