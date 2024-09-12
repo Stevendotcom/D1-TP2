@@ -52,4 +52,5 @@ Thumbs.db
 *.pdb
 */obj/
 */.vs/
+.vs/
 *.sln.DotSettings.user

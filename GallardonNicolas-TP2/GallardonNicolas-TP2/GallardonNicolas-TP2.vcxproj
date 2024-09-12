@@ -16,9 +16,6 @@
     <ClCompile Include="..\src\utils\Wrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Header Files\" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\src\utils\KeyStates.h" />
     <ClInclude Include="..\src\utils\Wrapper.h" />
   </ItemGroup>
@@ -80,7 +77,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib/sigil/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib/sigil/include;$(SolutionDir)/src/utils/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
