@@ -6,15 +6,15 @@ namespace Wrapper
 {
 	struct Vector2
 	{
-		float X;
-		float Y;
+		float x;
+		float y;
 	};
 
 	struct Color
 	{
-		float Red;
-		float Green;
-		float Blue;
+		float red;
+		float green;
+		float blue;
 	};
 
 	enum class Key
