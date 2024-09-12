@@ -6,15 +6,15 @@ namespace Wrapper
 {
 	struct Vector2
 	{
-		float x;
-		float y;
+		float X;
+		float Y;
 	};
 
 	struct Color
 	{
-		float red;
-		float green;
-		float blue;
+		float Red;
+		float Green;
+		float Blue;
 	};
 
 	enum class Key
@@ -98,11 +98,13 @@ namespace Wrapper
 	typedef int Texture;
 	typedef int WAV;
 	typedef int Sound;
-	typedef int Text;
+	typedef int Font;
+
+    static int fontSize = 20;
 
 	//Window
 
-	void InitWindow(int width, int height, std::string title, bool fullScreen);
+	void InitWindow(int width, int height, const std::string&title, bool fullScreen);
 	void CloseWindow();
 	bool ShouldWindowClose();
 	
@@ -120,11 +122,11 @@ namespace Wrapper
 
 	//Texture
 
-	Texture LoadTexture(std::string filename);
+	Texture LoadTexture(const std::string&filename);
 	
 	// Sound
 
-	WAV LoadWAV(std::string filename);
+	WAV LoadWAV(const std::string&filename);
 	Sound SoundPlay(WAV file);
 	Sound SoundLoop(WAV file);
 	void SoundPause(Sound sound);
@@ -143,14 +145,14 @@ namespace Wrapper
 	
 	//Text
 	
-	Text LoadFont(std::string filename);
-	void SetFont(Text font);
-	void ChangeFontSize(int fontSize);
-	void TextPrint(Vector2 position, std::string text);
+	Font LoadFont(const std::string&filename);
+	void SetFont(Font font);
+	void ChangeFontSize(int size);
+	void TextPrint(Vector2 position, const std::string&text);
 
 	//Color
-	void SetBackColor(Color color);
-	void SetForeColor(Color color, float opacity);
+	void SetBackColor(const Color &color);
+	void SetForeColor(const Color &color, float opacity);
 	void SetAdditiveBlend(bool enable);
 		
 	//Utility

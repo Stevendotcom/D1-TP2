@@ -1,7 +1,9 @@
 #include "Wrapper.h"
+
+#include <iostream>
 #include <random>
 
-void Wrapper::InitWindow(int width, int height, std::string title, bool fullScreen)
+void Wrapper::InitWindow(const int width, const int height, const std::string&title, const bool fullScreen)
 {
 	srand(time(nullptr));
 	slWindow(width, height, title.c_str(), fullScreen);
@@ -39,53 +41,58 @@ bool Wrapper::IsKeyReleasing(Key key)
 
 Wrapper::Vector2 Wrapper::GetMousePos()
 {
-	Vector2 position = { slGetMouseX(),slGetMouseY() };
-	return position;
+	return {static_cast<float>(slGetMouseX()), static_cast<float>(slGetMouseY())};
 }
 
 
 void Wrapper::Render()
 {
+    slRender();
 }
 
-Wrapper::Texture Wrapper::LoadTexture(std::string filename)
+Wrapper::Texture Wrapper::LoadTexture(const std::string&filename)
 {
-	return Texture();
+	return slLoadTexture(filename.c_str());
 }
 
-Wrapper::WAV Wrapper::LoadWAV(std::string filename)
+Wrapper::WAV Wrapper::LoadWAV(const std::string&filename)
 {
-	return WAV();
+	return slLoadWAV(filename.c_str());
 }
 
-Wrapper::Sound Wrapper::SoundPlay(WAV file)
+Wrapper::Sound Wrapper::SoundPlay(const WAV file)
 {
-	return Sound();
+	return slSoundPlay(file);
 }
 
-Wrapper::Sound Wrapper::SoundLoop(WAV file)
+Wrapper::Sound Wrapper::SoundLoop(const WAV file)
 {
-	return Sound();
+	return slSoundLoop(file);
 }
 
-void Wrapper::SoundPause(Sound sound)
+void Wrapper::SoundPause(const Sound sound)
 {
+    slSoundPause(sound);
 }
 
-void Wrapper::SoundStop(Sound sound)
+void Wrapper::SoundStop(const Sound sound)
 {
+    slSoundStop(sound);
 }
 
 void Wrapper::SoundPauseAll()
 {
+    slSoundPauseAll();
 }
 
 void Wrapper::SoundStopAll()
 {
+    slSoundStopAll();
 }
 
 void Wrapper::SoundResumeAll()
 {
+    slSoundResumeAll();
 }
 
 bool Wrapper::IsSoundPlaying(Sound sound)
@@ -93,53 +100,68 @@ bool Wrapper::IsSoundPlaying(Sound sound)
 	return false;
 }
 
-bool Wrapper::IsSoundLooping(Sound sound)
+bool Wrapper::IsSoundLooping(const Sound sound)
 {
-	return false;
+	return slSoundLooping(sound);
 }
 
-void Wrapper::SetSpriteTiling(Vector2 position)
+void Wrapper::SetSpriteTiling(const Vector2 position)
 {
+    slSetSpriteTiling(static_cast<float>(position.X), static_cast<float>(position.Y));
 }
 
 void Wrapper::SetSpriteScroll(Vector2 position)
 {
+    if (position.X > FLT_EPSILON + 1.0f && position.X < 0 && position.Y < 0 && position.Y > FLT_EPSILON + 1.0f)
+    {
+        std::cout << "Scroll higher than the permited amount";
+        abort();
+    }
+    slSetSpriteScroll(position.X, position.Y);
 }
 
-void Wrapper::LoadSprite(Texture texture, Vector2 position, float width, float height)
+void Wrapper::LoadSprite(const Texture texture, const Vector2 position, const float width, const float height)
 {
+    slSprite(texture, position.X, position.Y, width, height);
 }
 
-Wrapper::Text Wrapper::LoadFont(std::string filename)
+Wrapper::Font Wrapper::LoadFont(const std::string&filename)
 {
-	return Text();
+	return slLoadFont(filename.c_str());
 }
 
-void Wrapper::SetFont(Text font)
+void Wrapper::SetFont(Font font)
 {
+    slSetFont(font, fontSize);
 }
 
-void Wrapper::ChangeFontSize(int fontSize)
+void Wrapper::ChangeFontSize(int size)
 {
+    fontSize = size;
+    slSetFontSize(fontSize);
 }
 
-void Wrapper::TextPrint(Vector2 position, std::string text)
+void Wrapper::TextPrint(const Vector2 position, const std::string& text)
 {
+    slText(position.X, position.Y, text.c_str());
 }
 
-void Wrapper::SetBackColor(Color color)
+void Wrapper::SetBackColor(const Color &color)
 {
+    slSetBackColor(color.Red, color.Green, color.Blue);
 }
 
-void Wrapper::SetForeColor(Color color, float opacity)
+void Wrapper::SetForeColor(const Color &color, const float opacity)
 {
+    slSetForeColor(color.Red, color.Green, color.Blue, opacity);
 }
 
-void Wrapper::SetAdditiveBlend(bool enable)
+void Wrapper::SetAdditiveBlend(const bool enable)
 {
+    slSetAdditiveBlend(enable);
 }
 
-int Wrapper::GetRandom(int min, int max)
+int Wrapper::GetRandom(const int min, const int max)
 {
 	return rand() % (max + 1 - min) + min;
 }
