@@ -1,4 +1,5 @@
 #include "Wrapper.h"
+#include "KeyStates.h"
 
 #include <iostream>
 #include <random>
@@ -19,22 +20,25 @@ bool Wrapper::ShouldWindowClose()
 	return static_cast<bool>(slShouldClose());
 }
 
-bool Wrapper::IsKeyDown(Key key)
+bool Wrapper::IsKeyDown(int key)
+{
+	if(slGetKey(key))
+	{
+
+	}
+}
+
+bool Wrapper::IsKeyUp(int key)
+{
+    return !slGetKey(static_cast<int>(key));
+}
+
+bool Wrapper::IsKeyPressing(int key)
 {
 	return false;
 }
 
-bool Wrapper::IsKeyUp(Key key)
-{
-	return false;
-}
-
-bool Wrapper::IsKeyPressing(Key key)
-{
-	return false;
-}
-
-bool Wrapper::IsKeyReleasing(Key key)
+bool Wrapper::IsKeyReleasing(int key)
 {
 	return false;
 }

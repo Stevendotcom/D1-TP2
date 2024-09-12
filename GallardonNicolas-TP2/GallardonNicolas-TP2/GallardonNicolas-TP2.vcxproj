@@ -12,10 +12,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="..\src\Wrapper.cpp" />
+    <ClCompile Include="..\src\utils\KeyStates.cpp" />
+    <ClCompile Include="..\src\utils\Wrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\Wrapper.h" />
+    <Folder Include="Header Files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\utils\KeyStates.h" />
+    <ClInclude Include="..\src\utils\Wrapper.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
