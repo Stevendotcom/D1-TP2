@@ -4,49 +4,99 @@
 #include <iostream>
 #include <random>
 
-void Wrapper::InitWindow(const int width, const int height, const std::string&title, const bool fullScreen)
+
+
+void Wrapper::InitWindow(const int width, const int height, const std::string &title, const bool fullScreen)
 {
-	srand(time(nullptr));
-	slWindow(width, height, title.c_str(), fullScreen);
+    srand(time(nullptr));
+    slWindow(width, height, title.c_str(), fullScreen);
 }
+
+
 
 void Wrapper::CloseWindow()
 {
-	slClose();
+    slClose();
 }
+
+
 
 bool Wrapper::ShouldWindowClose()
 {
-	return static_cast<bool>(slShouldClose());
+    return static_cast<bool>(slShouldClose());
 }
 
-bool Wrapper::IsKeyDown(int key)
+
+
+bool Wrapper::IsKeyDown(const int key)
 {
-	if(slGetKey(key))
-	{
+    KeyStates::CheckForKeysInWatch(KeyStates::activeKeys);
 
-	}
+    if (slGetKey(key))
+    {
+        if (!KeyStates::GetPreviousKeyState(key))
+        {
+            KeyStates::TogglePreviousKeyState(key);
+            KeyStates::AddKeyToWatch(key);
+        }
+        return true;
+    }
+    return false;
 }
 
-bool Wrapper::IsKeyUp(int key)
+
+
+bool Wrapper::IsKeyUp(const int key)
 {
-    return !slGetKey(static_cast<int>(key));
+    KeyStates::CheckForKeysInWatch(KeyStates::activeKeys);
+
+    if (!slGetKey(key))
+    {
+        if (KeyStates::GetPreviousKeyState(key))
+        {
+            KeyStates::TogglePreviousKeyState(key);
+        }
+        return true;
+    }
+    return false;
 }
 
-bool Wrapper::IsKeyPressing(int key)
+
+
+bool Wrapper::IsKeyPressing(const int key)
 {
-	return false;
+    KeyStates::CheckForKeysInWatch(KeyStates::activeKeys);
+
+    if (!KeyStates::GetPreviousKeyState(key) && slGetKey(key))
+    {
+        KeyStates::TogglePreviousKeyState(key);
+        KeyStates::AddKeyToWatch(key);
+        return true;
+
+    }
+    return false;
 }
 
-bool Wrapper::IsKeyReleasing(int key)
+
+
+bool Wrapper::IsKeyReleasing(const int key)
 {
-	return false;
+    KeyStates::CheckForKeysInWatch(KeyStates::activeKeys);
+    if (!KeyStates::GetPreviousKeyState(key) && slGetKey(key))
+    {
+        KeyStates::TogglePreviousKeyState(key);
+        return true;
+    }
+    return false;
 }
+
+
 
 Wrapper::Vector2 Wrapper::GetMousePos()
 {
-	return {static_cast<float>(slGetMouseX()), static_cast<float>(slGetMouseY())};
+    return {static_cast<float>(slGetMouseX()), static_cast<float>(slGetMouseY())};
 }
+
 
 
 void Wrapper::Render()
@@ -54,90 +104,124 @@ void Wrapper::Render()
     slRender();
 }
 
-Wrapper::Texture Wrapper::LoadTexture(const std::string&filename)
+
+
+Wrapper::Texture Wrapper::LoadTexture(const std::string &filename)
 {
-	return slLoadTexture(filename.c_str());
+    return slLoadTexture(filename.c_str());
 }
 
-Wrapper::WAV Wrapper::LoadWAV(const std::string&filename)
+
+
+Wrapper::WAV Wrapper::LoadWAV(const std::string &filename)
 {
-	return slLoadWAV(filename.c_str());
+    return slLoadWAV(filename.c_str());
 }
+
+
 
 Wrapper::Sound Wrapper::SoundPlay(const WAV file)
 {
-	return slSoundPlay(file);
+    return slSoundPlay(file);
 }
+
+
 
 Wrapper::Sound Wrapper::SoundLoop(const WAV file)
 {
-	return slSoundLoop(file);
+    return slSoundLoop(file);
 }
+
+
 
 void Wrapper::SoundPause(const Sound sound)
 {
     slSoundPause(sound);
 }
 
+
+
 void Wrapper::SoundStop(const Sound sound)
 {
     slSoundStop(sound);
 }
+
+
 
 void Wrapper::SoundPauseAll()
 {
     slSoundPauseAll();
 }
 
+
+
 void Wrapper::SoundStopAll()
 {
     slSoundStopAll();
 }
+
+
 
 void Wrapper::SoundResumeAll()
 {
     slSoundResumeAll();
 }
 
+
+
 bool Wrapper::IsSoundPlaying(Sound sound)
 {
-	return false;
+    return false;
 }
+
+
 
 bool Wrapper::IsSoundLooping(const Sound sound)
 {
-	return slSoundLooping(sound);
+    return slSoundLooping(sound);
 }
+
+
 
 void Wrapper::SetSpriteTiling(const Vector2 position)
 {
     slSetSpriteTiling(static_cast<float>(position.X), static_cast<float>(position.Y));
 }
 
+
+
 void Wrapper::SetSpriteScroll(Vector2 position)
 {
     if (position.X > FLT_EPSILON + 1.0f && position.X < 0 && position.Y < 0 && position.Y > FLT_EPSILON + 1.0f)
     {
-        std::cout << "Scroll higher than the permited amount";
+        std::cout << "Scroll higher than the permitted amount";
         abort();
     }
     slSetSpriteScroll(position.X, position.Y);
 }
+
+
 
 void Wrapper::LoadSprite(const Texture texture, const Vector2 position, const float width, const float height)
 {
     slSprite(texture, position.X, position.Y, width, height);
 }
 
-Wrapper::Font Wrapper::LoadFont(const std::string&filename)
+
+
+Wrapper::Font Wrapper::LoadFont(const std::string &filename)
 {
-	return slLoadFont(filename.c_str());
+    return slLoadFont(filename.c_str());
 }
+
+
 
 void Wrapper::SetFont(Font font)
 {
     slSetFont(font, fontSize);
 }
+
+
 
 void Wrapper::ChangeFontSize(int size)
 {
@@ -145,27 +229,37 @@ void Wrapper::ChangeFontSize(int size)
     slSetFontSize(fontSize);
 }
 
-void Wrapper::TextPrint(const Vector2 position, const std::string& text)
+
+
+void Wrapper::TextPrint(const Vector2 position, const std::string &text)
 {
     slText(position.X, position.Y, text.c_str());
 }
+
+
 
 void Wrapper::SetBackColor(const Color &color)
 {
     slSetBackColor(color.Red, color.Green, color.Blue);
 }
 
+
+
 void Wrapper::SetForeColor(const Color &color, const float opacity)
 {
     slSetForeColor(color.Red, color.Green, color.Blue, opacity);
 }
+
+
 
 void Wrapper::SetAdditiveBlend(const bool enable)
 {
     slSetAdditiveBlend(enable);
 }
 
+
+
 int Wrapper::GetRandom(const int min, const int max)
 {
-	return rand() % (max + 1 - min) + min;
+    return rand() % (max + 1 - min) + min;
 }
