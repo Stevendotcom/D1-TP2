@@ -6,13 +6,10 @@ using namespace Wrapper;
 const int SCREEN_WIDTH = 1080;
 const int SCREEN_HEIGHT = 900;
 
+const std::string assetsDir = "../assets/";
+
 int main()
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "TEST", false);
-    const std::string assetsDir = "../assets/";
-
-    const Font font = LoadFont(assetsDir + "DirtyHarold_Font/DirtyHarold.ttf");
-    SetFont(font);
-
     SceneManager::Manager();
 }
