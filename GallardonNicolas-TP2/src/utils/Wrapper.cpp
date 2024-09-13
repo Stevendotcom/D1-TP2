@@ -203,9 +203,9 @@ void Wrapper::SetSpriteScroll(Vector2 position)
 
 
 
-void Wrapper::LoadSprite(const Texture texture, const Vector2 position, const float width, const float height)
+void Wrapper::LoadSprite(const Texture texture, const Vector2 position, Vector2 size)
 {
-    slSprite(texture, position.X, position.Y, width, height);
+    slSprite(texture, position.X, position.Y, size.X, size.Y);
 }
 
 

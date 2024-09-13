@@ -63,7 +63,7 @@ namespace Wrapper
 	
 	void SetSpriteTiling(Vector2 position);
 	void SetSpriteScroll(Vector2 position);
-	void LoadSprite(Texture texture, Vector2 position, float width, float height);
+	void LoadSprite(Texture texture, Vector2 position, Vector2 size);
 	
 	//Text
 	
