@@ -239,14 +239,14 @@ void Wrapper::TextPrint(const Vector2 position, const std::string &text)
 
 
 
-void Wrapper::SetBackColor(const Color &color)
+void Wrapper::SetBackColor(const  Color::Color &color)
 {
     slSetBackColor(color.Red, color.Green, color.Blue);
 }
 
 
 
-void Wrapper::SetForeColor(const Color &color, const float opacity)
+void Wrapper::SetForeColor(const  Color::Color &color, const float opacity)
 {
     slSetForeColor(color.Red, color.Green, color.Blue, opacity);
 }

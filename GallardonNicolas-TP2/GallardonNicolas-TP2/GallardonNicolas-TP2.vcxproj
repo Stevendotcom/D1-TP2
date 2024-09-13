@@ -25,6 +25,9 @@
     <ClInclude Include="..\src\utils\KeyStates.h" />
     <ClInclude Include="..\src\utils\Wrapper.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\src\utils\ColorPalette.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}</ProjectGuid>

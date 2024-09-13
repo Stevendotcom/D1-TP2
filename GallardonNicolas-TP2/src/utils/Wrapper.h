@@ -1,84 +1,79 @@
 #pragma once
 #include <string>
+#include "ColorPalette.h"
 
 namespace Wrapper
 {
-	struct Vector2
-	{
-		float X;
-		float Y;
-	};
-
-	struct Color
-	{
-		float Red;
-		float Green;
-		float Blue;
-	};
+    struct Vector2
+    {
+        float X;
+        float Y;
+    };
 
 
-	typedef int Texture;
-	typedef int WAV;
-	typedef int Sound;
-	typedef int Font;
+    typedef int Texture;
+    typedef int WAV;
+    typedef int Sound;
+    typedef int Font;
 
     static int fontSize = 20;
 
-	//Window
+    //Window
 
-	void InitWindow(int width, int height, const std::string&title, bool fullScreen);
-	void CloseWindow();
-	bool ShouldWindowClose();
-	
-	//Input
+    void InitWindow(int width, int height, const std::string &title, bool fullScreen);
+    void CloseWindow();
+    bool ShouldWindowClose();
 
-	bool IsKeyDown(int key);
-	bool IsKeyUp(int key);
-	bool IsKeyPressing(int key);
-	bool IsKeyReleasing(int key);
-	Vector2 GetMousePos();
+    //Input
 
-	//Rendering
+    bool IsKeyDown(int key);
+    bool IsKeyUp(int key);
+    bool IsKeyPressing(int key);
+    bool IsKeyReleasing(int key);
+    Vector2 GetMousePos();
 
-	void Render();
+    //Rendering
 
-	//Texture
+    void Render();
 
-	Texture LoadTexture(const std::string&filename);
-	
-	// Sound
+    //Texture
 
-	WAV LoadWAV(const std::string&filename);
-	Sound SoundPlay(WAV file);
-	Sound SoundLoop(WAV file);
-	void SoundPause(Sound sound);
-	void SoundStop(Sound sound);
-	void SoundPauseAll();
-	void SoundStopAll();
-	void SoundResumeAll();
-	bool IsSoundPlaying(Sound sound);
-	bool IsSoundLooping(Sound sound);
+    Texture LoadTexture(const std::string &filename);
 
-	//Shape Drawing
-	
-	void SetSpriteTiling(Vector2 position);
-	void SetSpriteScroll(Vector2 position);
-	void LoadSprite(Texture texture, Vector2 position, Vector2 size);
-	
-	//Text
-	
-	Font LoadFont(const std::string&filename);
-	void SetFont(Font font);
-	void ChangeFontSize(int size);
-	void TextPrint(Vector2 position, const std::string&text);
+    // Sound
 
-	//Color
-	void SetBackColor(const Color &color);
-	void SetForeColor(const Color &color, float opacity);
-	void SetAdditiveBlend(bool enable);
-		
-	//Utility
-	int GetRandom(int min, int max);
+    WAV LoadWAV(const std::string &filename);
+    Sound SoundPlay(WAV file);
+    Sound SoundLoop(WAV file);
+    void SoundPause(Sound sound);
+    void SoundStop(Sound sound);
+    void SoundPauseAll();
+    void SoundStopAll();
+    void SoundResumeAll();
+    bool IsSoundPlaying(Sound sound);
+    bool IsSoundLooping(Sound sound);
+
+    //Shape Drawing
+
+    void SetSpriteTiling(Vector2 position);
+    void SetSpriteScroll(Vector2 position);
+    void LoadSprite(Texture texture, Vector2 position, Vector2 size);
+
+    //Text
+
+    Font LoadFont(const std::string &filename);
+    void SetFont(Font font);
+    void ChangeFontSize(int size);
+    void TextPrint(Vector2 position, const std::string &text);
+
+    //Color
+
+    void SetBackColor(const Color::Color &color);
+    void SetForeColor(const Color::Color &color, float opacity);
+    void SetAdditiveBlend(bool enable);
+
+    //Utility
+
+    int GetRandom(int min, int max);
     void CenterText();
 }
-
