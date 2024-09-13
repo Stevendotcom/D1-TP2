@@ -13,12 +13,14 @@
   <ItemGroup>
     <ClCompile Include="..\src\actors\Buttons.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\scenes\MainMenu.cpp" />
     <ClCompile Include="..\src\scenes\SceneManager.cpp" />
     <ClCompile Include="..\src\utils\KeyStates.cpp" />
     <ClCompile Include="..\src\utils\Wrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\actors\Buttons.h" />
+    <ClInclude Include="..\src\scenes\MainMenu.h" />
     <ClInclude Include="..\src\scenes\SceneManager.h" />
     <ClInclude Include="..\src\utils\KeyStates.h" />
     <ClInclude Include="..\src\utils\Wrapper.h" />
@@ -81,7 +83,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib/sigil/include;$(SolutionDir)/src/utils/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib/sigil/include;$(SolutionDir)/src/utils/;$(SolutionDir)/src/scenes/;$(SolutionDir)/src/actors/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

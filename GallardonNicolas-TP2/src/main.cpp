@@ -1,5 +1,5 @@
 #include "Wrapper.h"
-#include "scenes/SceneManager.h"
+#include "SceneManager.h"
 
 using namespace Wrapper;
 
