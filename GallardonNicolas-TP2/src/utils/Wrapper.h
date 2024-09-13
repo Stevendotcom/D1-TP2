@@ -2,6 +2,10 @@
 #include <string>
 #include "ColorPalette.h"
 
+extern const int SCREEN_WIDTH;
+extern const int SCREEN_HEIGHT;
+extern const std::string assetsDir;
+
 namespace Wrapper
 {
     struct Vector2

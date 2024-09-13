@@ -3,6 +3,10 @@
 
 static SceneManager::Scenes setScene = SceneManager::Scenes::MainMenu;
 
+extern const int SCREEN_WIDTH;
+extern const int SCREEN_HEIGHT;
+extern const std::string assetsDir;
+
 
 
 void SceneManager::Manager()
