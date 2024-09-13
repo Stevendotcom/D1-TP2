@@ -264,3 +264,10 @@ int Wrapper::GetRandom(const int min, const int max)
 {
     return rand() % (max + 1 - min) + min;
 }
+
+
+
+void Wrapper::CenterText()
+{
+    slSetAdditiveBlend(SL_ALIGN_CENTER);
+}

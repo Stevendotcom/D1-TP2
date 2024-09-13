@@ -79,5 +79,6 @@ namespace Wrapper
 		
 	//Utility
 	int GetRandom(int min, int max);
+    void CenterText();
 }
 
