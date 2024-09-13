@@ -1,4 +1,5 @@
 #include "Wrapper.h"
+#include "scenes/SceneManager.h"
 
 using namespace Wrapper;
 
@@ -13,9 +14,5 @@ int main()
     const Font font = LoadFont(assetsDir + "DirtyHarold_Font/DirtyHarold.ttf");
     SetFont(font);
 
-    while(!ShouldWindowClose())
-    {
-        //todo
-    }
-    CloseWindow();
+    SceneManager::Manager();
 }

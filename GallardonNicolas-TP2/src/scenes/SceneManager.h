@@ -1,7 +1,16 @@
 ﻿#pragma once
 
-class SceneManager
+namespace SceneManager
 {
-public:
-    
-};
+    enum class Scenes
+    {
+        MainMenu,
+        Play,
+        Credits,
+        Rules,
+        Exit
+    };
+
+    void Manager();
+    void ChangeScene(Scenes scene);
+}
