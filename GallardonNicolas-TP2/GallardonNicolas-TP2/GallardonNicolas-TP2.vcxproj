@@ -11,18 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\actors\Buttons.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\scenes\SceneManager.cpp" />
     <ClCompile Include="..\src\utils\KeyStates.cpp" />
     <ClCompile Include="..\src\utils\Wrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\actors\Buttons.h" />
     <ClInclude Include="..\src\scenes\SceneManager.h" />
     <ClInclude Include="..\src\utils\KeyStates.h" />
     <ClInclude Include="..\src\utils\Wrapper.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="..\src\actors\" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
