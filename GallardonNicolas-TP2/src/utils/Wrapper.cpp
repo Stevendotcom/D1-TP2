@@ -6,13 +6,11 @@
 #include <random>
 
 
-
 void Wrapper::InitWindow(const int width, const int height, const std::string &title, const bool fullScreen)
 {
     srand(time(nullptr));
     slWindow(width, height, title.c_str(), fullScreen);
 }
-
 
 
 void Wrapper::CloseWindow()
@@ -21,76 +19,51 @@ void Wrapper::CloseWindow()
 }
 
 
-
 bool Wrapper::ShouldWindowClose()
 {
     return static_cast<bool>(slShouldClose());
 }
 
 
-
 bool Wrapper::IsKeyDown(const int key)
 {
-    KeyStates::CheckForKeysInWatch(KeyStates::activeKeys);
-
-    if (slGetKey(key))
-    {
-        if (!KeyStates::GetPreviousKeyState(key))
-        {
-            KeyStates::TogglePreviousKeyState(key);
-            KeyStates::AddKeyToWatch(key);
-        }
-        return true;
-    }
-    return false;
+   return slGetKey(key);
 }
 
 
 
-bool Wrapper::IsKeyUp(const int key)
+bool Wrapper::IsKeyAboutToPress(const int key)
 {
-    KeyStates::CheckForKeysInWatch(KeyStates::activeKeys);
+    //TODO CHECK IF NEEDED
+    return IsKeyDown(key) && !KeyStates::GetPreviousKeyState(key);
 
-    if (!slGetKey(key))
-    {
-        if (KeyStates::GetPreviousKeyState(key))
-        {
-            KeyStates::TogglePreviousKeyState(key);
-        }
-        return true;
-    }
-    return false;
 }
-
-
-
-bool Wrapper::IsKeyPressing(const int key)
-{
-    KeyStates::CheckForKeysInWatch(KeyStates::activeKeys);
-
-    if (!KeyStates::GetPreviousKeyState(key) && slGetKey(key))
-    {
-        KeyStates::TogglePreviousKeyState(key);
-        KeyStates::AddKeyToWatch(key);
-        return true;
-
-    }
-    return false;
-}
-
 
 
 bool Wrapper::IsKeyReleasing(const int key)
 {
-    KeyStates::CheckForKeysInWatch(KeyStates::activeKeys);
-    if (!KeyStates::GetPreviousKeyState(key) && slGetKey(key))
+    // if key is down
+    if (IsKeyDown(key))
     {
-        KeyStates::TogglePreviousKeyState(key);
-        return true;
+        //if it was not down
+        if(!KeyStates::GetPreviousKeyState(key))
+        {
+            KeyStates::TogglePreviousKeyState(key);
+        }
+        return false;
     }
-    return false;
+    //key is up
+    else
+    {
+        //was down
+        if(KeyStates::GetPreviousKeyState(key))
+        {
+            KeyStates::TogglePreviousKeyState(key);
+            return true;
+        }
+        return false;
+    }
 }
-
 
 
 Wrapper::Vector2 Wrapper::GetMousePos()
@@ -99,12 +72,12 @@ Wrapper::Vector2 Wrapper::GetMousePos()
 }
 
 
-
 void Wrapper::Render()
 {
-    slRender();
-}
 
+    slRender();
+
+}
 
 
 Wrapper::Texture Wrapper::LoadTexture(const std::string &filename)
@@ -113,12 +86,10 @@ Wrapper::Texture Wrapper::LoadTexture(const std::string &filename)
 }
 
 
-
 Wrapper::WAV Wrapper::LoadWAV(const std::string &filename)
 {
     return slLoadWAV(filename.c_str());
 }
-
 
 
 Wrapper::Sound Wrapper::SoundPlay(const WAV file)
@@ -127,12 +98,10 @@ Wrapper::Sound Wrapper::SoundPlay(const WAV file)
 }
 
 
-
 Wrapper::Sound Wrapper::SoundLoop(const WAV file)
 {
     return slSoundLoop(file);
 }
-
 
 
 void Wrapper::SoundPause(const Sound sound)
@@ -141,12 +110,10 @@ void Wrapper::SoundPause(const Sound sound)
 }
 
 
-
 void Wrapper::SoundStop(const Sound sound)
 {
     slSoundStop(sound);
 }
-
 
 
 void Wrapper::SoundPauseAll()
@@ -155,12 +122,10 @@ void Wrapper::SoundPauseAll()
 }
 
 
-
 void Wrapper::SoundStopAll()
 {
     slSoundStopAll();
 }
-
 
 
 void Wrapper::SoundResumeAll()
@@ -169,12 +134,10 @@ void Wrapper::SoundResumeAll()
 }
 
 
-
 bool Wrapper::IsSoundPlaying(Sound sound)
 {
     return false;
 }
-
 
 
 bool Wrapper::IsSoundLooping(const Sound sound)
@@ -183,12 +146,10 @@ bool Wrapper::IsSoundLooping(const Sound sound)
 }
 
 
-
 void Wrapper::SetSpriteTiling(const Vector2 position)
 {
     slSetSpriteTiling(static_cast<float>(position.X), static_cast<float>(position.Y));
 }
-
 
 
 void Wrapper::SetSpriteScroll(Vector2 position)
@@ -202,12 +163,10 @@ void Wrapper::SetSpriteScroll(Vector2 position)
 }
 
 
-
 void Wrapper::LoadSprite(const Texture texture, const Vector2 position, Vector2 size)
 {
     slSprite(texture, position.X, position.Y, size.X, size.Y);
 }
-
 
 
 Wrapper::Font Wrapper::LoadFont(const std::string &filename)
@@ -216,12 +175,10 @@ Wrapper::Font Wrapper::LoadFont(const std::string &filename)
 }
 
 
-
 void Wrapper::SetFont(Font font)
 {
     slSetFont(font, fontSize);
 }
-
 
 
 void Wrapper::ChangeFontSize(int size)
@@ -231,26 +188,22 @@ void Wrapper::ChangeFontSize(int size)
 }
 
 
-
 void Wrapper::TextPrint(const Vector2 position, const std::string &text)
 {
     slText(position.X, position.Y, text.c_str());
 }
 
 
-
-void Wrapper::SetBackColor(const  Color::Color &color)
+void Wrapper::SetBackColor(const Color::Color &color)
 {
     slSetBackColor(color.Red, color.Green, color.Blue);
 }
 
 
-
-void Wrapper::SetForeColor(const  Color::Color &color, const float opacity)
+void Wrapper::SetForeColor(const Color::Color &color, const float opacity)
 {
     slSetForeColor(color.Red, color.Green, color.Blue, opacity);
 }
-
 
 
 void Wrapper::SetAdditiveBlend(const bool enable)
@@ -259,12 +212,10 @@ void Wrapper::SetAdditiveBlend(const bool enable)
 }
 
 
-
 int Wrapper::GetRandom(const int min, const int max)
 {
     return rand() % (max + 1 - min) + min;
 }
-
 
 
 void Wrapper::CenterText()

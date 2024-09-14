@@ -21,9 +21,9 @@ bool KeyStates::GetPreviousKeyState(const int key)
     {
         return previousKeyStates[key - 'A' + '9' - '0'];
     }
-    if (key >= 'a' && key <= 'z')
+    if (key >=  SL_KEY_ESCAPE && key <= SL_KEY_RIGHT_SUPER)
     {
-        return previousKeyStates[key - 'a' + 'Z' - 'A'];
+        return previousKeyStates[key - SL_KEY_ESCAPE + '9' - '0' + 'Z' - 'A' ];
     }
     return false;
 }
@@ -36,38 +36,13 @@ void KeyStates::TogglePreviousKeyState(int key)
     {
        previousKeyStates[key - '0'] = !previousKeyStates[key - '0'];
     }
-    else if (key >= 'A' && key <= 'Z')
+    else if ((key >= 'A' && key <= 'Z' )|| (key >= 'a' && key <= 'z'))
     {
-       previousKeyStates[key - 'A' + '9' - '0'] = !previousKeyStates[key - 'A' + '9'];
+       previousKeyStates[key - 'A' + '9' - '0'] = !previousKeyStates[key - 'A' + '9' - '0'];
     }
-    else if (key >= 'a' && key <= 'z')
+    else
     {
-        previousKeyStates[key - 'a' + 'Z' - 'A'] = !previousKeyStates[key - 'a' + 'Z'];
+        previousKeyStates[key - SL_KEY_ESCAPE + '9' - '0' + 'Z' - 'A' ] = !previousKeyStates[key - SL_KEY_ESCAPE + '9' - '0' + 'Z' - 'A' ];
     }
 }
 
-
-
-void KeyStates::AddKeyToWatch(int key)
-{
-    activeKeys[amountActive] = key;
-    amountActive++;
-}
-
-
-
-void KeyStates::CheckForKeysInWatch(int active[MAX_ACTIVE_KEYS])
-{
-    int actualActive = amountActive;
-
-    for (int i = 0; i < amountActive; i++)
-    {
-        if(!slGetKey(active[i]))
-        {
-            TogglePreviousKeyState(active[i]);
-            actualActive--;
-        }
-    }
-
-    amountActive = actualActive;
-}

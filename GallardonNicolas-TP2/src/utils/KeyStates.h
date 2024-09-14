@@ -16,16 +16,4 @@ namespace KeyStates
      * @param key key number according to SL
      */
     void TogglePreviousKeyState(int key);
-
-    /**
-     * @brief adds key to a watchlist, which is used to check if any
-     *        key has been released between cycles.
-     * @param key key number according to SL
-     */
-    void AddKeyToWatch(int key);
-    /**
-     * @brief checks if any key has been released between cycles.
-     * @param active array with active keys
-     */
-    void CheckForKeysInWatch(int active[MAX_ACTIVE_KEYS]);
 }

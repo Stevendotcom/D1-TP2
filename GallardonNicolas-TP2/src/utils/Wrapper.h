@@ -4,7 +4,8 @@
 
 extern const int SCREEN_WIDTH;
 extern const int SCREEN_HEIGHT;
-extern const std::string assetsDir;
+extern const std::string ASSETS_DIR;
+
 
 namespace Wrapper
 {
@@ -31,8 +32,7 @@ namespace Wrapper
     //Input
 
     bool IsKeyDown(int key);
-    bool IsKeyUp(int key);
-    bool IsKeyPressing(int key);
+    bool IsKeyAboutToPress(int key);
     bool IsKeyReleasing(int key);
     Vector2 GetMousePos();
 
@@ -81,3 +81,5 @@ namespace Wrapper
     int GetRandom(int min, int max);
     void CenterText();
 }
+extern Wrapper::Font title;
+extern Wrapper::Font button;
