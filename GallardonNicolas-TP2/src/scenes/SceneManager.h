@@ -2,6 +2,7 @@
 
 namespace SceneManager
 {
+
     enum class Scenes
     {
         MainMenu,

@@ -1,48 +1,46 @@
 ﻿#include "MainMenu.h"
-#include "SceneManager.h"
 
 #include <sl.h>
 
-extern const int SCREEN_WIDTH;
-extern const int SCREEN_HEIGHT;
-extern const std::string assetsDir;
+#include "KeyStates.h"
+#include "SceneManager.h"
 
-const int titleHeight = SCREEN_HEIGHT - 48;
-const int titleSize = 30;
-const int amount = 4;
+const float TITLE_HEIGHT = SCREEN_HEIGHT - 48;
+const int TITLE_SIZE = 30;
+const int AMOUNT = 4;
 
 using namespace Buttons;
-
 
 
 void MainMenu::Menu()
 {
     int selected = 0;
-    Button buttons[amount];
+    Button buttons[AMOUNT];
     MakeButtons(buttons);
-
-    while (!Wrapper::IsKeyReleasing(SL_KEY_ENTER) && !Wrapper::ShouldWindowClose())
+    Draw(buttons);
+    while (!Wrapper::IsKeyDown(SL_KEY_ENTER) && !Wrapper::ShouldWindowClose())
     {
         Input(buttons, selected);
-        Draw();
+        Draw(buttons);
+        Wrapper::Render();
+
     }
 
     SceneManager::ChangeScene(static_cast<SceneManager::Scenes>(selected + 1));
 }
 
 
-
 void MainMenu::MakeButtons(Buttons::Button buttons[])
 {
     const int width = 50;
-    const int height = 20;
-    const Wrapper::Texture sprite = Wrapper::LoadTexture(assetsDir + "Pixelarium/banner.png");
+    const int height = 25;
+    const Wrapper::Texture sprite = Wrapper::LoadTexture(ASSETS_DIR + "Pixelarium/banner.png");
 
-    for(int i = 0; i < amount; i++)
+    for (int i = 0; i < AMOUNT; i++)
     {
         buttons[i] =
         {
-            {SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f + height * i},
+            {SCREEN_WIDTH / 2.0f, height * static_cast<float>(AMOUNT - i) + 50.0f},
             {width, height},
             sprite,
             Color::dimGray,
@@ -73,13 +71,12 @@ void MainMenu::MakeButtons(Buttons::Button buttons[])
 }
 
 
-
-void MainMenu::Input(Buttons::Button buttons[], int& selected)
+void MainMenu::Input(Buttons::Button buttons[], int &selected)
 {
     buttons[selected].Selected = false;
-    if(Wrapper::IsKeyDown(SL_KEY_DOWN))
+    if (Wrapper::IsKeyReleasing(SL_KEY_DOWN))
     {
-        if(selected == amount)
+        if (selected == AMOUNT - 1)
         {
             selected = 0;
         }
@@ -88,11 +85,11 @@ void MainMenu::Input(Buttons::Button buttons[], int& selected)
             selected++;
         }
     }
-    else if(Wrapper::IsKeyDown(SL_KEY_UP))
+    else if (Wrapper::IsKeyDown(SL_KEY_UP))
     {
-        if(selected == 0)
+        if (selected == 0)
         {
-            selected = amount;
+            selected = AMOUNT - 1;
         }
         else
         {
@@ -103,7 +100,10 @@ void MainMenu::Input(Buttons::Button buttons[], int& selected)
 }
 
 
-
-void MainMenu::Draw()
+void MainMenu::Draw(Buttons::Button buttons[])
 {
+    Wrapper::SetFont(title);
+    Wrapper::ChangeFontSize(TITLE_SIZE);
+    Wrapper::TextPrint({SCREEN_WIDTH / 2.0f, TITLE_HEIGHT}, "Game name");
+    RenderButtons(buttons, AMOUNT);
 }

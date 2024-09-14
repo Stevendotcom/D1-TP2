@@ -1,44 +1,55 @@
 ﻿#include "SceneManager.h"
+
+#include <iostream>
+
+#include "MainMenu.h"
 #include "Wrapper.h"
 
-static SceneManager::Scenes setScene = SceneManager::Scenes::MainMenu;
 
-extern const int SCREEN_WIDTH;
-extern const int SCREEN_HEIGHT;
-extern const std::string assetsDir;
-
-
-
-void SceneManager::Manager()
+namespace SceneManager
 {
-    bool exit = false;
-    while (!Wrapper::ShouldWindowClose() && !exit)
+    Scenes setScene = Scenes::MainMenu;
+
+    void Manager()
     {
-        switch (setScene)
+        bool exit = false;
+        while (!Wrapper::ShouldWindowClose() && !exit)
         {
-        case Scenes::MainMenu:
-            //MainMenu();
-            break;
-        case Scenes::Play:
-            //Play();
-            break;
-        case Scenes::Credits:
-            //Credits();
-            break;
-        case Scenes::Exit:
-            //Exit();
-            exit = true;
-            break;
-        case Scenes::Rules:
-            break;
+            switch (setScene)
+            {
+            case Scenes::MainMenu:
+                MainMenu::Menu();
+                break;
+            case Scenes::Play:
+                //Play();
+                std::cout << "Playing..." << std::endl;
+                setScene = Scenes::MainMenu;
+                break;
+            case Scenes::Credits:
+                //Credits();
+                std::cout << "Credits..." << std::endl;
+                setScene = Scenes::MainMenu;
+                break;
+            case Scenes::Rules:
+                std::cout << "rules..." << std::endl;
+                setScene = Scenes::MainMenu;
+                break;
+            case Scenes::Exit:
+                //Exit();
+                std::cout << "exit..." << std::endl;
+                exit = true;
+                break;
+            default:
+                std::cerr << "Unknown Scene #" << static_cast<int>(setScene) << std::endl;
+                abort();
+            }
         }
+        Wrapper::CloseWindow();
     }
-    Wrapper::CloseWindow();
-}
 
 
-
-void SceneManager::ChangeScene(Scenes scene)
-{
-    setScene = scene;
+    void ChangeScene(Scenes scene)
+    {
+        setScene = scene;
+    }
 }
