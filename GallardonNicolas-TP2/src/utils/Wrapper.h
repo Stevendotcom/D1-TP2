@@ -5,6 +5,7 @@
 extern const int SCREEN_WIDTH;
 extern const int SCREEN_HEIGHT;
 extern const std::string ASSETS_DIR;
+extern const std::string GAME_TITLE;
 
 
 namespace Wrapper
@@ -66,9 +67,11 @@ namespace Wrapper
     //Text
 
     Font LoadFont(const std::string &filename);
+    void LoadAllFonts();
     void SetFont(Font font);
     void ChangeFontSize(int size);
     void TextPrint(Vector2 position, const std::string &text);
+    Vector2 GetTextSize(const std::string &text);
 
     //Color
 

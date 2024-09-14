@@ -3,7 +3,7 @@
 
 void Buttons::RenderButtons(Button buttons[], const int amount)
 {
-    const int margin = 3;
+    const float margin = buttons[0].Size.Y * 0.6;
 
     Wrapper::ChangeFontSize(buttons[0].Size.Y - margin);
     Wrapper::SetFont(button);
@@ -11,7 +11,7 @@ void Buttons::RenderButtons(Button buttons[], const int amount)
 
     for (int i = 0; i < amount; i++)
     {
-        Wrapper::LoadSprite(buttons[i].Sprite, buttons[i].Position, buttons[i].Size);
+        Wrapper::LoadSprite(buttons[i].Sprite, {buttons[i].Position.X, buttons[i].Position.Y + (buttons[i].Size.Y / 2.0f) - margin / 2.0f}, buttons[i].Size);
 
         if (buttons[i].Selected)
         {
@@ -21,7 +21,6 @@ void Buttons::RenderButtons(Button buttons[], const int amount)
         {
             Wrapper::SetForeColor(buttons[i].Color, 1.0f);
         }
-
-        Wrapper::TextPrint({buttons[i].Position.X, buttons[i].Position.Y + margin}, buttons[i].Text);
+        Wrapper::TextPrint({buttons[i].Position.X, buttons[i].Position.Y}, buttons[i].Text);
     }
 }

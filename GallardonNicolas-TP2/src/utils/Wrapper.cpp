@@ -174,6 +174,11 @@ Wrapper::Font Wrapper::LoadFont(const std::string &filename)
     return slLoadFont(filename.c_str());
 }
 
+void Wrapper::LoadAllFonts()
+{
+    title = LoadFont(ASSETS_DIR + "Antiquity-Print/antiquity-print.ttf");
+    button = LoadFont(ASSETS_DIR + "DirtyHarold_Font/DirtyHarold.ttf");
+}
 
 void Wrapper::SetFont(Font font)
 {
@@ -191,6 +196,11 @@ void Wrapper::ChangeFontSize(int size)
 void Wrapper::TextPrint(const Vector2 position, const std::string &text)
 {
     slText(position.X, position.Y, text.c_str());
+}
+
+Wrapper::Vector2 Wrapper::GetTextSize(const std::string &text)
+{
+    return {static_cast<float>(slGetTextWidth(text.c_str())), static_cast<float>(slGetTextHeight(text.c_str()))};
 }
 
 
@@ -220,5 +230,6 @@ int Wrapper::GetRandom(const int min, const int max)
 
 void Wrapper::CenterText()
 {
-    slSetAdditiveBlend(SL_ALIGN_CENTER);
+    slSetTextAlign(SL_ALIGN_CENTER);
 }
+
