@@ -1,4 +1,4 @@
-﻿
+﻿#pragma once
 namespace Color
 {
     struct Color
@@ -8,12 +8,13 @@ namespace Color
         float Blue;
     };
 
+    const float MAX = 255;
 
-    const Color mantis = {109, 211, 112};
-    const Color french = {211, 205, 215};
-    const Color dimGray = {108, 117, 107};
-    const Color coffee = {125, 93, 76};
-    const Color bittersweet = {237, 106, 90};
+    const Color mantis = {109/MAX, 211/MAX, 112/MAX};
+    const Color french = {211/MAX, 205/MAX, 215/MAX};
+    const Color dimGray = {108/MAX, 117/MAX, 107/MAX};
+    const Color coffee = {125/MAX, 93/MAX, 76/MAX};
+    const Color bittersweet = {237/MAX, 106/MAX, 90/MAX};
 }
 
 // https://coolors.co/6dd370-d3cdd7-6c756b-7d5d4c-ed6a5a
