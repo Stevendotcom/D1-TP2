@@ -1,11 +1,13 @@
 #pragma once
-
-#include "Wrapper.h"
+#include "Ball.h"
+#include "Brick.h"
+#include "Player.h"
 
 namespace Game
 {
     void Play();
-    void Input();
-    void Update();
+    void Init(Player::Player& player, Ball::Ball& ball, Brick::Brick bricks[]);
+    void Input(Player::Player& player);
+    void Update(Player::Player& player, Ball::Ball& ball);
     void Draw();
 }
