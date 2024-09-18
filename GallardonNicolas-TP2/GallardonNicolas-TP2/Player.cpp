@@ -24,7 +24,7 @@ void Player::Update(Player &p1)
 {
     if (!DoesCollide(p1))
     {
-        p1.Position.X = p1.FuturePosition.y;
+        p1.Position.X = p1.FuturePosition.X;
     }
     p1.FuturePosition.X = p1.Position.X; // reset fpositions
 
