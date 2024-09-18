@@ -83,6 +83,10 @@ namespace Wrapper
 
     int GetRandom(int min, int max);
     void CenterText();
+
+	//Time
+
+	float GetFrameTime();
 }
 extern Wrapper::Font title;
 extern Wrapper::Font button;

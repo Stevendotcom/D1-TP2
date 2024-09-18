@@ -232,3 +232,8 @@ void Wrapper::CenterText()
     slSetTextAlign(SL_ALIGN_CENTER);
 }
 
+float Wrapper::GetFrameTime()
+{
+    return slGetDeltaTime();
+}
+
