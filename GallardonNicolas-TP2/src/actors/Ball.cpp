@@ -8,7 +8,6 @@ const float BOUNCE = 0.4f;
 void Ball::Update(Player::Player &p1, Ball &ball)
 {
     Player::WhereCollides collisionPlaceP1 = Player::WhereCollides::None;
-    Player::WhereCollides collisionPlaceP2 = Player::WhereCollides::None;
     Player::WhereCollides collisionPlaceBall = Player::WhereCollides::None;
 
     // ball update
@@ -99,7 +98,7 @@ void Ball::CollisionResult(Player::Player &player, Ball &ball, const Player::Whe
 }
 
 
-bool Ball::DoesCollideWalls(Ball &ball, Player::WhereCollides &collisionPlace)
+bool Ball::DoesCollideWalls(const Ball &ball, Player::WhereCollides &collisionPlace)
 {
     if (ball.FuturePosition.X < ball.Radius)
     {
@@ -122,20 +121,17 @@ bool Ball::DoesCollideWalls(Ball &ball, Player::WhereCollides &collisionPlace)
 void Ball::ChangeDirectionAfterCollision(Ball &ball, const Player::Player &player,
                                          const Player::WhereCollides whereCollides)
 {
-	//TODO
-    ball.Direction.Y = ((static_cast<float>(player.Height) / 2.0f) - GetHeightCollision(ball, player)) /
-        (static_cast<float>(player.Height) / 2.0f); // returns a value between 1 and -1
-    ball.Direction.x = cos(ball.Direction.Y);
 
-    if (whereCollides == Player::WhereCollides::Left)
-    {
-        ball.Direction.x *= -1;
-    }
+    ball.Direction.X = ((static_cast<float>(player.Width) / 2.0f) - GetWidthCollision(ball, player)) /
+        (static_cast<float>(player.Width) / 2.0f); // returns a value between 1 and -1
+
+   VectorMath::Normalize(ball.Direction);
+
 }
 
-float Ball::GetHeightCollision(const Ball &ball, const Player::Player &player)
+float Ball::GetWidthCollision(const Ball &ball, const Player::Player &player)
 {
-    return static_cast<float>(player.Height) + player.Position.Y - ball.Position.Y;
+    return static_cast<float>(player.Width) + player.Position.X - ball.Position.X;
 }
 
 void Ball::Spawn(Ball &ball, const Wrapper::Texture sprite)
@@ -169,45 +165,41 @@ void Ball::Spawn(Ball &ball, const Wrapper::Texture sprite)
 
 bool Ball::DoesCollide(Player::Player &player, Ball &ball, Player::WhereCollides &collisionPlace)
 {
-    // TODO
 
     float minDistance = 0;
     float distance = 0;
 
     // if it touches up/down and within x bounds
-    if (player.Position.x < ball.Position.x && player.Position.x + player.Width > ball.Position.x)
+    if (player.Position.X < ball.Position.X && player.Position.X + player.Width > ball.Position.X)
     {
-        if (player.Position.Y + (ball.Speed * GetFrameTime()) > ball.FuturePosition.Y)
+        if (player.Position.Y + player.Height - (ball.Speed * Wrapper::GetFrameTime()) < ball.FuturePosition.Y)
         {
             collisionPlace = Player::WhereCollides::Up;
             minDistance = ball.Radius;
-            distance = player.Position.Y - ball.FuturePosition.Y;
+            distance = ball.FuturePosition.Y - player.Position.Y;
         }
         else
         {
-            collisionPlace = Player::WhereCollides::Down;
-            minDistance = ball.Radius + player.Height;
-            distance = ball.FuturePosition.Y - player.Position.Y;
+            return false;
         }
         return minDistance > distance;
     }
     // if it touches right/left and within y bounds
-    if (player.Position.Y < ball.Position.Y && player.Position.Y + player.Height > ball.Position.Y)
+    if (player.Position.Y + player.Height > ball.Position.Y && player.Position.Y < ball.Position.Y)
     {
-        if (player.Position.x < ball.FuturePosition.x)
+        if (player.Position.X < ball.FuturePosition.X)
         {
             collisionPlace = Player::WhereCollides::Right;
             minDistance = ball.Radius + player.Width;
-            distance = ball.FuturePosition.x - player.Position.x;
+            distance = ball.FuturePosition.X - player.Position.X;
         }
 
         else
         {
             collisionPlace = Player::WhereCollides::Left;
             minDistance = ball.Radius;
-            distance = player.Position.x - ball.FuturePosition.x;
+            distance = player.Position.X - ball.FuturePosition.X;
         }
         return minDistance > distance;
     }
-    return false;
 }

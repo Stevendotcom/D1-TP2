@@ -14,7 +14,6 @@ namespace Player
     enum class WhereCollides
     {
         Up,
-        Down,
         Left,
         Right,
         None
@@ -27,8 +26,8 @@ namespace Player
 
     struct Player
     {
-        Wrapper::Vector2 Position;
-        Wrapper::Vector2 FuturePosition;
+        VectorMath::Vector2 Position;
+        VectorMath::Vector2 FuturePosition;
         Wrapper::Texture Sprite;
         Key Keys;
         float Direction;
