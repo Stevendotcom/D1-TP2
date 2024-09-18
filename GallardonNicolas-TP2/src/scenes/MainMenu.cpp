@@ -28,7 +28,6 @@ void MainMenu::Menu()
         Input(buttons, selected);
         Draw(buttons);
         Wrapper::Render();
-
     }
 
     SceneManager::ChangeScene(static_cast<SceneManager::Scenes>(selected + 1));

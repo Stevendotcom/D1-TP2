@@ -17,6 +17,10 @@
     <ClCompile Include="..\src\scenes\SceneManager.cpp" />
     <ClCompile Include="..\src\utils\KeyStates.cpp" />
     <ClCompile Include="..\src\utils\Wrapper.cpp" />
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Brick.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\actors\Buttons.h" />
@@ -24,6 +28,10 @@
     <ClInclude Include="..\src\scenes\SceneManager.h" />
     <ClInclude Include="..\src\utils\KeyStates.h" />
     <ClInclude Include="..\src\utils\Wrapper.h" />
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="Brick.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\src\utils\ColorPalette.h" />
