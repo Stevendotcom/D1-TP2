@@ -50,7 +50,6 @@ bool Wrapper::IsKeyReleasing(const int key)
         {
             KeyStates::TogglePreviousKeyState(key);
         }
-        return false;
     }
     //key is up
     else
@@ -61,8 +60,8 @@ bool Wrapper::IsKeyReleasing(const int key)
             KeyStates::TogglePreviousKeyState(key);
             return true;
         }
-        return false;
     }
+    return false;
 }
 
 
