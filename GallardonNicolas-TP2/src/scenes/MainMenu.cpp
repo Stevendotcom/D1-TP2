@@ -107,7 +107,7 @@ void MainMenu::Input(Buttons::Button buttons[], int &selected)
 void MainMenu::Draw(Buttons::Button buttons[])
 {
     const int margin = 30;
-    Wrapper::Vector2 titleSize;
+    VectorMath::Vector2 titleSize;
 
     Wrapper::SetFont(title);
     Wrapper::ChangeFontSize(TITLE_FONT_SIZE);

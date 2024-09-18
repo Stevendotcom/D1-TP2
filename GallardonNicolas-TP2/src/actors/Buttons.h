@@ -6,8 +6,8 @@ namespace Buttons
 {
     struct Button
     {
-        Wrapper::Vector2 Position;
-        Wrapper::Vector2 Size;
+        VectorMath::Vector2 Position;
+        VectorMath::Vector2 Size;
         Wrapper::Texture Sprite;
         Color::Color Color;
         Color::Color ColorSelected;

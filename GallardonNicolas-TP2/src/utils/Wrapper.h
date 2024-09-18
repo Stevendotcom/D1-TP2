@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "ColorPalette.h"
+#include "VectorMath.h"
 
 extern const int SCREEN_WIDTH;
 extern const int SCREEN_HEIGHT;
@@ -10,11 +11,6 @@ extern const std::string GAME_TITLE;
 
 namespace Wrapper
 {
-    struct Vector2
-    {
-        float X;
-        float Y;
-    };
 
 
     typedef int Texture;
@@ -35,7 +31,7 @@ namespace Wrapper
     bool IsKeyDown(int key);
     bool IsKeyAboutToPress(int key);
     bool IsKeyReleasing(int key);
-    Vector2 GetMousePos();
+    VectorMath::Vector2 GetMousePos();
 
     //Rendering
 
@@ -60,9 +56,9 @@ namespace Wrapper
 
     //Shape Drawing
 
-    void SetSpriteTiling(Vector2 position);
-    void SetSpriteScroll(Vector2 position);
-    void LoadSprite(Texture texture, Vector2 position, Vector2 size);
+    void SetSpriteTiling(VectorMath::Vector2 position);
+    void SetSpriteScroll(VectorMath::Vector2 position);
+    void LoadSprite(Texture texture, VectorMath::Vector2 position, VectorMath::Vector2 size);
 
     //Text
 
@@ -70,8 +66,8 @@ namespace Wrapper
     void LoadAllFonts();
     void SetFont(Font font);
     void ChangeFontSize(int size);
-    void TextPrint(Vector2 position, const std::string &text);
-    Vector2 GetTextSize(const std::string &text);
+    void TextPrint(VectorMath::Vector2 position, const std::string &text);
+    VectorMath::Vector2 GetTextSize(const std::string &text);
 
     //Color
 

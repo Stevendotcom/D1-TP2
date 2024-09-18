@@ -65,7 +65,7 @@ bool Wrapper::IsKeyReleasing(const int key)
 }
 
 
-Wrapper::Vector2 Wrapper::GetMousePos()
+VectorMath::Vector2 Wrapper::GetMousePos()
 {
     return {static_cast<float>(slGetMouseX()), static_cast<float>(slGetMouseY())};
 }
@@ -145,13 +145,13 @@ bool Wrapper::IsSoundLooping(const Sound sound)
 }
 
 
-void Wrapper::SetSpriteTiling(const Vector2 position)
+void Wrapper::SetSpriteTiling(const VectorMath::Vector2 position)
 {
     slSetSpriteTiling(static_cast<float>(position.X), static_cast<float>(position.Y));
 }
 
 
-void Wrapper::SetSpriteScroll(Vector2 position)
+void Wrapper::SetSpriteScroll(VectorMath::Vector2 position)
 {
     if (position.X > FLT_EPSILON + 1.0f && position.X < 0 && position.Y < 0 && position.Y > FLT_EPSILON + 1.0f)
     {
@@ -162,7 +162,7 @@ void Wrapper::SetSpriteScroll(Vector2 position)
 }
 
 
-void Wrapper::LoadSprite(const Texture texture, const Vector2 position, Vector2 size)
+void Wrapper::LoadSprite(const Texture texture, const VectorMath::Vector2 position,VectorMath::Vector2 size)
 {
     slSprite(texture, position.X, position.Y, size.X, size.Y);
 }
@@ -192,12 +192,12 @@ void Wrapper::ChangeFontSize(int size)
 }
 
 
-void Wrapper::TextPrint(const Vector2 position, const std::string &text)
+void Wrapper::TextPrint(const VectorMath::Vector2 position, const std::string &text)
 {
     slText(position.X, position.Y, text.c_str());
 }
 
-Wrapper::Vector2 Wrapper::GetTextSize(const std::string &text)
+VectorMath::Vector2 Wrapper::GetTextSize(const std::string &text)
 {
     return {static_cast<float>(slGetTextWidth(text.c_str())), static_cast<float>(slGetTextHeight(text.c_str()))};
 }
