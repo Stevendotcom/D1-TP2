@@ -21,6 +21,7 @@ namespace Brick
         Wrapper::Texture Sprite = static_cast<Wrapper::Texture>(Power);
     };
 
+    void Generate(Brick bricks[MAX_BRICKS]);
     void Draw(Brick bricks[MAX_BRICKS]);
     void ToggleVisible(Brick& brick);
     //bool DoesCollide(Brick bricks[MAX_BRICKS]);

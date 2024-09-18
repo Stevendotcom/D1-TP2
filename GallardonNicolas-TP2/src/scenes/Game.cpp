@@ -35,7 +35,7 @@ void Game::Init(Player::Player& player, Ball::Ball& ball, Brick::Brick bricks[])
 
     Player::Spawn(player, playerSprite);
     Ball::Spawn(ball, ballSprite);
-    Brick::Draw(bricks);
+    Brick::Generate(bricks);
 }
 
 void Game::Input(Player::Player& player)
