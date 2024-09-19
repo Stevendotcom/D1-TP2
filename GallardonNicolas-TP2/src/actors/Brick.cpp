@@ -1,17 +1,39 @@
 #include "Brick.h"
+#include "Structures.h"
+#include "Wrapper.h"
 
-void Brick::Draw(Brick bricks[MAX_BRICKS])
+void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
+{
+}
+
+void Brick::Draw(Structures::Brick bricks[MAX_BRICKS])
 {
     for (int i = 0; i < MAX_BRICKS; i++)
     {
-        if(bricks[i].IsVisible)
+        if (bricks[i].IsVisible)
         {
             Wrapper::LoadSprite(bricks[i].Sprite, bricks[i].Position, bricks[i].Size);
         }
     }
 }
 
-void Brick::ToggleVisible(Brick& brick)
+void Brick::ToggleVisible(Structures::Brick &brick)
 {
     brick.IsVisible = !brick.IsVisible;
+}
+
+
+auto Brick::DoesBrickBall(Structures::Brick bricks[Brick::MAX_BRICKS], Structures::Ball & /*ball*/) -> bool
+{
+    //todo think of a way to not check all bricks every frame
+
+    for (int i = 0; i < Brick::MAX_BRICKS; i++)
+    {
+        if (bricks[i].IsVisible)
+        {
+
+        }
+    }
+
+    return false;
 }

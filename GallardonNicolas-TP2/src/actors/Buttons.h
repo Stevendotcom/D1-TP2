@@ -14,5 +14,6 @@ namespace Buttons
         std::string Text;
         bool Selected;
     };
+
     void RenderButtons(Button buttons[], int amount);
 };

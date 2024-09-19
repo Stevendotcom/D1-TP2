@@ -244,6 +244,7 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\scenes\Collisions.cpp" />
     <ClCompile Include="..\src\scenes\Game.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -332,6 +333,8 @@
     <ClInclude Include="..\src\actors\Brick.h" />
     <ClInclude Include="..\src\actors\Buttons.h" />
     <ClInclude Include="..\src\actors\Player.h" />
+    <ClInclude Include="..\src\actors\Structures.h" />
+    <ClInclude Include="..\src\scenes\Collisions.h" />
     <ClInclude Include="..\src\scenes\Game.h" />
     <ClInclude Include="..\src\scenes\MainMenu.h" />
     <ClInclude Include="..\src\scenes\SceneManager.h" />

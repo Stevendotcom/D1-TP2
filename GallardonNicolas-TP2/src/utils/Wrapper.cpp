@@ -27,9 +27,8 @@ bool Wrapper::ShouldWindowClose()
 
 bool Wrapper::IsKeyDown(const int key)
 {
-   return slGetKey(key);
+    return slGetKey(key);
 }
-
 
 
 bool Wrapper::IsKeyAboutToPress(const int key)
@@ -46,7 +45,7 @@ bool Wrapper::IsKeyReleasing(const int key)
     if (IsKeyDown(key))
     {
         //if it was not down
-        if(!KeyStates::GetPreviousKeyState(key))
+        if (!KeyStates::GetPreviousKeyState(key))
         {
             KeyStates::TogglePreviousKeyState(key);
         }
@@ -55,7 +54,7 @@ bool Wrapper::IsKeyReleasing(const int key)
     else
     {
         //was down
-        if(KeyStates::GetPreviousKeyState(key))
+        if (KeyStates::GetPreviousKeyState(key))
         {
             KeyStates::TogglePreviousKeyState(key);
             return true;
@@ -147,7 +146,7 @@ bool Wrapper::IsSoundLooping(const Sound sound)
 
 void Wrapper::SetSpriteTiling(const VectorMath::Vector2 position)
 {
-    slSetSpriteTiling(static_cast<float>(position.X), static_cast<float>(position.Y));
+    slSetSpriteTiling(position.X, position.Y);
 }
 
 
@@ -162,7 +161,7 @@ void Wrapper::SetSpriteScroll(VectorMath::Vector2 position)
 }
 
 
-void Wrapper::LoadSprite(const Texture texture, const VectorMath::Vector2 position,VectorMath::Vector2 size)
+void Wrapper::LoadSprite(const Texture texture, const VectorMath::Vector2 position, VectorMath::Vector2 size)
 {
     slSprite(texture, position.X, position.Y, size.X, size.Y);
 }
@@ -236,4 +235,3 @@ float Wrapper::GetFrameTime()
 {
     return slGetDeltaTime();
 }
-

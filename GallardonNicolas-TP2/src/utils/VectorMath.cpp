@@ -1,5 +1,4 @@
 ﻿#include "VectorMath.h"
-
 #include <cmath>
 
 VectorMath::Vector2 VectorMath::Add(const Vector2 &a, const Vector2 &b)

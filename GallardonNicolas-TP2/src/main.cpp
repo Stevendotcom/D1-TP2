@@ -1,3 +1,4 @@
+#include <string>
 #include "Wrapper.h"
 #include "SceneManager.h"
 
@@ -10,7 +11,7 @@ Wrapper::Font title;
 Wrapper::Font button;
 
 
-int main()
+void main()
 {
     Wrapper::InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_TITLE, true);
     Wrapper::LoadAllFonts();

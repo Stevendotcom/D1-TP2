@@ -1,5 +1,4 @@
 ﻿#pragma once
-
 const float PI = 3.1416f;
 
 namespace VectorMath
@@ -10,6 +9,6 @@ namespace VectorMath
         float Y;
     };
 
-   VectorMath::Vector2 Add(const Vector2 &a, const Vector2 &b);
+    VectorMath::Vector2 Add(const Vector2 &a, const Vector2 &b);
     void Normalize(Vector2 &v);
 };

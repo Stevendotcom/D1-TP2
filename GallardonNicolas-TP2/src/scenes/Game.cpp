@@ -1,57 +1,58 @@
 #include "Game.h"
+#include "Ball.h"
+#include "Brick.h"
+#include "Player.h"
+#include "Structures.h"
+#include "Wrapper.h"
 
 #include <sl.h>
 
-#include "Wrapper.h"
-#include "Player.h"
-#include "Ball.h"
-#include "Brick.h"
 
 void Game::Play()
 {
-    bool endMatch = false;
-    bool playerWon = false;
+    const bool const endMatch = false;
+    bool const playerWon = false;
 
-    Player::Player player;
-    Ball::Ball ball;
-    Brick::Brick bricks[Brick::MAX_BRICKS];
+    Structures::Player player{};
+    Structures::Ball ball{};
+    Structures::Brick bricks[Brick::MAX_BRICKS];
 
     Init(player, ball, bricks);
     Draw();
     do
     {
         Input(player);
-        Update(player, ball);
+        Game::Update(player, ball);
         Draw();
     }
-    while (!Wrapper::ShouldWindowClose() & !endMatch);
+    while (!Wrapper::ShouldWindowClose() && !endMatch);
 }
 
-void Game::Init(Player::Player& player, Ball::Ball& ball, Brick::Brick bricks[])
+void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
     //todo move all textures to a single file, so it only gets called once
-    Wrapper::Texture playerSprite = Wrapper::LoadTexture(ASSETS_DIR + "pathtoplayer");
-    Wrapper::Texture ballSprite = Wrapper::LoadTexture(ASSETS_DIR + "pathtoplayer");
+    const Wrapper::Texture playerSprite = Wrapper::LoadTexture(ASSETS_DIR + "pathtoplayer");
+    const Wrapper::Texture ballSprite = Wrapper::LoadTexture(ASSETS_DIR + "pathtoplayer");
 
     Player::Spawn(player, playerSprite);
     Ball::Spawn(ball, ballSprite);
     Brick::Generate(bricks);
 }
 
-void Game::Input(Player::Player& player)
+void Game::Input(Structures::Player &player)
 {
-    if(Wrapper::IsKeyDown(SL_KEY_LEFT))
+    if (Wrapper::IsKeyDown(SL_KEY_LEFT))
     {
         Player::MoveLeft(player);
     }
-    else if(Wrapper::IsKeyDown(SL_KEY_RIGHT))
+    else if (Wrapper::IsKeyDown(SL_KEY_RIGHT))
     {
         Player::MoveRight(player);
     }
     //other input
 }
 
-void Game::Update(Player::Player& player, Ball::Ball& ball)
+void Game::Update(Structures::Player &player, Structures::Ball &ball)
 {
     Player::Update(player);
     Ball::Update(player, ball);

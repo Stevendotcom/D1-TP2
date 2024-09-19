@@ -1,28 +1,24 @@
 #include "Player.h"
-
-#include <cfloat>
+#include "Collisions.h"
+#include "Structures.h"
+#include "Wrapper.h"
 
 // definitions
 
-void Player::MoveRight(Player &player)
+void Player::MoveRight(Structures::Player &player)
 {
     player.FuturePosition.X += player.Speed * Wrapper::GetFrameTime();
 }
 
-void Player::MoveLeft(Player &player)
+void Player::MoveLeft(Structures::Player &player)
 {
     player.FuturePosition.X -= player.Speed * Wrapper::GetFrameTime();
 }
 
-bool Player::DoesCollide(Player &player)
-{
-    return player.FuturePosition.X <= FLT_EPSILON ||
-        player.FuturePosition.X >= static_cast<float>(SCREEN_HEIGHT - player.Width) - FLT_EPSILON;
-}
 
-void Player::Update(Player &p1)
+void Player::Update(Structures::Player &p1)
 {
-    if (!DoesCollide(p1))
+    if (!Collisions::DoesWallPlayer(p1))
     {
         p1.Position.X = p1.FuturePosition.X;
     }
@@ -30,12 +26,12 @@ void Player::Update(Player &p1)
 
 }
 
-void Player::Spawn(Player &player, Wrapper::Texture sprite)
+void Player::Spawn(Structures::Player &player, Wrapper::Texture sprite)
 {
     player.Height = HEIGHT;
     player.Width = WIDTH;
     player.Speed = SPEED;
-    player.Position = {static_cast<float>(SCREEN_WIDTH) / 2.0f, MARGIN};
+    player.Position = {static_cast<float>(SCREEN_WIDTH) / 2.0F, MARGIN};
     player.FuturePosition = player.Position;
     player.Sprite = sprite;
 }

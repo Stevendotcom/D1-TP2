@@ -2,8 +2,11 @@
 
 #include <sl.h>
 
-#include "KeyStates.h"
+#include "Buttons.h"
+#include "ColorPalette.h"
 #include "SceneManager.h"
+#include "Wrapper.h"
+#include "VectorMath.h"
 
 const int TITLE_FONT_SIZE = 100;
 const int AMOUNT = 4;
@@ -44,7 +47,7 @@ void MainMenu::MakeButtons(Buttons::Button buttons[])
     {
         buttons[i] =
         {
-            {SCREEN_WIDTH / 2.0f, height * static_cast<float>(AMOUNT - i) + 50.0f},
+            {SCREEN_WIDTH / 2.0F, height * static_cast<float>(AMOUNT - i) + 50.0F},
             {width, height},
             sprite,
             Color::dimGray,
@@ -114,8 +117,7 @@ void MainMenu::Draw(Buttons::Button buttons[])
     titleSize = Wrapper::GetTextSize(GAME_TITLE);
     Wrapper::SetForeColor(Color::coffee, 1.0);
 
-    Wrapper::TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT - titleSize.Y - margin}, "Game name");
+    Wrapper::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y - margin}, "Game name");
 
     RenderButtons(buttons, AMOUNT);
 }
-
