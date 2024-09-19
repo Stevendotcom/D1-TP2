@@ -1,6 +1,6 @@
 ﻿#pragma once
+#include "Sprites.h"
 #include "VectorMath.h"
-#include "Wrapper.h"
 
 namespace Structures
 {
@@ -15,7 +15,7 @@ namespace Structures
         VectorMath::Vector2 Position;
         VectorMath::Vector2 FuturePosition;
         VectorMath::Vector2 Direction;
-        Wrapper::Texture Sprite;
+        Texture Sprite;
         float Radius;
         float Speed;
     };
@@ -30,7 +30,7 @@ namespace Structures
     {
         VectorMath::Vector2 Position;
         VectorMath::Vector2 FuturePosition;
-        Wrapper::Texture Sprite;
+        Texture Sprite;
         Key Keys;
         float Direction;
         int Width;
@@ -45,6 +45,6 @@ namespace Structures
         bool IsVisible;
         VectorMath::Vector2 Position;
         VectorMath::Vector2 Size;
-        Wrapper::Texture Sprite = static_cast<Wrapper::Texture>(Power);
+        Texture Sprite = static_cast<Texture>(Power);
     };
 }

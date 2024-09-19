@@ -1,6 +1,7 @@
 ﻿#include "Collisions.h"
+
+#include "Management.h"
 #include "Structures.h"
-#include "Wrapper.h"
 
 
 bool Collisions::DoesWallPlayer(const Structures::Player &player)
@@ -41,7 +42,7 @@ bool Collisions::DoesRectCircle(const VectorMath::Vector2 &position, const Vecto
     // if it touches up/down and within x bounds
     if (position.X < ball.Position.X && position.X + size.X > ball.Position.X)
     {
-        if (position.Y + size.Y - (ball.Speed * Wrapper::GetFrameTime()) < ball.FuturePosition.Y)
+        if (position.Y + size.Y - (ball.Speed * Management::GetFrameTime()) < ball.FuturePosition.Y)
         {
             collisionPlace = WhereCollides::Up;
             minDistance = ball.Radius;

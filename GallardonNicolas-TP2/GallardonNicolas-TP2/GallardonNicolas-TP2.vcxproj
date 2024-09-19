@@ -324,9 +324,13 @@
     </ClCompile>
     <ClCompile Include="..\src\scenes\MainMenu.cpp" />
     <ClCompile Include="..\src\scenes\SceneManager.cpp" />
-    <ClCompile Include="..\src\utils\KeyStates.cpp" />
+    <ClCompile Include="..\src\utils\ColorPalette.cpp" />
+    <ClCompile Include="..\src\utils\Fonts.cpp" />
+    <ClCompile Include="..\src\utils\Input.cpp" />
+    <ClCompile Include="..\src\utils\Sounds.cpp" />
+    <ClCompile Include="..\src\utils\Sprites.cpp" />
     <ClCompile Include="..\src\utils\VectorMath.cpp" />
-    <ClCompile Include="..\src\utils\Wrapper.cpp" />
+    <ClCompile Include="..\src\utils\Management.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\actors\Ball.h" />
@@ -338,9 +342,12 @@
     <ClInclude Include="..\src\scenes\Game.h" />
     <ClInclude Include="..\src\scenes\MainMenu.h" />
     <ClInclude Include="..\src\scenes\SceneManager.h" />
-    <ClInclude Include="..\src\utils\KeyStates.h" />
+    <ClInclude Include="..\src\utils\Fonts.h" />
+    <ClInclude Include="..\src\utils\Input.h" />
+    <ClInclude Include="..\src\utils\Sounds.h" />
+    <ClInclude Include="..\src\utils\Sprites.h" />
     <ClInclude Include="..\src\utils\VectorMath.h" />
-    <ClInclude Include="..\src\utils\Wrapper.h" />
+    <ClInclude Include="..\src\utils\Management.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\src\utils\ColorPalette.h" />

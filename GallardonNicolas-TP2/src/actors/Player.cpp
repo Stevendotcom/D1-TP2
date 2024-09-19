@@ -1,32 +1,31 @@
 #include "Player.h"
 #include "Collisions.h"
+#include "Management.h"
 #include "Structures.h"
-#include "Wrapper.h"
 
-// definitions
 
 void Player::MoveRight(Structures::Player &player)
 {
-    player.FuturePosition.X += player.Speed * Wrapper::GetFrameTime();
+    player.FuturePosition.X += player.Speed * Management::GetFrameTime();
 }
 
 void Player::MoveLeft(Structures::Player &player)
 {
-    player.FuturePosition.X -= player.Speed * Wrapper::GetFrameTime();
+    player.FuturePosition.X -= player.Speed * Management::GetFrameTime();
 }
 
 
-void Player::Update(Structures::Player &p1)
+void Player::Update(Structures::Player &player)
 {
-    if (!Collisions::DoesWallPlayer(p1))
+    if (!Collisions::DoesWallPlayer(player))
     {
-        p1.Position.X = p1.FuturePosition.X;
+        player.Position.X = player.FuturePosition.X;
     }
-    p1.FuturePosition.X = p1.Position.X; // reset fpositions
+    player.FuturePosition.X = player.Position.X; // reset fpositions
 
 }
 
-void Player::Spawn(Structures::Player &player, Wrapper::Texture sprite)
+void Player::Spawn(Structures::Player &player, Texture sprite)
 {
     player.Height = HEIGHT;
     player.Width = WIDTH;

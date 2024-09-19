@@ -1,19 +1,22 @@
 #include <string>
-#include "Wrapper.h"
+
+#include "Fonts.h"
+#include "Management.h"
 #include "SceneManager.h"
+#include "Sprites.h"
 
 
 const int SCREEN_WIDTH = 1366;
 const int SCREEN_HEIGHT = 768;
 const std::string ASSETS_DIR = "../assets/";
 const std::string GAME_TITLE = "Good Name";
-Wrapper::Font title;
-Wrapper::Font button;
-
+Fonts::Fonts fonts;
+Sprites::Sprites sprites;
 
 void main()
 {
-    Wrapper::InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_TITLE, true);
-    Wrapper::LoadAllFonts();
+    Management::InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_TITLE, true);
+    Fonts::LoadAllFonts(fonts);
+    Sprites::LoadSprites(sprites);
     SceneManager::Manager();
 }

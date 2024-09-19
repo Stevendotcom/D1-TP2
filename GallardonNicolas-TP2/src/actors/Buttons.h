@@ -1,6 +1,7 @@
 ﻿#pragma once
-
-#include "Wrapper.h"
+#include "ColorPalette.h"
+#include "Sprites.h"
+#include "VectorMath.h"
 
 namespace Buttons
 {
@@ -8,7 +9,7 @@ namespace Buttons
     {
         VectorMath::Vector2 Position;
         VectorMath::Vector2 Size;
-        Wrapper::Texture Sprite;
+        Texture Sprite;
         Color::Color Color;
         Color::Color ColorSelected;
         std::string Text;

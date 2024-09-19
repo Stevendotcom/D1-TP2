@@ -4,14 +4,17 @@
 
 #include "Buttons.h"
 #include "ColorPalette.h"
+#include "Fonts.h"
+#include "Input.h"
+#include "Management.h"
 #include "SceneManager.h"
-#include "Wrapper.h"
 #include "VectorMath.h"
 
 const int TITLE_FONT_SIZE = 100;
 const int AMOUNT = 4;
 
 using namespace Buttons;
+
 
 
 void MainMenu::Menu()
@@ -21,16 +24,16 @@ void MainMenu::Menu()
 
     MakeButtons(buttons);
 
-    Wrapper::SetBackColor({1, 1, 1});
-    Wrapper::CenterText();
+    Color::SetBackColor({1, 1, 1});
+    Fonts::CenterText();
 
 
     Draw(buttons);
-    while (!Wrapper::IsKeyDown(SL_KEY_ENTER) && !Wrapper::ShouldWindowClose())
+    while (!Input::IsKeyDown(SL_KEY_ENTER) && !Management::ShouldWindowClose())
     {
         Input(buttons, selected);
         Draw(buttons);
-        Wrapper::Render();
+        Management::Render();
     }
 
     SceneManager::ChangeScene(static_cast<SceneManager::Scenes>(selected + 1));
@@ -41,7 +44,6 @@ void MainMenu::MakeButtons(Buttons::Button buttons[])
 {
     const int width = 360;
     const int height = 100;
-    const Wrapper::Texture sprite = Wrapper::LoadTexture(ASSETS_DIR + "Pixelarium/banner.png");
 
     for (int i = 0; i < AMOUNT; i++)
     {
@@ -49,7 +51,7 @@ void MainMenu::MakeButtons(Buttons::Button buttons[])
         {
             {SCREEN_WIDTH / 2.0F, height * static_cast<float>(AMOUNT - i) + 50.0F},
             {width, height},
-            sprite,
+            sprites.Button,
             Color::dimGray,
             Color::french,
         };
@@ -81,7 +83,7 @@ void MainMenu::MakeButtons(Buttons::Button buttons[])
 void MainMenu::Input(Buttons::Button buttons[], int &selected)
 {
     buttons[selected].Selected = false;
-    if (Wrapper::IsKeyReleasing(SL_KEY_DOWN))
+    if (Input::IsKeyReleasing(SL_KEY_DOWN))
     {
         if (selected == AMOUNT - 1)
         {
@@ -92,7 +94,7 @@ void MainMenu::Input(Buttons::Button buttons[], int &selected)
             selected++;
         }
     }
-    else if (Wrapper::IsKeyReleasing(SL_KEY_UP))
+    else if (Input::IsKeyReleasing(SL_KEY_UP))
     {
         if (selected == 0)
         {
@@ -112,12 +114,12 @@ void MainMenu::Draw(Buttons::Button buttons[])
     const int margin = 30;
     VectorMath::Vector2 titleSize;
 
-    Wrapper::SetFont(title);
-    Wrapper::ChangeFontSize(TITLE_FONT_SIZE);
-    titleSize = Wrapper::GetTextSize(GAME_TITLE);
-    Wrapper::SetForeColor(Color::coffee, 1.0);
+    Fonts::SetFont(fonts.Title);
+    Fonts::ChangeFontSize(TITLE_FONT_SIZE);
+    titleSize = Fonts::GetTextSize(GAME_TITLE);
+    SetForeColor(Color::coffee, 1.0);
 
-    Wrapper::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y - margin}, "Game name");
+    Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y - margin}, "Game name");
 
     RenderButtons(buttons, AMOUNT);
 }

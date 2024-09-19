@@ -1,9 +1,6 @@
 #pragma once
 #include "Structures.h"
-#include "Wrapper.h"
 
-extern const int SCREEN_WIDTH;
-extern const int SCREEN_HEIGHT;
 
 namespace Player
 {
@@ -15,6 +12,6 @@ namespace Player
 
     void MoveRight(Structures::Player &player);
     void MoveLeft(Structures::Player &player);
-    void Update(Structures::Player &p1);
-    void Spawn(Structures::Player &player, Wrapper::Texture sprite);
+    void Update(Structures::Player &player);
+    void Spawn(Structures::Player &player, Texture sprite);
 }

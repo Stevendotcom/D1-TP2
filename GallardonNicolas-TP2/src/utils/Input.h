@@ -1,5 +1,7 @@
 ﻿#pragma once
-namespace KeyStates
+#include "VectorMath.h"
+
+namespace Input
 {
     const int MAX_ACTIVE_KEYS = 26;
     static int activeKeys[MAX_ACTIVE_KEYS];
@@ -16,4 +18,8 @@ namespace KeyStates
      * @param key key number according to SL
      */
     void TogglePreviousKeyState(int key);
+    bool IsKeyDown(int key);
+    bool IsKeyAboutToPress(int key);
+    bool IsKeyReleasing(int key);
+    VectorMath::Vector2 GetMousePos();
 }

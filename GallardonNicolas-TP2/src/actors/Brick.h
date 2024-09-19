@@ -1,5 +1,6 @@
 #pragma once
 #include "Structures.h"
+#include "Collisions.h"
 
 namespace Brick
 {

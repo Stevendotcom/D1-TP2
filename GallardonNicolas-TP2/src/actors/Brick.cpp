@@ -1,6 +1,5 @@
 #include "Brick.h"
 #include "Structures.h"
-#include "Wrapper.h"
 
 void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
 {
@@ -12,7 +11,7 @@ void Brick::Draw(Structures::Brick bricks[MAX_BRICKS])
     {
         if (bricks[i].IsVisible)
         {
-            Wrapper::LoadSprite(bricks[i].Sprite, bricks[i].Position, bricks[i].Size);
+            Sprites::LoadSprite(bricks[i].Sprite, bricks[i].Position, bricks[i].Size);
         }
     }
 }
@@ -23,7 +22,7 @@ void Brick::ToggleVisible(Structures::Brick &brick)
 }
 
 
-auto Brick::DoesBrickBall(Structures::Brick bricks[Brick::MAX_BRICKS], Structures::Ball & /*ball*/) -> bool
+bool Brick::DoesBrickBall(Structures::Brick bricks[Brick::MAX_BRICKS], Structures::Ball &ball )
 {
     //todo think of a way to not check all bricks every frame
 
