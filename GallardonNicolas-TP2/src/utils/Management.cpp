@@ -44,8 +44,6 @@ namespace Management
     }
 
 
-
-
     float GetFrameTime()
     {
         return slGetDeltaTime();

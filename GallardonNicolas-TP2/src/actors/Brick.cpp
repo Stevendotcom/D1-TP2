@@ -22,7 +22,7 @@ void Brick::ToggleVisible(Structures::Brick &brick)
 }
 
 
-bool Brick::DoesBrickBall(Structures::Brick bricks[Brick::MAX_BRICKS], Structures::Ball &ball )
+bool Brick::DoesBrickBall(Structures::Brick bricks[Brick::MAX_BRICKS], Structures::Ball &ball)
 {
     //todo think of a way to not check all bricks every frame
 

@@ -16,7 +16,6 @@ const int AMOUNT = 4;
 using namespace Buttons;
 
 
-
 void MainMenu::Menu()
 {
     int selected = 0;
