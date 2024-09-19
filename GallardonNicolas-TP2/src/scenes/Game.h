@@ -9,4 +9,3 @@ namespace Game
     void Update(Structures::Player &player, Structures::Ball &ball);
     void Draw();
 } // namespace Game
-

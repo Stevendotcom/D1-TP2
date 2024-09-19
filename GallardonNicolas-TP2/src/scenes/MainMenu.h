@@ -1,5 +1,4 @@
-﻿
-#pragma once
+﻿#pragma once
 #include "Buttons.h"
 
 
@@ -10,5 +9,3 @@ namespace MainMenu
     void Input(Buttons::Button buttons[], int &selected);
     void Draw(Buttons::Button buttons[]);
 } // namespace MainMenu
-
-

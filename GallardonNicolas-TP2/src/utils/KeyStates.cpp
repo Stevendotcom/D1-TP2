@@ -41,7 +41,7 @@ void KeyStates::TogglePreviousKeyState(int key)
     }
     else
     {
-        previousKeyStates[key - SL_KEY_ESCAPE + '9' - '0' + 'Z' - 'A' ] =
-            !previousKeyStates[key - SL_KEY_ESCAPE + '9' - '0' + 'Z' - 'A' ];
+        previousKeyStates[key - SL_KEY_ESCAPE + '9' - '0' + 'Z' - 'A'] =
+            !previousKeyStates[key - SL_KEY_ESCAPE + '9' - '0' + 'Z' - 'A'];
     }
 }
