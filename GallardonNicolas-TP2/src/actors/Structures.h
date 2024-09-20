@@ -6,7 +6,6 @@ namespace Structures
 {
     enum class Powers
     {
-        // None = LoadTexture(...);
         None
     };
 
@@ -45,6 +44,6 @@ namespace Structures
         bool IsVisible;
         VectorMath::Vector2 Position;
         VectorMath::Vector2 Size;
-        Texture Sprite = static_cast<Texture>(Power);
+        Texture Sprite;
     };
 }

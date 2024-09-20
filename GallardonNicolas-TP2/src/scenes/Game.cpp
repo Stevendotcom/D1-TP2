@@ -3,21 +3,20 @@
 #include "Brick.h"
 #include "Player.h"
 #include "Structures.h"
-
-#include <sl.h>
-
 #include "Input.h"
 #include "Management.h"
 
-extern Sprites::Sprites sprites;
+#include <sl.h>
+
+
 
 void Game::Play()
 {
     bool endMatch = false;
     bool playerWon = false;
 
-    Structures::Player player{};
-    Structures::Ball ball{};
+    Structures::Player player;
+    Structures::Ball ball;
     Structures::Brick bricks[Brick::MAX_BRICKS];
 
     Init(player, ball, bricks);
@@ -25,7 +24,7 @@ void Game::Play()
     do
     {
         Input(player);
-        Game::Update(player, ball);
+        Update(player, ball, bricks);
         Draw();
     }
     while (!Management::ShouldWindowClose() && !endMatch);
@@ -33,8 +32,6 @@ void Game::Play()
 
 void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
-
-
     Player::Spawn(player, sprites.Player);
     Ball::Spawn(ball,  sprites.Ball);
     Brick::Generate(bricks);
@@ -50,14 +47,13 @@ void Game::Input(Structures::Player &player)
     {
         Player::MoveRight(player);
     }
-    //other input
 }
 
-void Game::Update(Structures::Player &player, Structures::Ball &ball)
+void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures::Bricks & bricks)
 {
     Player::Update(player);
     Ball::Update(player, ball);
-    //Brick::Update(bricks)
+    Brick::Update(bricks, ball);
 }
 
 void Game::Draw()

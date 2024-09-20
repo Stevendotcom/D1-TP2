@@ -15,6 +15,7 @@ namespace Collisions
     bool DoesWallPlayer(const Structures::Player &player);
     bool DoesWallBall(const Structures::Ball &ball, WhereCollides &collisionPlace);
     bool DoesRectCircle(const VectorMath::Vector2 &position, const VectorMath::Vector2 &size,
-                        Structures::Ball &ball, WhereCollides &collisionPlace);
-
+                        const Structures::Ball &ball, WhereCollides &collisionPlace);
+    bool DoesRectCircle(const VectorMath::Vector2 &position, const VectorMath::Vector2 &size,
+                        const Structures::Ball &ball);
 };
