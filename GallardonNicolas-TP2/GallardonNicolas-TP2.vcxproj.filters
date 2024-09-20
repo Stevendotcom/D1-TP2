@@ -43,9 +43,6 @@
     <ClCompile Include="src\engine\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\Management.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\actors\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -58,6 +55,7 @@
     <ClCompile Include="src\engine\VectorMath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\GameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\actors\Buttons.h">
@@ -79,9 +77,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\Management.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\Sounds.h">
@@ -106,6 +101,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\scenes\SceneManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
