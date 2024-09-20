@@ -49,7 +49,7 @@ Thumbs.db
 *.wmv
 
 
-*.pdb
+bin/
 */obj/
 */.vs/
 .vs/

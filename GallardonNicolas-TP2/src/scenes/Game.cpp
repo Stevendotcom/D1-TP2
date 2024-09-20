@@ -49,7 +49,7 @@ void Game::Input(Structures::Player &player)
     }
 }
 
-void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures::Bricks & bricks)
+void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
     Player::Update(player);
     Ball::Update(player, ball);
