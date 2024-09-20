@@ -32,8 +32,8 @@ namespace Structures
         Texture Sprite;
         Key Keys;
         float Direction;
-        int Width;
-        int Height;
+        float Width;
+        float Height;
         int Speed;
         int Score;
         int Hearts;

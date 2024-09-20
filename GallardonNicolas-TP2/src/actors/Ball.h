@@ -14,4 +14,5 @@ namespace Ball
     void ChangeDirectionAfterCollision(Structures::Ball &ball, const Structures::Player &player,
                                        Collisions::WhereCollides whereCollides);
     float GetWidthCollision(const Structures::Ball &ball, const Structures::Player &player);
+    void Draw(Structures::Ball &ball);
 };

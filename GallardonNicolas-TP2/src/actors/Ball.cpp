@@ -122,6 +122,15 @@ auto Ball::GetWidthCollision(const Structures::Ball &ball, const Structures::Pla
     return static_cast<float>(player.Width) + player.Position.X - ball.Position.X;
 }
 
+
+
+void Ball::Draw(Structures::Ball &ball)
+{
+    Sprites::LoadSprite(ball.Sprite, ball.Position, {ball.Radius * 2.0F, ball.Radius * 2.0F});
+}
+
+
+
 void Ball::Spawn(Structures::Ball &ball, const Texture sprite)
 {
     float angle = NAN;

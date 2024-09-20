@@ -15,4 +15,5 @@ namespace Player
     void MoveLeft(Structures::Player &player);
     void Update(Structures::Player &player);
     void Spawn(Structures::Player &player, Texture sprite);
+    void Draw(Structures::Player &player);
 }

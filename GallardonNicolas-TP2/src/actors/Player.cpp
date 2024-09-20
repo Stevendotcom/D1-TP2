@@ -35,3 +35,10 @@ void Player::Spawn(Structures::Player &player, Texture sprite)
     player.FuturePosition = player.Position;
     player.Sprite = sprite;
 }
+
+
+
+void Player::Draw(Structures::Player &player)
+{
+    Sprites::LoadSprite(player.Sprite, player.Position, {player.Width, player.Height});
+}
