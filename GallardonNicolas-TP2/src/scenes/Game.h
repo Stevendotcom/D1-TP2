@@ -7,5 +7,6 @@ namespace Game
     void Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[]);
     void Input(Structures::Player &player);
     void Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[]);
-    void Draw();
+    void Draw(Structures::Player& player, Structures::Ball& ball, Structures::Brick bricks[]);
+    void DrawUI(const Structures::Player& player);
 } // namespace Game
