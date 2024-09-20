@@ -12,7 +12,7 @@
 
 
 
-void Game::Play()
+bool Game::Play()
 {
     bool endMatch = false;
     bool playerWon = false;
@@ -26,21 +26,13 @@ void Game::Play()
     do
     {
         Input(player);
-        Update(player, ball, bricks);
+        Update(player, ball, bricks, playerWon, endMatch);
         Draw(player, ball, bricks);
     }
     while (!GameManager::ShouldWindowClose() && !endMatch);
 
-    if (playerWon)
-    {
-        //SceneManager::ChangeScene(SceneManager::Scenes::PlayerWon);
-    }
-    else
-    {
-        //SceneManager::ChangeScene(SceneManager::Scenes::PlayerLost);
-    }
-
-    ChangeScene(SceneManager::Scenes::MainMenu);
+    ChangeScene(SceneManager::Scenes::AfterGame);
+    return playerWon;
 }
 
 
@@ -64,34 +56,65 @@ void Game::Input(Structures::Player &player)
     {
         Player::MoveRight(player);
     }
-    if(Input::IsKeyDown(SL_KEY_ESCAPE))
+    if (Input::IsKeyDown(SL_KEY_ESCAPE))
     {
-        //ChangeScene(SceneManager::Scenes::Pause);
+        ChangeScene(SceneManager::Scenes::Pause);
     }
 }
 
 
 
-void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
+void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool &playerWon,
+                  bool &endMatch)
 {
     Player::Update(player);
     Ball::Update(player, ball);
-    Brick::Update(bricks, ball);
+    int activeBricks = Brick::Update(bricks, ball);
+    int score = UpdateScore(player, GameManager::GetTime(), activeBricks);
+
+    if (ball.Position.Y < 0)
+    {
+        player.Hearts--;
+    }
+    if (player.Hearts == 0)
+    {
+        playerWon = false;
+        endMatch = true;
+    }
+    else if (activeBricks == 0)
+    {
+        playerWon = true;
+        endMatch = true;
+    }
 }
 
 
 
 void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
-
-    /*
-     * Player::Draw(player);
-     * Ball::Draw(ball);
-     * Brick::Draw(bricks)
-     *
-     */
+    Player::Draw(player);
+    Ball::Draw(ball);
+    Brick::Draw(bricks);
     DrawUI(player);
     GameManager::Render();
+}
+
+
+
+int Game::UpdateScore(Structures::Player &player, const float time, const int activeBricks)
+{
+    int score = 40;
+
+    const float MIN_TIME = 60.0F;
+    const int MAX_SCORE_PER_BLOCK = 100;
+    if (time > MIN_TIME)
+    {
+        score = MAX_SCORE_PER_BLOCK - time;
+    }
+
+    player.Score = (Brick::MAX_BRICKS - activeBricks) * score;
+
+    return score;
 }
 
 
@@ -112,13 +135,14 @@ void Game::DrawUI(const Structures::Player &player)
     for (int heart = 0; heart < player.Hearts; heart++)
     {
         Sprites::LoadSprite(
-                sprites.Heart,
-                {MARGIN + WIDTH * heart + PADDING * (heart + 1), SCREEN_HEIGHT - MARGIN},
-                {WIDTH, HEIGHT}
-                );
+            sprites.Heart,
+            {MARGIN + WIDTH * heart + PADDING * (heart + 1), SCREEN_HEIGHT - MARGIN},
+            {WIDTH, HEIGHT}
+            );
     }
 
     Fonts::SetFont(fonts.Button);
     Fonts::ChangeFontSize(FONT_SIZE);
-    Fonts::TextPrint({static_cast<float>(SCREEN_WIDTH - FONT_SIZE), SCREEN_HEIGHT - MARGIN}, std::to_string(player.Score));
+    Fonts::TextPrint({static_cast<float>(SCREEN_WIDTH - FONT_SIZE), SCREEN_HEIGHT - MARGIN},
+                     std::to_string(player.Score));
 }

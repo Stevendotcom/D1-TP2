@@ -1,6 +1,5 @@
 #pragma once
 #include "Structures.h"
-#include "Collisions.h"
 
 namespace Brick
 {
@@ -12,6 +11,6 @@ namespace Brick
     void Generate(Structures::Brick bricks[MAX_BRICKS]);
     void Draw(Structures::Brick bricks[MAX_BRICKS]);
     void ToggleVisible(Structures::Brick &brick);
-    void Update(Structures::Brick bricks[Brick::MAX_BRICKS], Structures::Ball &ball);
+    int Update(Structures::Brick bricks[Brick::MAX_BRICKS], Structures::Ball &ball);
     void ActivatePower(Structures::Brick &brick);
 };

@@ -1,5 +1,8 @@
 #include "Brick.h"
-#include "Structures.h"
+
+#include "Collisions.h"
+
+
 
 void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
 {
@@ -42,18 +45,29 @@ void Brick::ToggleVisible(Structures::Brick &brick)
 }
 
 
-void Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball)
+
+int Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball)
 {
-    //todo think of a way to not check all bricks every frame
+    int activeBricks = 0;
 
     for (int i = 0; i < MAX_BRICKS; i++)
     {
-        if (bricks[i].IsVisible && Collisions::DoesRectCircle(bricks[i].Position, bricks[i].Size, ball))
+        if (bricks[i].IsVisible)
         {
-            ToggleVisible(bricks[i]);
-            ActivatePower(bricks[i]);
+            if(Collisions::DoesRectCircle(bricks[i].Position, bricks[i].Size, ball))
+            {
+                activeBricks--;
+                ToggleVisible(bricks[i]);
+                ActivatePower(bricks[i]);
+            }
+            else
+            {
+                activeBricks++;
+            }
         }
     }
+
+    return activeBricks;
 
 }
 

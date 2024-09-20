@@ -70,4 +70,11 @@ namespace GameManager
     {
         return static_cast<float>(slGetDeltaTime());
     }
+
+
+
+    float GetTime()
+    {
+        return static_cast<float>(slGetTime());
+    }
 }

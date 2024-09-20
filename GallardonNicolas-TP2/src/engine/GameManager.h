@@ -11,4 +11,5 @@ namespace GameManager
     void Render();
     int GetRandom(int min, int max);
     float GetFrameTime();
+    float GetTime();
 }
