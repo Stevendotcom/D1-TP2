@@ -243,6 +243,13 @@
       <AdditionalIncludeDirectories>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\lib/sigil/include;H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\/src/utils/;H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\/src/scenes/;H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\/src/actors/</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="..\src\engine\ColorPalette.cpp" />
+    <ClCompile Include="..\src\engine\Fonts.cpp" />
+    <ClCompile Include="..\src\engine\Input.cpp" />
+    <ClCompile Include="..\src\engine\Management.cpp" />
+    <ClCompile Include="..\src\engine\Sounds.cpp" />
+    <ClCompile Include="..\src\engine\Sprites.cpp" />
+    <ClCompile Include="..\src\engine\VectorMath.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\scenes\Collisions.cpp" />
     <ClCompile Include="..\src\scenes\Game.cpp">
@@ -324,13 +331,6 @@
     </ClCompile>
     <ClCompile Include="..\src\scenes\MainMenu.cpp" />
     <ClCompile Include="..\src\scenes\SceneManager.cpp" />
-    <ClCompile Include="..\src\utils\ColorPalette.cpp" />
-    <ClCompile Include="..\src\utils\Fonts.cpp" />
-    <ClCompile Include="..\src\utils\Input.cpp" />
-    <ClCompile Include="..\src\utils\Sounds.cpp" />
-    <ClCompile Include="..\src\utils\Sprites.cpp" />
-    <ClCompile Include="..\src\utils\VectorMath.cpp" />
-    <ClCompile Include="..\src\utils\Management.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\actors\Ball.h" />
@@ -338,24 +338,20 @@
     <ClInclude Include="..\src\actors\Buttons.h" />
     <ClInclude Include="..\src\actors\Player.h" />
     <ClInclude Include="..\src\actors\Structures.h" />
+    <ClInclude Include="..\src\engine\ColorPalette.h" />
+    <ClInclude Include="..\src\engine\Fonts.h" />
+    <ClInclude Include="..\src\engine\Input.h" />
+    <ClInclude Include="..\src\engine\Management.h" />
+    <ClInclude Include="..\src\engine\Sounds.h" />
+    <ClInclude Include="..\src\engine\Sprites.h" />
+    <ClInclude Include="..\src\engine\VectorMath.h" />
     <ClInclude Include="..\src\scenes\Collisions.h" />
     <ClInclude Include="..\src\scenes\Game.h" />
     <ClInclude Include="..\src\scenes\MainMenu.h" />
     <ClInclude Include="..\src\scenes\SceneManager.h" />
-    <ClInclude Include="..\src\utils\Fonts.h" />
-    <ClInclude Include="..\src\utils\Input.h" />
-    <ClInclude Include="..\src\utils\Sounds.h" />
-    <ClInclude Include="..\src\utils\Sprites.h" />
-    <ClInclude Include="..\src\utils\VectorMath.h" />
-    <ClInclude Include="..\src\utils\Management.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\src\utils\ColorPalette.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Update="..\src\actors" />
-    <Folder Update="..\src\scenes" />
-    <Folder Update="..\src\utils" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -415,7 +411,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib/sigil/include;$(SolutionDir)/src/utils/;$(SolutionDir)/src/scenes/;$(SolutionDir)/src/actors/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\sigil\include;$(SolutionDir)src\engine;$(SolutionDir)src\scenes;$(SolutionDir)src\actors</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
