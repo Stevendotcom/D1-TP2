@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "MainMenu.h"
-#include "Management.h"
+#include "GameManager.h"
 
 
 namespace SceneManager
@@ -13,7 +13,7 @@ namespace SceneManager
     void Manager()
     {
         bool exit = false;
-        while (!Management::ShouldWindowClose() && !exit)
+        while (!GameManager::ShouldWindowClose() && !exit)
         {
             switch (setScene)
             {
@@ -44,7 +44,7 @@ namespace SceneManager
                 abort();
             }
         }
-        Management::CloseWindow();
+        GameManager::CloseWindow();
     }
 
 

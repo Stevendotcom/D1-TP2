@@ -1,8 +1,7 @@
 #include <string>
 
 #include "Fonts.h"
-#include "Management.h"
-#include "SceneManager.h"
+#include "GameManager.h"
 #include "Sprites.h"
 
 
@@ -13,10 +12,7 @@ const std::string GAME_TITLE = "Good Name";
 Fonts::Fonts fonts;
 Sprites::Sprites sprites;
 
-void main()
+int main()
 {
-    Management::InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_TITLE, true);
-    Fonts::LoadAllFonts(fonts);
-    Sprites::LoadSprites(sprites);
-    SceneManager::Manager();
+    GameManager::Start();
 }

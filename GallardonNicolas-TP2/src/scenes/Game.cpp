@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "Structures.h"
 #include "Input.h"
-#include "Management.h"
+#include "GameManager.h"
 
 #include <sl.h>
 
@@ -27,7 +27,7 @@ void Game::Play()
         Update(player, ball, bricks);
         Draw();
     }
-    while (!Management::ShouldWindowClose() && !endMatch);
+    while (!GameManager::ShouldWindowClose() && !endMatch);
 }
 
 void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])

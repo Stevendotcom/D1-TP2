@@ -6,7 +6,7 @@
 #include "ColorPalette.h"
 #include "Fonts.h"
 #include "Input.h"
-#include "Management.h"
+#include "GameManager.h"
 #include "SceneManager.h"
 #include "VectorMath.h"
 
@@ -28,11 +28,11 @@ void MainMenu::Menu()
 
 
     Draw(buttons);
-    while (!Input::IsKeyDown(SL_KEY_ENTER) && !Management::ShouldWindowClose())
+    while (!Input::IsKeyDown(SL_KEY_ENTER) && !GameManager::ShouldWindowClose())
     {
         Input(buttons, selected);
         Draw(buttons);
-        Management::Render();
+        GameManager::Render();
     }
 
     SceneManager::ChangeScene(static_cast<SceneManager::Scenes>(selected + 1));

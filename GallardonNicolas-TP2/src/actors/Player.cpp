@@ -1,17 +1,17 @@
 #include "Player.h"
 #include "Collisions.h"
-#include "Management.h"
+#include "GameManager.h"
 #include "Structures.h"
 
 
 void Player::MoveRight(Structures::Player &player)
 {
-    player.FuturePosition.X += player.Speed * Management::GetFrameTime();
+    player.FuturePosition.X += player.Speed * GameManager::GetFrameTime();
 }
 
 void Player::MoveLeft(Structures::Player &player)
 {
-    player.FuturePosition.X -= player.Speed * Management::GetFrameTime();
+    player.FuturePosition.X -= player.Speed * GameManager::GetFrameTime();
 }
 
 

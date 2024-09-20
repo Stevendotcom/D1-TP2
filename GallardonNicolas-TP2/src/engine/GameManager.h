@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 
-namespace Management
+namespace GameManager
 {
 
-
+    void Start();
     void InitWindow(int width, int height, const std::string &title, bool fullScreen);
     void CloseWindow();
     bool ShouldWindowClose();

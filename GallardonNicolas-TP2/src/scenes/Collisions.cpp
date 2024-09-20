@@ -1,6 +1,6 @@
 ﻿#include "Collisions.h"
 
-#include "Management.h"
+#include "GameManager.h"
 #include "Structures.h"
 
 
@@ -42,7 +42,7 @@ bool Collisions::DoesRectCircle(const VectorMath::Vector2 &position, const Vecto
     // if it touches up/down and within x bounds
     if (position.X < ball.Position.X && position.X + size.X > ball.Position.X)
     {
-        if (position.Y + size.Y - (ball.Speed * Management::GetFrameTime()) < ball.FuturePosition.Y)
+        if (position.Y + size.Y - (ball.Speed * GameManager::GetFrameTime()) < ball.FuturePosition.Y)
         {
             collisionPlace = WhereCollides::Up;
             minDistance = ball.Radius;
@@ -85,7 +85,7 @@ bool Collisions::DoesRectCircle(const VectorMath::Vector2 &position, const Vecto
     // if it touches up/down and within x bounds
     if (position.X < ball.Position.X && position.X + size.X > ball.Position.X)
     {
-        if (position.Y + size.Y - (ball.Speed * Management::GetFrameTime()) < ball.FuturePosition.Y)
+        if (position.Y + size.Y - (ball.Speed * GameManager::GetFrameTime()) < ball.FuturePosition.Y)
         {
             minDistance = ball.Radius;
             distance = ball.FuturePosition.Y - position.Y;

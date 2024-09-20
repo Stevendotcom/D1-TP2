@@ -2,7 +2,7 @@
 
 #include <cmath>
 #include "Collisions.h"
-#include "Management.h"
+#include "GameManager.h"
 #include "Structures.h"
 #include "VectorMath.h"
 
@@ -16,8 +16,8 @@ void Ball::Update(Structures::Player &player, Structures::Ball &ball)
     Collisions::WhereCollides collisionPlaceBall = Collisions::WhereCollides::None;
 
     // ball update
-    ball.FuturePosition.X = ball.Position.X + (ball.Direction.X * ball.Speed * Management::GetFrameTime());
-    ball.FuturePosition.Y = ball.Position.Y + (ball.Direction.Y * ball.Speed * Management::GetFrameTime());
+    ball.FuturePosition.X = ball.Position.X + (ball.Direction.X * ball.Speed * GameManager::GetFrameTime());
+    ball.FuturePosition.Y = ball.Position.Y + (ball.Direction.Y * ball.Speed * GameManager::GetFrameTime());
 
 
     if (Collisions::DoesWallBall(ball, collisionPlaceBall))
@@ -127,7 +127,7 @@ void Ball::Spawn(Structures::Ball &ball, const Texture sprite)
     float angle = NAN;
     float x = NAN;
     float y = NAN;
-    const bool const isRight = Management::GetRandom(0, 1) != 0;
+    const bool isRight = GameManager::GetRandom(0, 1);
 
     ball.Speed = SPEED;
     ball.Radius = RADIUS;
@@ -136,12 +136,12 @@ void Ball::Spawn(Structures::Ball &ball, const Texture sprite)
     if (isRight)
     {
         ball.Position.X = ball.Radius;
-        angle = static_cast<float>(Management::GetRandom(290, 340));
+        angle = static_cast<float>(GameManager::GetRandom(290, 340));
     }
     else
     {
         ball.Position.X = SCREEN_WIDTH - ball.Radius;
-        angle = static_cast<float>(Management::GetRandom(200, 250));
+        angle = static_cast<float>(GameManager::GetRandom(200, 250));
     }
     ball.Position.Y = SPAWN_Y_HEIGTH;
 
