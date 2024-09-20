@@ -9,7 +9,9 @@ namespace SceneManager
         Play,
         Credits,
         Rules,
-        Exit
+        Exit,
+        AfterGame,
+        Pause,
     };
 
     void Manager();

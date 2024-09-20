@@ -26,6 +26,7 @@
     <ClCompile Include="src\scenes\Collisions.cpp" />
     <ClCompile Include="src\scenes\Game.cpp" />
     <ClCompile Include="src\scenes\MainMenu.cpp" />
+    <ClCompile Include="src\scenes\AfterGame.cpp" />
     <ClCompile Include="src\scenes\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +45,7 @@
     <ClInclude Include="src\scenes\Collisions.h" />
     <ClInclude Include="src\scenes\Game.h" />
     <ClInclude Include="src\scenes\MainMenu.h" />
+    <ClInclude Include="src\scenes\AfterGame.h" />
     <ClInclude Include="src\scenes\SceneManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -2,13 +2,16 @@
 
 #include <iostream>
 
+#include "Game.h"
 #include "MainMenu.h"
 #include "GameManager.h"
+#include "AfterGame.h"
 
 
 namespace SceneManager
 {
     Scenes setScene = Scenes::MainMenu;
+    bool playerWon = false;
 
     void Manager()
     {
@@ -21,7 +24,7 @@ namespace SceneManager
                 MainMenu::Menu();
                 break;
             case Scenes::Play:
-                //Play();
+                Game::Play();
                 std::cout << "Playing..." << std::endl;
                 setScene = Scenes::MainMenu;
                 break;
@@ -38,6 +41,11 @@ namespace SceneManager
                 //Exit();
                 std::cout << "exit..." << std::endl;
                 exit = true;
+                break;
+            case Scenes::AfterGame:
+                PlayerWon::AfterScene(playerWon);
+                break;
+            case Scenes::Pause:
                 break;
             default:
                 std::cerr << "Unknown Scene #" << static_cast<int>(setScene) << std::endl;
