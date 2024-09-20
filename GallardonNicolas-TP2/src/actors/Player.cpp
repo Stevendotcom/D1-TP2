@@ -30,6 +30,7 @@ void Player::Spawn(Structures::Player &player, Texture sprite)
     player.Height = HEIGHT;
     player.Width = WIDTH;
     player.Speed = SPEED;
+    player.Hearts = HEARTS;
     player.Position = {static_cast<float>(SCREEN_WIDTH) / 2.0F, MARGIN};
     player.FuturePosition = player.Position;
     player.Sprite = sprite;

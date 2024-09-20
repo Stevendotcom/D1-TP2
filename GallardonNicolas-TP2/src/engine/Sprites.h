@@ -12,7 +12,8 @@ namespace Sprites
         Texture Player;
         Texture Ball;
         Texture Button;
-
+        Texture HeartsBorder;
+        Texture Heart;
     };
 
     void LoadSprites(Sprites &sprites);

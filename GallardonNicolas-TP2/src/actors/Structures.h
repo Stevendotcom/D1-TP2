@@ -36,6 +36,7 @@ namespace Structures
         int Height;
         int Speed;
         int Score;
+        int Hearts;
     };
 
     struct Brick

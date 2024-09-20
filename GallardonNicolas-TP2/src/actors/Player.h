@@ -8,6 +8,7 @@ namespace Player
     const int SPEED = 600;
     const int WIDTH = 25;
     const int HEIGHT = 150;
+    const int HEARTS = 3;
 
 
     void MoveRight(Structures::Player &player);

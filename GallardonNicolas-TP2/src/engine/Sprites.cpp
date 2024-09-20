@@ -18,6 +18,8 @@ namespace Sprites
         sprites.Player = LoadTexture(ASSETS_DIR + "pathtoplayer");
         sprites.Ball = LoadTexture(ASSETS_DIR + "pathtoplayer");
         sprites.Button = LoadTexture(ASSETS_DIR + "Pixelarium/banner.png");
+        sprites.HeartsBorder = LoadTexture(ASSETS_DIR + "pathtoplayer");
+        sprites.Heart = LoadTexture(ASSETS_DIR + "pathtoplayer");
 
     }
 
