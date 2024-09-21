@@ -14,7 +14,7 @@
 
 namespace SceneManager
 {
-    Scenes setScene = Scenes::MainMenu;
+    static Scenes setScene = Scenes::MainMenu;
     bool playerWon = false;
 
     void Manager()
@@ -30,21 +30,21 @@ namespace SceneManager
             case Scenes::Play:
                 Game::Play();
                 break;
+            case Scenes::Pause:
+                Pause::Pause();
+                break;
             case Scenes::Credits:
                 Credits::Credits();
                 break;
             case Scenes::Rules:
                 Rules::Rules();
                 break;
-            case Scenes::Exit:
-                Exit::Exit();
-                exit = true;
-                break;
             case Scenes::AfterGame:
                 PlayerWon::AfterScene(playerWon);
                 break;
-            case Scenes::Pause:
-                Pause::Pause();
+            case Scenes::Exit:
+                Exit::Exit();
+                exit = true;
                 break;
             default:
                 std::cerr << "Unknown Scene #" << static_cast<int>(setScene) << std::endl;
