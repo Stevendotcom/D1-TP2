@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\actors\Background.cpp" />
     <ClCompile Include="src\actors\Ball.cpp" />
     <ClCompile Include="src\actors\Brick.cpp" />
     <ClCompile Include="src\actors\Player.cpp" />
@@ -110,6 +111,7 @@
     <ClCompile Include="src\scenes\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\actors\Background.h" />
     <ClInclude Include="src\actors\Ball.h" />
     <ClInclude Include="src\actors\Brick.h" />
     <ClInclude Include="src\actors\Player.h" />
