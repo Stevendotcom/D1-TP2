@@ -30,7 +30,7 @@ void MainMenu::Menu()
     Draw(buttons);
     while (!Input::IsKeyDown(SL_KEY_ENTER) && !GameManager::ShouldWindowClose())
     {
-        Input(buttons, selected);
+        Buttons::Input(buttons, selected, AMOUNT);
         Draw(buttons);
         GameManager::Render();
     }
@@ -79,36 +79,7 @@ void MainMenu::MakeButtons(Buttons::Button buttons[])
 }
 
 
-void MainMenu::Input(Buttons::Button buttons[], int &selected)
-{
-    buttons[selected].Selected = false;
-    if (Input::IsKeyReleasing(SL_KEY_DOWN))
-    {
-        if (selected == AMOUNT - 1)
-        {
-            selected = 0;
-        }
-        else
-        {
-            selected++;
-        }
-    }
-    else if (Input::IsKeyReleasing(SL_KEY_UP))
-    {
-        if (selected == 0)
-        {
-            selected = AMOUNT - 1;
-        }
-        else
-        {
-            selected--;
-        }
-    }
-    buttons[selected].Selected = true;
-}
-
-
-void MainMenu::Draw(Buttons::Button buttons[])
+void MainMenu::Draw(Button buttons[])
 {
     const int margin = 30;
     VectorMath::Vector2 titleSize;

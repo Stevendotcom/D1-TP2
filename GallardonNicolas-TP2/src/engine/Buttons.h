@@ -17,4 +17,6 @@ namespace Buttons
     };
 
     void RenderButtons(Button buttons[], int amount);
+    void Input(Button buttons[], int &selected, int amount);
+
 };

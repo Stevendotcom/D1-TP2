@@ -1,6 +1,9 @@
 ﻿#include "Buttons.h"
 
+#include <sl.h>
+
 #include "Fonts.h"
+#include "Input.h"
 
 extern Fonts::Fonts fonts;
 
@@ -28,4 +31,33 @@ void Buttons::RenderButtons(Button buttons[], const int amount)
         }
         Fonts::TextPrint({buttons[i].Position.X, buttons[i].Position.Y}, buttons[i].Text);
     }
+}
+
+
+void Buttons::Input(Buttons::Button buttons[], int &selected, const int amount)
+{
+    buttons[selected].Selected = false;
+    if (Input::IsKeyReleasing(SL_KEY_DOWN))
+    {
+        if (selected == amount - 1)
+        {
+            selected = 0;
+        }
+        else
+        {
+            selected++;
+        }
+    }
+    else if (Input::IsKeyReleasing(SL_KEY_UP))
+    {
+        if (selected == 0)
+        {
+            selected = amount - 1;
+        }
+        else
+        {
+            selected--;
+        }
+    }
+    buttons[selected].Selected = true;
 }
