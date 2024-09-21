@@ -15,14 +15,18 @@ namespace Sprites
     void LoadSprites(Sprites &sprites)
     {
 
-        sprites.Player = LoadTexture(ASSETS_DIR + "pathtoplayer");
-        sprites.Ball = LoadTexture(ASSETS_DIR + "pathtoplayer");
+        sprites.PlayerLeft = LoadTexture(ASSETS_DIR + "Tiny-Swords/WarriorLeft.png");
+        sprites.PlayerRight = LoadTexture(ASSETS_DIR + "Tiny-Swords/WarriorRight.png");
+        sprites.PlayerIdle = LoadTexture(ASSETS_DIR + "Tiny-Swords/WarriorIdle.png");
+        sprites.PlayerHit = LoadTexture(ASSETS_DIR + "Tiny-Swords/WarriorHit.png");
+        sprites.Background = LoadTexture(ASSETS_DIR + "Tiny-Swords/Background.png");
+        sprites.Ball = LoadTexture(ASSETS_DIR + "Tiny-Swords/Sheep.png");
         sprites.Button = LoadTexture(ASSETS_DIR + "Pixelarium/banner.png");
-        sprites.HeartsBorder = LoadTexture(ASSETS_DIR + "pathtoplayer");
-        sprites.Heart = LoadTexture(ASSETS_DIR + "pathtoplayer");
-        sprites.LeftArrow =  LoadTexture(ASSETS_DIR + "SimpleKeys/ARROWLEFT.png");
-        sprites.RightArrow =  LoadTexture(ASSETS_DIR + "SimpleKeys/ARROWRIGTH.png");
-        sprites.P =  LoadTexture(ASSETS_DIR + "SimpleKeys/P.png");
+        sprites.HeartsBorder = LoadTexture(ASSETS_DIR + "Health-Stamina/HeartsBorder.png");
+        sprites.Heart = LoadTexture(ASSETS_DIR + "Health-Stamina/Heart.png");
+        sprites.LeftArrow = LoadTexture(ASSETS_DIR + "SimpleKeys/ARROWLEFT.png");
+        sprites.RightArrow = LoadTexture(ASSETS_DIR + "SimpleKeys/ARROWRIGHT.png");
+        sprites.P = LoadTexture(ASSETS_DIR + "SimpleKeys/P.png");
 
     }
 

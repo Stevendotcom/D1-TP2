@@ -5,6 +5,7 @@
 #include "Fonts.h"
 #include "GameManager.h"
 #include "Input.h"
+#include "SceneManager.h"
 
 using namespace Fonts;
 
@@ -37,6 +38,10 @@ void Credits::Credits()
                   "Done on SIGIL engine by Geoff");
         TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 8.0F},
                   "No little bunnies were harmed in the process of making this game.");
+
+        GameManager::Render();
     }
+
+    ChangeScene(SceneManager::Scenes::MainMenu);
 
 }

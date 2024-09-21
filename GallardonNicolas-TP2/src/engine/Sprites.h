@@ -9,7 +9,11 @@ namespace Sprites
 {
     struct Sprites
     {
-        Texture Player;
+        Texture PlayerLeft;
+        Texture PlayerRight;
+        Texture PlayerIdle;
+        Texture PlayerHit;
+        Texture Background;
         Texture Ball;
         Texture Button;
         Texture HeartsBorder;

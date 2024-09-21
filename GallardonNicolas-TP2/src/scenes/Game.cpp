@@ -39,7 +39,7 @@ bool Game::Play()
 
 void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
-    Player::Spawn(player, sprites.Player);
+    Player::Spawn(player, sprites.PlayerLeft);
     Ball::Spawn(ball, sprites.Ball);
     Brick::Generate(bricks);
 }

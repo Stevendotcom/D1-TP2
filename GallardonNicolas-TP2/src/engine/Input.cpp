@@ -57,7 +57,6 @@ namespace Input
 
     bool IsKeyAboutToPress(const int key)
     {
-        //TODO CHECK IF NEEDED
         return IsKeyDown(key) && !Input::GetPreviousKeyState(key);
 
     }

@@ -5,6 +5,7 @@
 #include "Fonts.h"
 #include "GameManager.h"
 #include "Input.h"
+#include "SceneManager.h"
 #include "Sprites.h"
 
 using namespace Fonts;
@@ -38,6 +39,9 @@ void Rules::Rules()
         LoadSprite(sprites.LeftArrow, {MARGIN, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 2.0F}, size);
         LoadSprite(sprites.RightArrow, {MARGIN, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 3.0F}, size);
         LoadSprite(sprites.P, {MARGIN, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 4.0F}, size);
+        GameManager::Render();
+
     }
+    ChangeScene(SceneManager::Scenes::MainMenu);
 
 }

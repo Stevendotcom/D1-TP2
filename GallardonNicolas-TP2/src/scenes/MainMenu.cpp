@@ -28,7 +28,7 @@ void MainMenu::Menu()
 
 
     Draw(buttons);
-    while (!Input::IsKeyDown(SL_KEY_ENTER) && !GameManager::ShouldWindowClose())
+    while (!Input::IsKeyReleasing(SL_KEY_ENTER) && !GameManager::ShouldWindowClose())
     {
         Buttons::Input(buttons, selected, AMOUNT);
         Draw(buttons);
