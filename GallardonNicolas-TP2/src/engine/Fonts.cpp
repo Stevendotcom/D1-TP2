@@ -9,7 +9,7 @@ namespace Fonts
     {
 
         fonts.Title = LoadFont(ASSETS_DIR + "Antiquity-Print/antiquity-print.ttf");
-        fonts.Button = LoadFont(ASSETS_DIR + "DirtyHarold_Font/DirtyHarold.ttf");
+        fonts.Body = LoadFont(ASSETS_DIR + "DirtyHarold_Font/DirtyHarold.ttf");
 
     }
 

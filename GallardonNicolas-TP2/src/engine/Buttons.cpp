@@ -12,7 +12,7 @@ void Buttons::RenderButtons(Button buttons[], const int amount)
     const float margin = buttons[0].Size.Y * 0.6;
 
     Fonts::ChangeFontSize(buttons[0].Size.Y - margin);
-    Fonts::SetFont(fonts.Button);
+    Fonts::SetFont(fonts.Body);
     Fonts::CenterText();
 
     for (int i = 0; i < amount; i++)

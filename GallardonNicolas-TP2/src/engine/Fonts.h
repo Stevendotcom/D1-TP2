@@ -13,7 +13,7 @@ namespace Fonts
     struct Fonts
     {
         Font Title;
-        Font Button;
+        Font Body;
     };
 
     void LoadAllFonts(Fonts &fonts);

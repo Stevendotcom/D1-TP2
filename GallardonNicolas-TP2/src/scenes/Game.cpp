@@ -141,7 +141,7 @@ void Game::DrawUI(const Structures::Player &player)
             );
     }
 
-    Fonts::SetFont(fonts.Button);
+    Fonts::SetFont(fonts.Body);
     Fonts::ChangeFontSize(FONT_SIZE);
     Fonts::TextPrint({static_cast<float>(SCREEN_WIDTH - FONT_SIZE), SCREEN_HEIGHT - MARGIN},
                      std::to_string(player.Score));

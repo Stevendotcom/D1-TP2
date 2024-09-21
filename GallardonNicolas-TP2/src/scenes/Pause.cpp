@@ -91,7 +91,7 @@ void Pause::Draw(Button buttons[MAX_BUTTONS])
     SetFont(fonts.Title);
     TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F}, "Pause");
 
-    SetFont(fonts.Button);
+    SetFont(fonts.Body);
     ChangeFontSize(20);
     RenderButtons(buttons, MAX_BUTTONS);
     GameManager::Render();
