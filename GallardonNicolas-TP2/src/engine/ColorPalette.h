@@ -10,6 +10,7 @@ namespace Color
 
     const float MAX = 255;
 
+    const Color white = {255 / MAX, 255 / MAX, 255 / MAX};
     const Color mantis = {109 / MAX, 211 / MAX, 112 / MAX};
     const Color french = {211 / MAX, 205 / MAX, 215 / MAX};
     const Color dimGray = {108 / MAX, 117 / MAX, 107 / MAX};
