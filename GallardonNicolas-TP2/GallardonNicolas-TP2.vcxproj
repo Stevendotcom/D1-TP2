@@ -199,8 +199,8 @@
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);sigil.lib;</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)lib\sigil\*.dll" "$(OutDir) /y
-xcopy "$(SolutionDir)assets\" "$(OutDir)assets\" /i/y</Command>
+      <Command>copy "$(SolutionDir)lib\sigil\*.dll" "$(OutDir)" /y
+ xcopy "$(SolutionDir)assets\" "$(OutDir)assets\" /i/y/s</Command>
       <Message>Copying Dlls</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
