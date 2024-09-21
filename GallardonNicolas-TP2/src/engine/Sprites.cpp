@@ -19,6 +19,7 @@ namespace Sprites
         sprites.PlayerRight = LoadTexture(ASSETS_DIR + "Tiny-Swords/WarriorRight.png");
         sprites.PlayerIdle = LoadTexture(ASSETS_DIR + "Tiny-Swords/WarriorIdle.png");
         sprites.PlayerHit = LoadTexture(ASSETS_DIR + "Tiny-Swords/WarriorHit.png");
+        sprites.Grass = LoadTexture(ASSETS_DIR + "Tiny-Swords/Grass.png");
         sprites.Background = LoadTexture(ASSETS_DIR + "Tiny-Swords/Background.png");
         sprites.Ball = LoadTexture(ASSETS_DIR + "Tiny-Swords/Sheep.png");
         sprites.Button = LoadTexture(ASSETS_DIR + "Pixelarium/banner.png");

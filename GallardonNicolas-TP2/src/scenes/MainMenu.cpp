@@ -2,6 +2,7 @@
 
 #include <sl.h>
 
+#include "Background.h"
 #include "Buttons.h"
 #include "ColorPalette.h"
 #include "Fonts.h"
@@ -30,13 +31,14 @@ void MainMenu::Menu()
     Draw(buttons);
     while (!Input::IsKeyReleasing(SL_KEY_ENTER) && !GameManager::ShouldWindowClose())
     {
+
         Buttons::Input(buttons, selected, AMOUNT);
         Draw(buttons);
-        GameManager::Render();
     }
 
     SceneManager::ChangeScene(static_cast<SceneManager::Scenes>(selected + 1));
 }
+
 
 
 void MainMenu::MakeButtons(Buttons::Button buttons[])
@@ -79,10 +81,13 @@ void MainMenu::MakeButtons(Buttons::Button buttons[])
 }
 
 
+
 void MainMenu::Draw(Button buttons[])
 {
     const int margin = 30;
     VectorMath::Vector2 titleSize;
+
+    Background::Draw();
 
     Fonts::SetFont(fonts.Title);
     Fonts::ChangeFontSize(TITLE_FONT_SIZE);
@@ -92,4 +97,6 @@ void MainMenu::Draw(Button buttons[])
     Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y - margin}, "Game name");
 
     RenderButtons(buttons, AMOUNT);
+
+    GameManager::Render();
 }

@@ -21,7 +21,7 @@ void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
         switch (bricks[i].Power)
         {
         case Structures::Powers::None:
-            bricks[i].Sprite = Sprites::LoadTexture(ASSETS_DIR + "pathtofilename");
+            bricks[i].Sprite = sprites.Grass;
             break;
         }
     }

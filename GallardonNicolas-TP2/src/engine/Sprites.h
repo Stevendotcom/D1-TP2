@@ -13,6 +13,7 @@ namespace Sprites
         Texture PlayerRight;
         Texture PlayerIdle;
         Texture PlayerHit;
+        Texture Grass;
         Texture Background;
         Texture Ball;
         Texture Button;

@@ -1,6 +1,8 @@
 #include <sl.h>
 
 #include "Game.h"
+
+#include "Background.h"
 #include "Ball.h"
 #include "Brick.h"
 #include "Fonts.h"
@@ -75,6 +77,7 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
     if (ball.Position.Y < 0)
     {
         player.Hearts--;
+        Ball::Spawn(ball, sprites.Ball);
     }
     if (player.Hearts == 0)
     {
@@ -92,6 +95,7 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
 
 void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
+    Background::Draw();
     Player::Draw(player);
     Ball::Draw(ball);
     Brick::Draw(bricks);

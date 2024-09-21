@@ -28,7 +28,7 @@ namespace SceneManager
                 MainMenu::Menu();
                 break;
             case Scenes::Play:
-                Game::Play();
+                playerWon = Game::Play();
                 break;
             case Scenes::Pause:
                 Pause::Pause();
