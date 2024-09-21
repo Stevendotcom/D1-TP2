@@ -20,6 +20,9 @@ namespace Sprites
         sprites.Button = LoadTexture(ASSETS_DIR + "Pixelarium/banner.png");
         sprites.HeartsBorder = LoadTexture(ASSETS_DIR + "pathtoplayer");
         sprites.Heart = LoadTexture(ASSETS_DIR + "pathtoplayer");
+        sprites.LeftArrow =  LoadTexture(ASSETS_DIR + "SimpleKeys/ARROWLEFT.png");
+        sprites.RightArrow =  LoadTexture(ASSETS_DIR + "SimpleKeys/ARROWRIGTH.png");
+        sprites.P =  LoadTexture(ASSETS_DIR + "SimpleKeys/P.png");
 
     }
 

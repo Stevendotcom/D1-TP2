@@ -14,6 +14,9 @@ namespace Sprites
         Texture Button;
         Texture HeartsBorder;
         Texture Heart;
+        Texture LeftArrow;
+        Texture RightArrow;
+        Texture P;
     };
 
     void LoadSprites(Sprites &sprites);

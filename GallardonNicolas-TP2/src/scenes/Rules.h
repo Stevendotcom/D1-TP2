@@ -2,5 +2,5 @@
 
 namespace Rules
 {
-void Rules();
+    void Rules();
 };

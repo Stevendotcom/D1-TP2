@@ -47,4 +47,9 @@ namespace Fonts
     {
         slSetTextAlign(SL_ALIGN_CENTER);
     }
+
+    void TextAlignLeft()
+    {
+        slSetTextAlign(SL_ALIGN_LEFT);
+    }
 }

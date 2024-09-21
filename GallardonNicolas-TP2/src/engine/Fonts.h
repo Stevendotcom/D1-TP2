@@ -23,6 +23,7 @@ namespace Fonts
     void TextPrint(VectorMath::Vector2 position, const std::string &text);
     VectorMath::Vector2 GetTextSize(const std::string &text);
     void CenterText();
+    void TextAlignLeft();
 };
 
 extern Fonts::Fonts fonts;

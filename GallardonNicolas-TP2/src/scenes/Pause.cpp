@@ -28,7 +28,7 @@ void Pause::Pause()
         Buttons::Input(buttons, selected, MAX_BUTTONS);
         Draw(buttons);
     }
-    while (!Input::IsKeyDown(SL_KEY_ENTER));
+    while (!Input::IsKeyDown(SL_KEY_ENTER) && !GameManager::ShouldWindowClose());
 
 
     switch (static_cast<Selection>(selected))
