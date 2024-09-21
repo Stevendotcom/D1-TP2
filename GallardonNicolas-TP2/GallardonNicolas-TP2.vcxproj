@@ -24,9 +24,13 @@
     <ClCompile Include="src\engine\VectorMath.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\scenes\Collisions.cpp" />
+    <ClCompile Include="src\scenes\Credits.cpp" />
+    <ClCompile Include="src\scenes\Exit.cpp" />
     <ClCompile Include="src\scenes\Game.cpp" />
     <ClCompile Include="src\scenes\MainMenu.cpp" />
     <ClCompile Include="src\scenes\AfterGame.cpp" />
+    <ClCompile Include="src\scenes\Pause.cpp" />
+    <ClCompile Include="src\scenes\Rules.cpp" />
     <ClCompile Include="src\scenes\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -43,9 +47,13 @@
     <ClInclude Include="src\engine\Sprites.h" />
     <ClInclude Include="src\engine\VectorMath.h" />
     <ClInclude Include="src\scenes\Collisions.h" />
+    <ClInclude Include="src\scenes\Credits.h" />
+    <ClInclude Include="src\scenes\Exit.h" />
     <ClInclude Include="src\scenes\Game.h" />
     <ClInclude Include="src\scenes\MainMenu.h" />
     <ClInclude Include="src\scenes\AfterGame.h" />
+    <ClInclude Include="src\scenes\Pause.h" />
+    <ClInclude Include="src\scenes\Rules.h" />
     <ClInclude Include="src\scenes\SceneManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

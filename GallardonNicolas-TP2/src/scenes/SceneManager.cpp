@@ -6,6 +6,10 @@
 #include "MainMenu.h"
 #include "GameManager.h"
 #include "AfterGame.h"
+#include "Credits.h"
+#include "Exit.h"
+#include "Pause.h"
+#include "Rules.h"
 
 
 namespace SceneManager
@@ -25,27 +29,22 @@ namespace SceneManager
                 break;
             case Scenes::Play:
                 Game::Play();
-                std::cout << "Playing..." << std::endl;
-                setScene = Scenes::MainMenu;
                 break;
             case Scenes::Credits:
-                //Credits();
-                std::cout << "Credits..." << std::endl;
-                setScene = Scenes::MainMenu;
+                Credits::Credits();
                 break;
             case Scenes::Rules:
-                std::cout << "rules..." << std::endl;
-                setScene = Scenes::MainMenu;
+                Rules::Rules();
                 break;
             case Scenes::Exit:
-                //Exit();
-                std::cout << "exit..." << std::endl;
+                Exit::Exit();
                 exit = true;
                 break;
             case Scenes::AfterGame:
                 PlayerWon::AfterScene(playerWon);
                 break;
             case Scenes::Pause:
+                Pause::Pause();
                 break;
             default:
                 std::cerr << "Unknown Scene #" << static_cast<int>(setScene) << std::endl;
