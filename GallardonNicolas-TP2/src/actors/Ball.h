@@ -4,7 +4,7 @@
 namespace Ball
 {
 
-    const int SPEED = 680;
+    const int SPEED = 300;
     const float SPAWN_Y_HEIGTH = SCREEN_HEIGHT / 2.0f - 40.0f;
     const float RADIUS = 15.0f;
 
