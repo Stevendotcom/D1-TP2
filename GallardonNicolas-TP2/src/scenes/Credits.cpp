@@ -44,7 +44,7 @@ void Credits::Credits()
         TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 8.0F},
                   "Done on SIGIL engine by Geoff");
         TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 9.0F},
-                  "No little bunnies were harmed in the process of making this game.");
+                  "No sheeps were harmed in the process of making this game.");
 
         GameManager::Render();
     }

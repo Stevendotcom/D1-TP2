@@ -14,7 +14,6 @@
 #include "SceneManager.h"
 
 
-
 bool Game::Play()
 {
     bool endMatch = false;
@@ -39,14 +38,12 @@ bool Game::Play()
 }
 
 
-
 void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
     Player::Spawn(player, sprites.PlayerLeft);
     Ball::Spawn(ball, sprites.Ball);
     Brick::Generate(bricks);
 }
-
 
 
 void Game::Input(Structures::Player &player)
@@ -64,7 +61,6 @@ void Game::Input(Structures::Player &player)
         Pause::Pause();
     }
 }
-
 
 
 void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool &playerWon,
@@ -93,7 +89,6 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
 }
 
 
-
 void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
     Background::Draw();
@@ -103,7 +98,6 @@ void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::
     DrawUI(player);
     GameManager::Render();
 }
-
 
 
 int Game::UpdateScore(Structures::Player &player, const float time, const int activeBricks)
@@ -123,20 +117,26 @@ int Game::UpdateScore(Structures::Player &player, const float time, const int ac
 }
 
 
-
 void Game::DrawUI(const Structures::Player &player)
 {
     const float MARGIN = 20.0F;
     const float WIDTH = 30.0F;
-    const float HEIGHT = 15.0F;
-    const float PADDING = 3.0F;
-    const int FONT_SIZE = 30;
+    const float HEIGHT = 30.0F;
+    const float PADDING = 5.0F;
+    const float BORDER_PADDING = 9.5F;
+    const int FONT_SIZE = 60;
 
-    Sprites::LoadSprite(
-        sprites.HeartsBorder,
-        {SCREEN_HEIGHT - MARGIN, MARGIN},
-        {WIDTH, HEIGHT}
-        );
+    SetForeColor(Color::white, 1.0);
+
+    for (int heart = 0; heart < Player::HEARTS; heart++)
+    {
+        Sprites::LoadSprite(
+            sprites.HeartsBorder,
+            {MARGIN + (WIDTH * heart) + BORDER_PADDING * (heart + 1) / 2.0F, SCREEN_HEIGHT - MARGIN},
+            {WIDTH, HEIGHT}
+            );
+    }
+
     for (int heart = 0; heart < player.Hearts; heart++)
     {
         Sprites::LoadSprite(
@@ -144,10 +144,12 @@ void Game::DrawUI(const Structures::Player &player)
             {MARGIN + WIDTH * heart + PADDING * (heart + 1), SCREEN_HEIGHT - MARGIN},
             {WIDTH, HEIGHT}
             );
+
     }
 
+    SetForeColor(Color::coffee, 1.0);
     Fonts::SetFont(fonts.Body);
     Fonts::ChangeFontSize(FONT_SIZE);
-    Fonts::TextPrint({static_cast<float>(SCREEN_WIDTH - FONT_SIZE), SCREEN_HEIGHT - MARGIN},
+    Fonts::TextPrint({static_cast<float>(SCREEN_WIDTH - FONT_SIZE), SCREEN_HEIGHT - MARGIN - FONT_SIZE},
                      std::to_string(player.Score));
 }
