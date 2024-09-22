@@ -11,8 +11,7 @@ namespace Ball
     void Spawn(Structures::Ball &ball, Texture sprite);
     void Update(Structures::Player &player, Structures::Ball &ball);
     void CollisionResult(Structures::Player &player, Structures::Ball &ball, Collisions::WhereCollides collisionPlace);
-    void ChangeDirectionAfterCollision(Structures::Ball &ball, const Structures::Player &player,
-                                       Collisions::WhereCollides whereCollides);
+    void ChangeDirectionAfterCollision(Structures::Ball &ball, const Structures::Player &player);
     float GetWidthCollision(const Structures::Ball &ball, const Structures::Player &player);
     void Draw(Structures::Ball &ball);
 };

@@ -92,10 +92,16 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
 void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
     Background::Draw();
-    Player::Draw(player);
+    Player::Draw(player, Player::Direction::Left);
     Ball::Draw(ball);
     Brick::Draw(bricks);
     DrawUI(player);
+#ifdef _DEBUG
+    slSetForeColor(1,0,0,1);
+    slRectangleOutline(player.Position.X, player.Position.Y, player.Width, player.Height);
+    slRectangleOutline(ball.Position.X, ball.Position.Y, ball.Radius, ball.Radius);
+    slSetForeColor(1,1,1,1);
+#endif
     GameManager::Render();
 }
 

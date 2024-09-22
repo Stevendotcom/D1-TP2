@@ -24,23 +24,23 @@ void Ball::Update(Structures::Player &player, Structures::Ball &ball)
     {
         if (collisionPlaceBall == Collisions::WhereCollides::Up)
         {
-            ball.FuturePosition.Y = SCREEN_HEIGHT - ball.Radius - 1.0F;
+            ball.FuturePosition.Y = Collisions::UP - ball.Radius - 1.0F;
             ball.Direction.Y *= -1;
         }
         else if (collisionPlaceBall == Collisions::WhereCollides::Left)
         {
-            ball.FuturePosition.X = ball.Radius + 1.0F;
+            ball.FuturePosition.X = Collisions::LEFT + ball.Radius + 1.0F;
             ball.Direction.X *= -1;
         }
         else if (collisionPlaceBall == Collisions::WhereCollides::Right)
         {
-            ball.FuturePosition.X = SCREEN_WIDTH - ball.Radius - 1.0F;
+            ball.FuturePosition.X = Collisions::RIGHT - ball.Radius - 1.0F;
             ball.Direction.X *= -1;
         }
     }
 
     if (Collisions::DoesRectCircle(player.Position,
-                                   {static_cast<float>(player.Width), static_cast<float>(player.Height)}, ball,
+                                   {player.Width, player.Height}, ball,
                                    collisionPlaceP1))
     {
         CollisionResult(player, ball, collisionPlaceP1);
@@ -49,6 +49,7 @@ void Ball::Update(Structures::Player &player, Structures::Ball &ball)
 
     ball.Position = ball.FuturePosition;
     ball.FuturePosition = ball.Position;
+
 }
 
 void Ball::CollisionResult(Structures::Player &player, Structures::Ball &ball,
@@ -67,12 +68,12 @@ void Ball::CollisionResult(Structures::Player &player, Structures::Ball &ball,
             ball.Direction.X *= -1;
         }
 
-        if (player.Position.X < ball.Radius * 2 + 1.0F)
+        if (player.Position.X - player.Width / 2.0F < ball.Radius * 2.0F + Collisions::LEFT + 1.0F)
         {
-            player.Position.X = ball.FuturePosition.X + ball.Radius;
+            player.Position.X = ball.Position.X + ball.Radius + Collisions::LEFT;
         }
 
-        ball.FuturePosition.X = player.Position.X - (ball.Radius + 1.0F); // moves to the border
+        ball.FuturePosition.X = player.Position.X - (player.Width / 2.0F + ball.Radius + 1.0F); // moves to the border
 
         break;
     case Collisions::WhereCollides::Right:
@@ -87,17 +88,17 @@ void Ball::CollisionResult(Structures::Player &player, Structures::Ball &ball,
             ball.Direction.X *= -1;
         }
 
-        if (player.Position.X + player.Width > SCREEN_WIDTH - ball.Radius * 2)
+        if (player.Position.X + player.Width /2.0F > Collisions::RIGHT - ball.Radius * 2)
         {
             player.Position.X = ball.Position.X - ball.Radius - 1.0F;
         }
 
-        ball.FuturePosition.X = player.Position.X + player.Width + ball.Radius + 1.0F; // moves to the border
+        ball.FuturePosition.X = player.Position.X + player.Width/2.0F + ball.Radius + 1.0F; // moves to the border
         break;
 
     case Collisions::WhereCollides::Up:
-        ChangeDirectionAfterCollision(ball, player, collisionPlace);
-        ball.FuturePosition.Y = SCREEN_HEIGHT - ball.Radius - 1.0F;
+        ChangeDirectionAfterCollision(ball, player);
+        ball.FuturePosition.Y = player.Position.Y + player.Height / 2.0F + ball.Radius;
 
         break;
     case Collisions::WhereCollides::None:
@@ -106,22 +107,21 @@ void Ball::CollisionResult(Structures::Player &player, Structures::Ball &ball,
 }
 
 
-void Ball::ChangeDirectionAfterCollision(Structures::Ball &ball, const Structures::Player &player,
-                                         const Collisions::WhereCollides /*whereCollides*/)
+void Ball::ChangeDirectionAfterCollision(Structures::Ball &ball, const Structures::Player &player)
 {
 
     ball.Direction.X = ((static_cast<float>(player.Width) / 2.0F) - GetWidthCollision(ball, player)) /
         (static_cast<float>(player.Width) / 2.0F); // returns a value between 1 and -1
 
+    ball.Direction.Y *= -1;
     VectorMath::Normalize(ball.Direction);
 
 }
 
-auto Ball::GetWidthCollision(const Structures::Ball &ball, const Structures::Player &player) -> float
+float Ball::GetWidthCollision(const Structures::Ball &ball, const Structures::Player &player)
 {
     return static_cast<float>(player.Width) + player.Position.X - ball.Position.X;
 }
-
 
 
 void Ball::Draw(Structures::Ball &ball)
@@ -130,26 +130,25 @@ void Ball::Draw(Structures::Ball &ball)
 }
 
 
-
 void Ball::Spawn(Structures::Ball &ball, const Texture sprite)
 {
-    float angle = NAN;
-    float x = NAN;
-    float y = NAN;
+    float angle;
+    float x;
+    float y;
     const bool isRight = GameManager::GetRandom(0, 1);
 
     ball.Speed = SPEED;
     ball.Radius = RADIUS;
     ball.Sprite = sprite;
 
-    if (isRight)
+    if (!isRight)
     {
-        ball.Position.X = ball.Radius;
+        ball.Position.X = Collisions::LEFT + ball.Radius;
         angle = static_cast<float>(GameManager::GetRandom(290, 340));
     }
     else
     {
-        ball.Position.X = SCREEN_WIDTH - ball.Radius;
+        ball.Position.X = Collisions::RIGHT - ball.Radius;
         angle = static_cast<float>(GameManager::GetRandom(200, 250));
     }
     ball.Position.Y = SPAWN_Y_HEIGTH;

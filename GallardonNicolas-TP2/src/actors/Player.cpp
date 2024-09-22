@@ -1,4 +1,5 @@
 #include "Player.h"
+
 #include "Collisions.h"
 #include "GameManager.h"
 #include "Structures.h"
@@ -31,14 +32,32 @@ void Player::Spawn(Structures::Player &player, Texture sprite)
     player.Width = WIDTH;
     player.Speed = SPEED;
     player.Hearts = HEARTS;
-    player.Position = {static_cast<float>(SCREEN_WIDTH) / 2.0F, MARGIN};
+    player.Position = {static_cast<float>(SCREEN_WIDTH + WIDTH) / 2.0F, MARGIN + player.Height / 2.0F};
     player.FuturePosition = player.Position;
     player.Sprite = sprite;
 }
 
 
-
-void Player::Draw(Structures::Player &player)
+void Player::Draw(Structures::Player &player, Direction direction)
 {
+
+    switch (direction)
+    {
+    case Direction::Left:
+        player.Sprite = sprites.PlayerLeft;
+        Sprites::SetSpriteTiling({1 / 6.0F, 1});
+        break;
+    case Direction::Right:
+        player.Sprite = sprites.PlayerRight;
+        break;
+    case Direction::Idle:
+        player.Sprite = sprites.PlayerIdle;
+        break;
+    case Direction::Hit:
+        player.Sprite = sprites.PlayerHit;
+        break;
+    }
     Sprites::LoadSprite(player.Sprite, player.Position, {player.Width, player.Height});
+    Sprites::SetSpriteTiling({1, 1});
+
 }

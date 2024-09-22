@@ -6,14 +6,21 @@ namespace Player
 {
     const int MARGIN = 10;
     const int SPEED = 600;
-    const int WIDTH = 150;
-    const int HEIGHT = 25;
+    const int HEIGHT = 100;
+    const int WIDTH = HEIGHT * 1.3;
     const int HEARTS = 3;
 
+    enum class Direction
+    {
+        Left,
+        Right,
+        Idle,
+        Hit
+    };
 
     void MoveRight(Structures::Player &player);
     void MoveLeft(Structures::Player &player);
     void Update(Structures::Player &player);
     void Spawn(Structures::Player &player, Texture sprite);
-    void Draw(Structures::Player &player);
+    void Draw(Structures::Player &player, Direction direction);
 }

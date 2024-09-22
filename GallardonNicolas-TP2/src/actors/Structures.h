@@ -31,7 +31,6 @@ namespace Structures
         VectorMath::Vector2 FuturePosition;
         Texture Sprite;
         Key Keys;
-        float Direction;
         float Width;
         float Height;
         int Speed;

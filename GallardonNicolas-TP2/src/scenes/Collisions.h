@@ -3,9 +3,15 @@
 
 namespace Collisions
 {
+    const int MARGIN = 40;
+    const float LEFT = MARGIN;
+    const float RIGHT = SCREEN_WIDTH - MARGIN;
+    const float UP = SCREEN_HEIGHT - MARGIN;
+
     enum class WhereCollides
     {
         Up,
+        Down,
         Left,
         Right,
         None
