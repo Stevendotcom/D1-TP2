@@ -10,6 +10,7 @@
 #include "Structures.h"
 #include "Input.h"
 #include "GameManager.h"
+#include "Pause.h"
 #include "SceneManager.h"
 
 
@@ -58,9 +59,9 @@ void Game::Input(Structures::Player &player)
     {
         Player::MoveRight(player);
     }
-    if (Input::IsKeyDown(SL_KEY_ESCAPE))
+    if (Input::IsKeyDown('P'))
     {
-        ChangeScene(SceneManager::Scenes::Pause);
+        Pause::Pause();
     }
 }
 

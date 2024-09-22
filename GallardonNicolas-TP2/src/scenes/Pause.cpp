@@ -40,6 +40,7 @@ void Pause::Pause()
         ChangeScene(SceneManager::Scenes::MainMenu);
         break;
     case Selection::Exit:
+        //todo cannot be set to this
         GameManager::CloseWindow();
         break;
 
