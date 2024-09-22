@@ -14,21 +14,27 @@
 #include "SceneManager.h"
 
 
+float timeAtStart;
+
 bool Game::Play()
 {
     bool endMatch = false;
     bool playerWon = false;
 
+	int activeBricks = Brick::MAX_BRICKS;
+
     Structures::Player player;
     Structures::Ball ball;
     Structures::Brick bricks[Brick::MAX_BRICKS];
 
+    timeAtStart = GameManager::GetTime();
+	
     Init(player, ball, bricks);
     Draw(player, ball, bricks);
     do
     {
         Input(player);
-        Update(player, ball, bricks, playerWon, endMatch);
+        Update(player, ball, bricks, playerWon, endMatch, activeBricks);
         Draw(player, ball, bricks);
     }
     while (!GameManager::ShouldWindowClose() && !endMatch);
@@ -41,6 +47,7 @@ bool Game::Play()
 void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
     Player::Spawn(player, sprites.PlayerLeft);
+    player.Score = 0;
     Ball::Spawn(ball, sprites.Ball);
     Brick::Generate(bricks);
 }
@@ -64,13 +71,16 @@ void Game::Input(Structures::Player &player)
 
 
 void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool &playerWon,
-                  bool &endMatch)
+                  bool &endMatch, int& activeBricks)
 {
+
     Player::Update(player);
     Ball::Update(player, ball);
-    int activeBricks = Brick::Update(bricks, ball);
-    int score = UpdateScore(player, GameManager::GetTime(), activeBricks);
 
+    if (Brick::Update(bricks, ball, activeBricks))
+    {
+        UpdateScore(player, GameManager::GetTime());
+    }
     if (ball.Position.Y < 0)
     {
         player.Hearts--;
@@ -97,29 +107,28 @@ void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::
     Brick::Draw(bricks);
     DrawUI(player);
 #ifdef _DEBUG
-    slSetForeColor(1,0,0,1);
+    slSetForeColor(1, 0, 0, 1);
     slRectangleOutline(player.Position.X, player.Position.Y, player.Width, player.Height);
     slRectangleOutline(ball.Position.X, ball.Position.Y, ball.Radius, ball.Radius);
-    slSetForeColor(1,1,1,1);
+    slSetForeColor(1, 1, 1, 1);
 #endif
     GameManager::Render();
 }
 
 
-int Game::UpdateScore(Structures::Player &player, const float time, const int activeBricks)
+void Game::UpdateScore(Structures::Player &player, const float currentTime)
 {
     int score = 40;
 
     const float MIN_TIME = 60.0F;
     const int MAX_SCORE_PER_BLOCK = 100;
-    if (time > MIN_TIME)
+    if (currentTime - timeAtStart < MIN_TIME)
     {
-        score = MAX_SCORE_PER_BLOCK - time;
+        score = MAX_SCORE_PER_BLOCK - (currentTime - timeAtStart);
     }
 
-    player.Score = (Brick::MAX_BRICKS - activeBricks) * score;
+    player.Score += score;
 
-    return score;
 }
 
 

@@ -19,18 +19,11 @@ namespace Structures
         float Speed;
     };
 
-    struct Key
-    {
-        int Left;
-        int Right;
-    };
-
     struct Player
     {
         VectorMath::Vector2 Position;
         VectorMath::Vector2 FuturePosition;
         Texture Sprite;
-        Key Keys;
         float Width;
         float Height;
         int Speed;

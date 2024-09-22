@@ -52,9 +52,8 @@ void Brick::ToggleVisible(Structures::Brick &brick)
 }
 
 
-int Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball)
+bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball, int& activeBricks)
 {
-    int activeBricks = 1;
     Collisions::WhereCollides whereCollides = Collisions::WhereCollides::None;
     for (int i = 0; i < MAX_BRICKS; i++)
     {
@@ -87,16 +86,11 @@ int Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball)
                 case Collisions::WhereCollides::None:
                     break;
                 }
-
-            }
-            else
-            {
-                activeBricks++;
+                return true;
             }
         }
     }
-
-    return activeBricks;
+    return false;
 
 }
 

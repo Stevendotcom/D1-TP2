@@ -7,8 +7,9 @@ namespace Game
     bool Play();
     void Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[]);
     void Input(Structures::Player &player);
-    void Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool& playerWon, bool& endMatch);
+    void Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool& playerWon, bool& endMatch, int&
+                activeBricks);
     void Draw(Structures::Player& player, Structures::Ball& ball, Structures::Brick bricks[]);
     void DrawUI(const Structures::Player& player);
-    int UpdateScore(Structures::Player &player, float time, int activeBricks);
+    void UpdateScore(Structures::Player &player, float currentTime);
 } // namespace Game
