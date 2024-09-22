@@ -3,26 +3,33 @@
 #include "Collisions.h"
 
 
-
 void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
 {
-    const float margin = 30.0F;
-    const float width = 16.0F;
-    const float heigth = 16.0F;
-    for (int i = 0; i < MAX_BRICKS; i++)
+    const int rows = 4;
+    const int cols = MAX_BRICKS / rows;
+
+    const VectorMath::Vector2 sizeEach  = { 80.0F ,80.0F};
+    const VectorMath::Vector2 origin = { SCREEN_WIDTH / 2.0f - (cols * sizeEach.X) / 2.0F, static_cast<float>(SCREEN_HEIGHT) - 150.0F}; // starts by upper left corner
+
+
+    for (int row = 0; row < rows; row++)
     {
-        bricks[i] =
+        for (int col = 0; col < cols; col++)
         {
-            Structures::Powers::None,
-            true,
-            {margin + width / 2.0F + width * i, margin + heigth / 2.0F + heigth * i },
-            {width, heigth},
-        };
-        switch (bricks[i].Power)
-        {
-        case Structures::Powers::None:
-            bricks[i].Sprite = sprites.Grass;
-            break;
+            bricks[row * cols + col] =
+            {
+                Structures::Powers::None,
+                true,
+                {origin.X + (sizeEach.X / 2.0F) + (sizeEach.X * col), origin.Y - (sizeEach.Y / 2.0F) - (sizeEach.Y * row)},
+                sizeEach,
+            };
+
+            switch (bricks[row * cols + col].Power)
+            {
+            case Structures::Powers::None:
+                bricks[row * cols + col].Sprite = sprites.Grass;
+                break;
+            }
         }
     }
 }
@@ -45,7 +52,6 @@ void Brick::ToggleVisible(Structures::Brick &brick)
 }
 
 
-
 int Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball)
 {
     int activeBricks = 0;
@@ -54,7 +60,7 @@ int Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball)
     {
         if (bricks[i].IsVisible)
         {
-            if(Collisions::DoesRectCircle(bricks[i].Position, bricks[i].Size, ball))
+            if (Collisions::DoesRectCircle(bricks[i].Position, bricks[i].Size, ball))
             {
                 activeBricks--;
                 ToggleVisible(bricks[i]);
