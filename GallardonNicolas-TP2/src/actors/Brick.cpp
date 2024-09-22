@@ -54,17 +54,40 @@ void Brick::ToggleVisible(Structures::Brick &brick)
 
 int Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball)
 {
-    int activeBricks = 0;
-
+    int activeBricks = 1;
+    Collisions::WhereCollides whereCollides = Collisions::WhereCollides::None;
     for (int i = 0; i < MAX_BRICKS; i++)
     {
         if (bricks[i].IsVisible)
         {
-            if (Collisions::DoesRectCircle(bricks[i].Position, bricks[i].Size, ball))
+            if (Collisions::DoesRectCircle(bricks[i].Position, bricks[i].Size, ball, whereCollides))
             {
                 activeBricks--;
                 ToggleVisible(bricks[i]);
                 ActivatePower(bricks[i]);
+
+                switch (whereCollides)
+                {
+                case Collisions::WhereCollides::Up:
+                    ball.Position.Y = bricks[i].Position.Y + bricks[i].Size.Y / 2.0f + ball.Radius;
+                    ball.Direction.Y *= -1;
+                    break;
+                case Collisions::WhereCollides::Down:
+                    ball.Position.Y = bricks[i].Position.Y - bricks[i].Size.Y / 2.0f - ball.Radius;
+                    ball.Direction.Y *= -1;
+                    break;
+                case Collisions::WhereCollides::Left:
+                    ball.Position.X = bricks[i].Position.X - bricks[i].Size.X / 2.0f - ball.Radius;
+                    ball.Direction.X *= -1;
+                    break;
+                case Collisions::WhereCollides::Right:
+                    ball.Position.X = bricks[i].Position.X + bricks[i].Size.X / 2.0f + ball.Radius;
+                    ball.Direction.X *= -1;
+                    break;
+                case Collisions::WhereCollides::None:
+                    break;
+                }
+
             }
             else
             {

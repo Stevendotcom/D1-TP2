@@ -3,7 +3,7 @@
 
 namespace Collisions
 {
-    const int MARGIN = 40;
+    const int MARGIN = 50;
     const float LEFT = MARGIN;
     const float RIGHT = SCREEN_WIDTH - MARGIN;
     const float UP = SCREEN_HEIGHT - MARGIN;
@@ -22,6 +22,4 @@ namespace Collisions
     bool DoesWallBall(const Structures::Ball &ball, WhereCollides &collisionPlace);
     bool DoesRectCircle(const VectorMath::Vector2 &position, const VectorMath::Vector2 &size,
                         const Structures::Ball &ball, WhereCollides &collisionPlace);
-    bool DoesRectCircle(const VectorMath::Vector2 &position, const VectorMath::Vector2 &size,
-                        const Structures::Ball &ball);
 };

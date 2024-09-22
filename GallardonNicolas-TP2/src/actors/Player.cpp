@@ -32,7 +32,7 @@ void Player::Spawn(Structures::Player &player, Texture sprite)
     player.Width = WIDTH;
     player.Speed = SPEED;
     player.Hearts = HEARTS;
-    player.Position = {static_cast<float>(SCREEN_WIDTH + WIDTH) / 2.0F, MARGIN + player.Height / 2.0F};
+    player.Position = {static_cast<float>(SCREEN_WIDTH) / 2.0F, MARGIN + player.Height / 2.0F};
     player.FuturePosition = player.Position;
     player.Sprite = sprite;
 }
@@ -57,7 +57,10 @@ void Player::Draw(Structures::Player &player, Direction direction)
         player.Sprite = sprites.PlayerHit;
         break;
     }
+    Sprites::SetSpriteScroll({0.13F,1});
     Sprites::LoadSprite(player.Sprite, player.Position, {player.Width, player.Height});
     Sprites::SetSpriteTiling({1, 1});
+    Sprites::SetSpriteScroll({1,1});
+
 
 }
