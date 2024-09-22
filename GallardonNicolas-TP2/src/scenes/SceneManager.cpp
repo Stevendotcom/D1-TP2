@@ -7,7 +7,6 @@
 #include "GameManager.h"
 #include "AfterGame.h"
 #include "Credits.h"
-#include "Exit.h"
 #include "Pause.h"
 #include "Rules.h"
 
@@ -30,9 +29,6 @@ namespace SceneManager
             case Scenes::Play:
                 playerWon = Game::Play();
                 break;
-            case Scenes::Pause:
-                Pause::Pause();
-                break;
             case Scenes::Credits:
                 Credits::Credits();
                 break;
@@ -43,7 +39,6 @@ namespace SceneManager
                 PlayerWon::AfterScene(playerWon);
                 break;
             case Scenes::Exit:
-                Exit::Exit();
                 exit = true;
                 break;
             default:
