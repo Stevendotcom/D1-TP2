@@ -20,7 +20,7 @@ bool Collisions::DoesWallBall(const Structures::Ball &ball, WhereCollides &colli
     }
     if (ball.FuturePosition.X > SCREEN_WIDTH - ball.Radius)
     {
-        collisionPlace = WhereCollides::Left;
+        collisionPlace = WhereCollides::Right;
         return true;
     }
     if (ball.FuturePosition.Y > SCREEN_HEIGHT - ball.Radius)
@@ -35,7 +35,7 @@ bool Collisions::DoesRectCircle(const VectorMath::Vector2 &position, const Vecto
                                 const Structures::Ball &ball,
                                 WhereCollides &collisionPlace)
 {
-
+    // todo forgot to do down as collision place
     float minDistance = 0;
     float distance = 0;
 

@@ -6,9 +6,9 @@ namespace Player
 {
     const int MARGIN = 10;
     const int SPEED = 600;
-    const int WIDTH = 25;
-    const int HEIGHT = 150;
-    const int HEARTS = 3;
+    const int WIDTH = 150;
+    const int HEIGHT = 25;
+    const int HEARTS = 100;
 
 
     void MoveRight(Structures::Player &player);
