@@ -13,9 +13,9 @@ using namespace Fonts;
 
 void Credits::Credits()
 {
-    const int TITLE_SIZE = 60;
-    const float MARGIN = 20.0f;
-    const int BODY_SIZE = 15;
+    const int TITLE_SIZE = 40;
+    const int BODY_SIZE = 30;
+    const float MARGIN = 80.0f;
 
     while (!Input::IsKeyReleasing(SL_KEY_ENTER) && !GameManager::ShouldWindowClose())
     {
@@ -25,12 +25,12 @@ void Credits::Credits()
         SetForeColor(Color::coffee, 1.0);
         ChangeFontSize(TITLE_SIZE);
         SetFont(fonts.Title);
-        TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - MARGIN}, "Thanks for playing!");
+        TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - MARGIN - TITLE_SIZE}, "Thanks for playing!");
 
         ChangeFontSize(BODY_SIZE);
         SetFont(fonts.Body);
         SetForeColor(Color::dimGray, 1.0);
-        TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT - MARGIN - TITLE_SIZE}, "Press Enter key to exit");
+        TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT - MARGIN - TITLE_SIZE * 2.0F}, "Press Enter key to return");
         TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0F}, "Made by Nico Gallardo!");
         TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0F - BODY_SIZE}, "Banner by LukeThePolice");
         TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 2.0F}, "Antiquity Print by SciGho");
