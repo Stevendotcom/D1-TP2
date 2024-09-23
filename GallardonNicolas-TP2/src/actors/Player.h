@@ -10,17 +10,9 @@ namespace Player
     const int WIDTH = HEIGHT * 1.3;
     const int HEARTS = 3;
 
-    enum class Direction
-    {
-        Left,
-        Right,
-        Idle,
-        Hit
-    };
-
     void MoveRight(Structures::Player &player);
     void MoveLeft(Structures::Player &player);
     void Update(Structures::Player &player);
     void Spawn(Structures::Player &player, Texture sprite);
-    void Draw(Structures::Player &player, Direction direction);
+    void Draw(Structures::Player &player);
 }

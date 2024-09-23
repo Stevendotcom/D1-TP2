@@ -46,7 +46,7 @@ bool Game::Play()
 
 void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
-    Player::Spawn(player, sprites.PlayerLeft);
+    Player::Spawn(player, sprites.PlayerIdle);
     player.Score = 0;
     Ball::Spawn(ball, sprites.Ball);
     Brick::Generate(bricks);
@@ -102,16 +102,23 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
 void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
 {
     Background::Draw();
-    Player::Draw(player, Player::Direction::Left);
+    Player::Draw(player);
     Ball::Draw(ball);
     Brick::Draw(bricks);
     DrawUI(player);
+
 #ifdef _DEBUG
     slSetForeColor(1, 0, 0, 1);
     slRectangleOutline(player.Position.X, player.Position.Y, player.Width, player.Height);
     slRectangleOutline(ball.Position.X, ball.Position.Y, ball.Radius, ball.Radius);
+    for(int i = 0; i < Brick::MAX_BRICKS; i++)
+    {
+        slRectangleOutline(bricks[i].Position.X, bricks[i].Position.Y, bricks[i].Size.X, bricks[i].Size.Y);
+    }
+    Fonts::TextPrint({20.0f, SCREEN_HEIGHT - 50.0f}, std::to_string(player.Speed));
     slSetForeColor(1, 1, 1, 1);
 #endif
+
     GameManager::Render();
 }
 

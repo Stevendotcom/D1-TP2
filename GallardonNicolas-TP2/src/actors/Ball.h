@@ -6,7 +6,7 @@ namespace Ball
 
     const int SPEED = 300;
     const float SPAWN_Y_HEIGTH = SCREEN_HEIGHT / 2.0f - 40.0f;
-    const float RADIUS = 15.0f;
+    const float RADIUS = 45.0f;
 
     void Spawn(Structures::Ball &ball, Texture sprite);
     void Update(Structures::Player &player, Structures::Ball &ball);

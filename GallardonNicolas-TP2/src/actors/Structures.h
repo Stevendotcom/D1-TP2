@@ -18,11 +18,18 @@ namespace Structures
         float Radius;
         float Speed;
     };
-
+    enum class Direction
+    {
+        Left,
+        Right,
+        Idle,
+        Hit
+    };
     struct Player
     {
         VectorMath::Vector2 Position;
         VectorMath::Vector2 FuturePosition;
+        Direction Direction;
         Texture Sprite;
         float Width;
         float Height;

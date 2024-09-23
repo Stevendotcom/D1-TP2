@@ -1,6 +1,8 @@
 #include "Ball.h"
 
 #include <cmath>
+#include <sl.h>
+
 #include "Collisions.h"
 #include "GameManager.h"
 #include "Structures.h"
@@ -126,7 +128,11 @@ float Ball::GetWidthCollision(const Structures::Ball &ball, const Structures::Pl
 
 void Ball::Draw(Structures::Ball &ball)
 {
-    Sprites::LoadSprite(ball.Sprite, ball.Position, {ball.Radius * 2.0F, ball.Radius * 2.0F});
+    Sprites::SetSpriteTiling({1 / 6.0F, 1});
+    Sprites::SetSpriteScroll({0.13F,1});
+    Sprites::LoadSprite(ball.Sprite, ball.Position, {ball.Radius * 2.2F, ball.Radius * 2.0F});
+    Sprites::SetSpriteTiling({1, 1});
+    Sprites::SetSpriteScroll({1,1});
 }
 
 

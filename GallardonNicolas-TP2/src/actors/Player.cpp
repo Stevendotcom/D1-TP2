@@ -20,6 +20,18 @@ void Player::Update(Structures::Player &player)
 {
     if (!Collisions::DoesWallPlayer(player))
     {
+        if(player.FuturePosition.X > player.Position.X)
+        {
+            player.Direction = Structures::Direction::Left;
+        }
+        else if (player.FuturePosition.X < player.Position.X)
+        {
+            player.Direction = Structures::Direction::Right;
+        }
+        else
+        {
+            player.Direction = Structures::Direction::Idle;
+        }
         player.Position.X = player.FuturePosition.X;
     }
     player.FuturePosition.X = player.Position.X; // reset fpositions
@@ -38,26 +50,27 @@ void Player::Spawn(Structures::Player &player, Texture sprite)
 }
 
 
-void Player::Draw(Structures::Player &player, Direction direction)
+void Player::Draw(Structures::Player &player)
 {
-
-    switch (direction)
+    Sprites::SetSpriteScroll({0.13F,1});
+    Sprites::SetSpriteTiling({1 / 6.0F, 1});
+    switch (player.Direction)
     {
-    case Direction::Left:
+    case Structures::Direction::Left:
         player.Sprite = sprites.PlayerLeft;
-        Sprites::SetSpriteTiling({1 / 6.0F, 1});
         break;
-    case Direction::Right:
+    case Structures::Direction::Right:
         player.Sprite = sprites.PlayerRight;
         break;
-    case Direction::Idle:
+    case Structures::Direction::Idle:
+        Sprites::SetSpriteTiling({1 / 2.0F, 1});
+        Sprites::SetSpriteScroll({0.03F,1});
         player.Sprite = sprites.PlayerIdle;
         break;
-    case Direction::Hit:
+    case Structures::Direction::Hit:
         player.Sprite = sprites.PlayerHit;
         break;
     }
-    Sprites::SetSpriteScroll({0.13F,1});
     Sprites::LoadSprite(player.Sprite, player.Position, {player.Width, player.Height});
     Sprites::SetSpriteTiling({1, 1});
     Sprites::SetSpriteScroll({1,1});
