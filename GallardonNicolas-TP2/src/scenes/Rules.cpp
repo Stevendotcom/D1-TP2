@@ -2,10 +2,13 @@
 
 #include <sl.h>
 
+#include "Background.h"
+#include "ColorPalette.h"
 #include "Fonts.h"
 #include "GameManager.h"
 #include "Input.h"
 #include "SceneManager.h"
+#include "Shapes.h"
 #include "Sprites.h"
 
 using namespace Fonts;
@@ -14,31 +17,41 @@ using namespace Sprites;
 void Rules::Rules()
 {
     const int TITLE_SIZE = 60;
-    const float MARGIN = 20.0f;
-    const int BODY_SIZE = 15;
+    const int BODY_SIZE = 30;
+    const float MARGIN_Y = 40.0f;
+    const float MARGIN_X = 80.0f;
+    const float ALIGN = 10.0F;
 
     VectorMath::Vector2 size = {20.0F, 20.0F};
     while (!Input::IsKeyReleasing(SL_KEY_ENTER) && !GameManager::ShouldWindowClose())
     {
+        Background::Draw();
+
+        Color::SetForeColor({0,0,0}, 0.5F);
+        Shapes::DrawRect({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT /2.0F}, {750, 750});
+        Color::SetForeColor({1,1,1}, 1);
+
         ChangeFontSize(TITLE_SIZE);
+        CenterText();
         SetFont(fonts.Title);
-        TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - MARGIN}, "Rules");
+        TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - MARGIN_Y - TITLE_SIZE}, "Rules");
 
         ChangeFontSize(BODY_SIZE);
         SetFont(fonts.Body);
-        TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT - MARGIN - TITLE_SIZE}, "Press Enter key to exit");
+        TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT - MARGIN_Y - TITLE_SIZE - BODY_SIZE}, "Press Enter key to return");
 
         TextAlignLeft();
-        TextPrint({MARGIN, SCREEN_HEIGHT / 2.0F},
-                  "Your objective, is to destroy the most amount of blocks possible, in the least amount of time");
-        TextPrint({MARGIN, SCREEN_HEIGHT / 2.0F - BODY_SIZE}, "Controls: ");
-        TextPrint({MARGIN + size.X, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 2.0F}, "To move left");
-        TextPrint({MARGIN + size.X, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 3.0F}, "To move right");
-        TextPrint({MARGIN + size.X, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 4.0F}, "To Pause");
+        TextPrint({MARGIN_X, SCREEN_HEIGHT / 2.0F},
+                  "Your objective, is to destroy the most amount of blocks possible, \nin the least amount of time");
+        TextPrint({MARGIN_X, SCREEN_HEIGHT / 2.0F - BODY_SIZE - MARGIN_Y}, "Controls: ");
+        TextPrint({MARGIN_X + size.X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y) * 2.0F}, "To move left");
+        TextPrint({MARGIN_X + size.X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y) * 3.0F}, "To move right");
+        TextPrint({MARGIN_X + size.X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y) * 4.0F}, "To Pause");
 
-        LoadSprite(sprites.LeftArrow, {MARGIN, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 2.0F}, size);
-        LoadSprite(sprites.RightArrow, {MARGIN, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 3.0F}, size);
-        LoadSprite(sprites.P, {MARGIN, SCREEN_HEIGHT / 2.0F - BODY_SIZE * 4.0F}, size);
+        LoadSprite(sprites.LeftArrow, {MARGIN_X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y) * 2.0F + ALIGN}, size);
+        LoadSprite(sprites.RightArrow, {MARGIN_X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y) * 3.0F + ALIGN}, size);
+        LoadSprite(sprites.P, {MARGIN_X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y) * 4.0F + ALIGN}, size);
+
         GameManager::Render();
 
     }

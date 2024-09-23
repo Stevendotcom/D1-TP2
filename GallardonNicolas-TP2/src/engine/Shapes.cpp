@@ -12,12 +12,12 @@ void Shapes::DrawRectOutline(const VectorMath::Vector2 &position, const VectorMa
     slRectangleOutline(position.X, position.Y, size.X, size.Y);
 }
 
-void Shapes::DrawCircle(const VectorMath::Vector2 &position, float radius, Color::Color &color, float opacity)
+void Shapes::DrawCircle(const VectorMath::Vector2 &position, float radius, float opacity)
 {
     slCircleFill(position.X,position.Y,radius, 64);
 }
 
-void Shapes::DrawCircleOutline(const VectorMath::Vector2 &position, float radius, Color::Color &color, float opacity)
+void Shapes::DrawCircleOutline(const VectorMath::Vector2 &position, float radius, float opacity)
 {
     slCircleOutline(position.X,position.Y,radius, 64);
 }
