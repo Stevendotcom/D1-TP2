@@ -5,7 +5,6 @@
 #include "Fonts.h"
 #include "Input.h"
 
-extern Fonts::Fonts fonts;
 
 void Buttons::RenderButtons(Button buttons[], const int amount)
 {

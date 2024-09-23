@@ -19,22 +19,22 @@ void Rules::Rules()
     const int TITLE_SIZE = 60;
     const int BODY_SIZE = 30;
     const float MARGIN_Y = 40.0f;
-    const float MARGIN_X = 80.0f;
+    const float MARGIN_X = 90.0f;
     const float ALIGN = 10.0F;
 
-    VectorMath::Vector2 size = {20.0F, 20.0F};
+    VectorMath::Vector2 size = {40.0F, 40.0F};
     while (!Input::IsKeyReleasing(SL_KEY_ENTER) && !GameManager::ShouldWindowClose())
     {
         Background::Draw();
 
-        Color::SetForeColor({0,0,0}, 0.5F);
-        Shapes::DrawRect({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT /2.0F}, {750, 750});
-        Color::SetForeColor({1,1,1}, 1);
+        Color::SetForeColor(Color::coffee,1);
 
         ChangeFontSize(TITLE_SIZE);
         CenterText();
         SetFont(fonts.Title);
         TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - MARGIN_Y - TITLE_SIZE}, "Rules");
+
+        Color::SetForeColor(Color::dimGray,1);
 
         ChangeFontSize(BODY_SIZE);
         SetFont(fonts.Body);
@@ -47,6 +47,8 @@ void Rules::Rules()
         TextPrint({MARGIN_X + size.X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y) * 2.0F}, "To move left");
         TextPrint({MARGIN_X + size.X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y) * 3.0F}, "To move right");
         TextPrint({MARGIN_X + size.X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y) * 4.0F}, "To Pause");
+
+        Color::SetForeColor(Color::white,1);
 
         LoadSprite(sprites.LeftArrow, {MARGIN_X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y) * 2.0F + ALIGN}, size);
         LoadSprite(sprites.RightArrow, {MARGIN_X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y) * 3.0F + ALIGN}, size);

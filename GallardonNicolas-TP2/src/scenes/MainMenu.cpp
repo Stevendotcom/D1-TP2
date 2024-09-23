@@ -11,7 +11,7 @@
 #include "SceneManager.h"
 #include "VectorMath.h"
 
-const int TITLE_FONT_SIZE = 100;
+const int TITLE_FONT_SIZE = 80;
 const int AMOUNT = 4;
 
 using namespace Buttons;
@@ -85,16 +85,21 @@ void MainMenu::MakeButtons(Buttons::Button buttons[])
 void MainMenu::Draw(Button buttons[])
 {
     const int margin = 30;
+    const int shadeSize = 3;
     VectorMath::Vector2 titleSize;
 
     Background::Draw();
 
     Fonts::SetFont(fonts.Title);
+    Fonts::ChangeFontSize(TITLE_FONT_SIZE + shadeSize);
+    titleSize = Fonts::GetTextSize(GAME_TITLE);
+    Color::SetForeColor({0,0,0}, 0.2F);
+    Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y + shadeSize - margin}, GAME_TITLE);
+
     Fonts::ChangeFontSize(TITLE_FONT_SIZE);
     titleSize = Fonts::GetTextSize(GAME_TITLE);
     SetForeColor(Color::coffee, 1.0);
-
-    Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y - margin}, "Game name");
+    Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y - margin}, GAME_TITLE);
 
     RenderButtons(buttons, AMOUNT);
 

@@ -8,7 +8,7 @@
 const int SCREEN_HEIGHT = 768;
 const int SCREEN_WIDTH = SCREEN_HEIGHT * 1.14;
 const std::string ASSETS_DIR = "assets/";
-const std::string GAME_TITLE = "Good Name";
+const std::string GAME_TITLE = "Sheep & Knight";
 Fonts::Fonts fonts;
 Sprites::Sprites sprites;
 
