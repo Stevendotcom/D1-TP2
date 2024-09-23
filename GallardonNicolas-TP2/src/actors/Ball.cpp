@@ -12,7 +12,7 @@
 const float BOUNCE = 0.4F;
 
 
-void Ball::Update(Structures::Player &player, Structures::Ball &ball)
+void Ball::Update(const Structures::Player &player, Structures::Ball &ball)
 {
     Collisions::WhereCollides collisionPlaceP1 = Collisions::WhereCollides::None;
     Collisions::WhereCollides collisionPlaceBall = Collisions::WhereCollides::None;
@@ -54,7 +54,7 @@ void Ball::Update(Structures::Player &player, Structures::Ball &ball)
 
 }
 
-void Ball::CollisionResult(Structures::Player &player, Structures::Ball &ball,
+void Ball::CollisionResult(const Structures::Player &player, Structures::Ball &ball,
                            const Collisions::WhereCollides collisionPlace)
 {
     switch (collisionPlace)
@@ -70,11 +70,6 @@ void Ball::CollisionResult(Structures::Player &player, Structures::Ball &ball,
             ball.Direction.X *= -1;
         }
 
-        if (player.Position.X - player.Width / 2.0F < ball.Radius * 2.0F + Collisions::LEFT + 1.0F)
-        {
-            player.Position.X = ball.Position.X + ball.Radius + Collisions::LEFT;
-        }
-
         ball.FuturePosition.X = player.Position.X - (player.Width / 2.0F + ball.Radius + 1.0F); // moves to the border
 
         break;
@@ -88,11 +83,6 @@ void Ball::CollisionResult(Structures::Player &player, Structures::Ball &ball,
         else
         {
             ball.Direction.X *= -1;
-        }
-
-        if (player.Position.X + player.Width /2.0F > Collisions::RIGHT - ball.Radius * 2)
-        {
-            player.Position.X = ball.Position.X - ball.Radius - 1.0F;
         }
 
         ball.FuturePosition.X = player.Position.X + player.Width/2.0F + ball.Radius + 1.0F; // moves to the border

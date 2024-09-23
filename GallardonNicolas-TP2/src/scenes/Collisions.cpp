@@ -6,8 +6,8 @@
 
 bool Collisions::DoesWallPlayer(const Structures::Player &player)
 {
-    return player.FuturePosition.X - player.Width  <= LEFT ||
-        player.FuturePosition.X + player.Width  >= RIGHT ;
+    return player.FuturePosition.X - player.Width/2.0F  <= LEFT ||
+        player.FuturePosition.X + player.Width/2.0F  >= RIGHT ;
 }
 
 
@@ -79,4 +79,22 @@ bool Collisions::DoesRectCircle(const VectorMath::Vector2 &position, const Vecto
     }
     return false;
 
+}
+
+void Collisions::AvoidsCrushing(const Structures::Ball &ball, Structures::Player &player)
+{
+    float width = player.Width / 2.0F;
+    float height = player.Height / 2.0F;
+
+    if (player.Position.Y + height > ball.Position.Y - ball.Radius && player.Position.Y - height < ball.Position.Y + ball.Radius)
+    {
+        if (player.Position.X + width> RIGHT - ball.Radius * 2.0F )
+        {
+            player.Position.X = RIGHT - ball.Radius * 2.0F - width - 1.0F;
+        }
+        if (player.Position.X - width < LEFT + ball.Radius * 2.0F)
+        {
+            player.Position.X = LEFT + ball.Radius * 2.0F + width + 1.0F;
+        }
+    }
 }

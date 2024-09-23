@@ -65,6 +65,7 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
                 ToggleVisible(bricks[i]);
                 ActivatePower(bricks[i]);
 
+                //TODO ACCOUNT FOR BALL SPEED
                 switch (whereCollides)
                 {
                 case Collisions::WhereCollides::Up:

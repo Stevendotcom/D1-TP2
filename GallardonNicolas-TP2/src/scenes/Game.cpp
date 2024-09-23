@@ -74,7 +74,7 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
                   bool &endMatch, int& activeBricks)
 {
 
-    Player::Update(player);
+    Player::Update(player, ball);
     Ball::Update(player, ball);
 
     if (Brick::Update(bricks, ball, activeBricks))
@@ -142,8 +142,8 @@ void Game::UpdateScore(Structures::Player &player, const float currentTime)
 void Game::DrawUI(const Structures::Player &player)
 {
     const float MARGIN = 20.0F;
-    const float WIDTH = 30.0F;
-    const float HEIGHT = 30.0F;
+    const float WIDTH = 40.0F;
+    const float HEIGHT = 40.0F;
     const float PADDING = 5.0F;
     const float BORDER_PADDING = 9.5F;
     const int FONT_SIZE = 60;

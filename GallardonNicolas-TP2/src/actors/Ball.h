@@ -9,8 +9,8 @@ namespace Ball
     const float RADIUS = 45.0f;
 
     void Spawn(Structures::Ball &ball, Texture sprite);
-    void Update(Structures::Player &player, Structures::Ball &ball);
-    void CollisionResult(Structures::Player &player, Structures::Ball &ball, Collisions::WhereCollides collisionPlace);
+    void Update(const Structures::Player &player, Structures::Ball &ball);
+    void CollisionResult(const Structures::Player &player, Structures::Ball &ball, Collisions::WhereCollides collisionPlace);
     void ChangeDirectionAfterCollision(Structures::Ball &ball, const Structures::Player &player);
     float GetWidthCollision(const Structures::Ball &ball, const Structures::Player &player);
     void Draw(Structures::Ball &ball);

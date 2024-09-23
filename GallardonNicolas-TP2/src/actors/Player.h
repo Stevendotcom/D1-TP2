@@ -12,7 +12,7 @@ namespace Player
 
     void MoveRight(Structures::Player &player);
     void MoveLeft(Structures::Player &player);
-    void Update(Structures::Player &player);
+    void Update(Structures::Player &player, const Structures::Ball& ball);
     void Spawn(Structures::Player &player, Texture sprite);
     void Draw(Structures::Player &player);
 }

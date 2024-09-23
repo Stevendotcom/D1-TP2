@@ -16,7 +16,7 @@ void Player::MoveLeft(Structures::Player &player)
 }
 
 
-void Player::Update(Structures::Player &player)
+void Player::Update(Structures::Player &player, const Structures::Ball& ball)
 {
     if (!Collisions::DoesWallPlayer(player))
     {
@@ -34,6 +34,7 @@ void Player::Update(Structures::Player &player)
         }
         player.Position.X = player.FuturePosition.X;
     }
+    Collisions::AvoidsCrushing(ball,player);
     player.FuturePosition.X = player.Position.X; // reset fpositions
 
 }
