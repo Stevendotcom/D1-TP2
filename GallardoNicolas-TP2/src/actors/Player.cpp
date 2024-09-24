@@ -16,11 +16,11 @@ void Player::MoveLeft(Structures::Player &player)
 }
 
 
-void Player::Update(Structures::Player &player, const Structures::Ball& ball)
+void Player::Update(Structures::Player &player, const Structures::Ball &ball)
 {
     if (!Collisions::DoesWallPlayer(player))
     {
-        if(player.FuturePosition.X > player.Position.X)
+        if (player.FuturePosition.X > player.Position.X)
         {
             player.Direction = Structures::Direction::Left;
         }
@@ -34,12 +34,12 @@ void Player::Update(Structures::Player &player, const Structures::Ball& ball)
         }
         player.Position.X = player.FuturePosition.X;
     }
-    Collisions::AvoidsCrushing(ball,player);
+    Collisions::AvoidsCrushing(ball, player);
     player.FuturePosition.X = player.Position.X; // reset fpositions
 
 }
 
-void Player::Spawn(Structures::Player &player, Texture sprite)
+void Player::Spawn(Structures::Player &player, const Texture sprite)
 {
     player.Height = HEIGHT;
     player.Width = WIDTH;
@@ -53,7 +53,7 @@ void Player::Spawn(Structures::Player &player, Texture sprite)
 
 void Player::Draw(Structures::Player &player)
 {
-    Sprites::SetSpriteScroll({0.13F,1});
+    Sprites::SetSpriteScroll({0.13F, 1});
     Sprites::SetSpriteTiling({1 / 6.0F, 1});
     switch (player.Direction)
     {
@@ -65,7 +65,7 @@ void Player::Draw(Structures::Player &player)
         break;
     case Structures::Direction::Idle:
         Sprites::SetSpriteTiling({1 / 2.0F, 1});
-        Sprites::SetSpriteScroll({0.03F,1});
+        Sprites::SetSpriteScroll({0.03F, 1});
         player.Sprite = sprites.PlayerIdle;
         break;
     case Structures::Direction::Hit:
@@ -74,7 +74,7 @@ void Player::Draw(Structures::Player &player)
     }
     Sprites::LoadSprite(player.Sprite, player.Position, {player.Width, player.Height});
     Sprites::SetSpriteTiling({1, 1});
-    Sprites::SetSpriteScroll({1,1});
+    Sprites::SetSpriteScroll({1, 1});
 
 
 }

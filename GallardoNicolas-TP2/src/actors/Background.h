@@ -2,6 +2,6 @@
 
 namespace Background
 {
-void Draw();
-    
+    void Draw();
+
 };

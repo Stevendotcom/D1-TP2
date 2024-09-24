@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include <string>
-const float PI = 3.1416f;
+constexpr float PI = 3.1416f;
 
 extern const int SCREEN_WIDTH;
 extern const int SCREEN_HEIGHT;

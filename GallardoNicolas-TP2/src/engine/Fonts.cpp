@@ -20,13 +20,13 @@ namespace Fonts
     }
 
 
-    void SetFont(Font font)
+    void SetFont(const Font font)
     {
         slSetFont(font, fontSize);
     }
 
 
-    void ChangeFontSize(int size)
+    void ChangeFontSize(const int size)
     {
         fontSize = size;
         slSetFontSize(fontSize);

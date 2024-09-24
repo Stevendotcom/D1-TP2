@@ -7,13 +7,12 @@
 #include "GameManager.h"
 #include "AfterGame.h"
 #include "Credits.h"
-#include "Pause.h"
 #include "Rules.h"
 
 
 namespace SceneManager
 {
-    static Scenes setScene = Scenes::MainMenu;
+    static auto setScene = Scenes::MainMenu;
     bool playerWon = false;
 
     void Manager()
@@ -50,7 +49,7 @@ namespace SceneManager
     }
 
 
-    void ChangeScene(Scenes scene)
+    void ChangeScene(const Scenes scene)
     {
         setScene = scene;
     }

@@ -5,11 +5,11 @@
 
 void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
 {
-    const int rows = 4;
-    const int cols = MAX_BRICKS / rows;
+    constexpr int rows = 4;
+    constexpr int cols = MAX_BRICKS / rows;
 
-    const VectorMath::Vector2 sizeEach = {80.0F, 80.0F};
-    const VectorMath::Vector2 origin = {SCREEN_WIDTH / 2.0f - (cols * sizeEach.X) / 2.0F,
+    constexpr VectorMath::Vector2 sizeEach = {80.0F, 80.0F};
+    const VectorMath::Vector2 origin = {SCREEN_WIDTH / 2.0f - cols * sizeEach.X / 2.0F,
                                         static_cast<float>(SCREEN_HEIGHT) - 150.0F}; // starts by upper left corner
 
 
@@ -21,8 +21,8 @@ void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
             {
                 Structures::Powers::None,
                 true,
-                {origin.X + (sizeEach.X / 2.0F) + (sizeEach.X * col),
-                 origin.Y - (sizeEach.Y / 2.0F) - (sizeEach.Y * row)},
+                {origin.X + sizeEach.X / 2.0F + sizeEach.X * col,
+                 origin.Y - sizeEach.Y / 2.0F - sizeEach.Y * row},
                 sizeEach,
             };
 
@@ -56,8 +56,8 @@ void Brick::ToggleVisible(Structures::Brick &brick)
 
 bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball, int &activeBricks)
 {
-    const float BOUNCE = 0.4F;
-    Collisions::WhereCollides whereCollides = Collisions::WhereCollides::None;
+    constexpr float BOUNCE = 0.4F;
+    auto whereCollides = Collisions::WhereCollides::None;
 
     for (int i = 0; i < MAX_BRICKS; i++)
     {
@@ -80,7 +80,8 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
                     else
                     {
                         ball.Direction.Y += BOUNCE;
-                        float mag = sqrt(ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
+                        const float mag = sqrt(
+                            ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
                         ball.Direction.X /= mag;
                         ball.Direction.Y /= mag;
                     }
@@ -94,7 +95,8 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
                     else
                     {
                         ball.Direction.Y -= BOUNCE;
-                        float mag = sqrt(ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
+                        const float mag = sqrt(
+                            ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
                         ball.Direction.X /= mag;
                         ball.Direction.Y /= mag;
                     }

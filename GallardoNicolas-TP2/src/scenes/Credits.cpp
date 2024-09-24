@@ -13,9 +13,9 @@ using namespace Fonts;
 
 void Credits::Credits()
 {
-    const int TITLE_SIZE = 40;
-    const int BODY_SIZE = 30;
-    const float MARGIN = 80.0f;
+    constexpr int TITLE_SIZE = 40;
+    constexpr int BODY_SIZE = 30;
+    constexpr float MARGIN = 80.0f;
 
     while (!Input::IsKeyReleasing(SL_KEY_ENTER) && !GameManager::ShouldWindowClose())
     {

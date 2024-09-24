@@ -6,7 +6,7 @@
 namespace Input
 {
     //Sl defined keys + amount of letters + numbers. First 10 represent numbers, following 26 represent letters, the rest are sl-defined.
-    const int MAX_KEYS = 105;
+    constexpr int MAX_KEYS = 105;
 
     //false if up
     bool previousKeyStates[MAX_KEYS] = {false};
@@ -31,7 +31,7 @@ namespace Input
     }
 
 
-    void TogglePreviousKeyState(int key)
+    void TogglePreviousKeyState(const int key)
     {
         if (key >= '0' && key <= '9')
         {

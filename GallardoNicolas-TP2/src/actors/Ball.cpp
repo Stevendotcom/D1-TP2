@@ -1,7 +1,6 @@
 #include "Ball.h"
 
 #include <cmath>
-#include <sl.h>
 
 #include "Collisions.h"
 #include "GameManager.h"
@@ -9,17 +8,17 @@
 #include "VectorMath.h"
 
 
-const float BOUNCE = 0.4F;
+constexpr float BOUNCE = 0.4F;
 
 
 void Ball::Update(const Structures::Player &player, Structures::Ball &ball)
 {
-    Collisions::WhereCollides collisionPlaceP1 = Collisions::WhereCollides::None;
-    Collisions::WhereCollides collisionPlaceBall = Collisions::WhereCollides::None;
+    auto collisionPlaceP1 = Collisions::WhereCollides::None;
+    auto collisionPlaceBall = Collisions::WhereCollides::None;
 
     // ball update
-    ball.FuturePosition.X = ball.Position.X + (ball.Direction.X * ball.Speed * GameManager::GetFrameTime());
-    ball.FuturePosition.Y = ball.Position.Y + (ball.Direction.Y * ball.Speed * GameManager::GetFrameTime());
+    ball.FuturePosition.X = ball.Position.X + ball.Direction.X * ball.Speed * GameManager::GetFrameTime();
+    ball.FuturePosition.Y = ball.Position.Y + ball.Direction.Y * ball.Speed * GameManager::GetFrameTime();
 
 
     if (Collisions::DoesWallBall(ball, collisionPlaceBall))
@@ -52,7 +51,7 @@ void Ball::Update(const Structures::Player &player, Structures::Ball &ball)
 void Ball::CollisionResult(const Structures::Player &player, Structures::Ball &ball,
                            const Collisions::WhereCollides collisionPlace)
 {
-    float movement = ball.Speed * GameManager::GetFrameTime() > ball.Radius
+    const float movement = ball.Speed * GameManager::GetFrameTime() > ball.Radius
         ? ball.Speed * GameManager::GetFrameTime()
         : ball.Radius;
     switch (collisionPlace)
@@ -63,7 +62,7 @@ void Ball::CollisionResult(const Structures::Player &player, Structures::Ball &b
         {
             ball.Direction.Y -= BOUNCE;
             ball.Direction.X -= BOUNCE;
-            float mag = sqrt(ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
+            const float mag = sqrt(ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
             ball.Direction.X /= mag;
             ball.Direction.Y /= mag;
         }
@@ -82,7 +81,7 @@ void Ball::CollisionResult(const Structures::Player &player, Structures::Ball &b
         {
             ball.Direction.Y -= BOUNCE;
             ball.Direction.X += BOUNCE;
-            float mag = sqrt(ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
+            const float mag = sqrt(ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
             ball.Direction.X /= mag;
             ball.Direction.Y /= mag;
         }
@@ -108,7 +107,7 @@ void Ball::CollisionResult(const Structures::Player &player, Structures::Ball &b
 void Ball::ChangeDirectionAfterCollision(Structures::Ball &ball, const Structures::Player &player)
 {
 
-    ball.Direction.X = ((static_cast<float>(player.Width) / 2.0F) - GetWidthCollision(ball, player)) /
+    ball.Direction.X = (static_cast<float>(player.Width) / 2.0F - GetWidthCollision(ball, player)) /
         (static_cast<float>(player.Width) / 2.0F); // returns a value between 1 and -1
 
     ball.Direction.Y *= -1;
@@ -155,8 +154,8 @@ void Ball::Spawn(Structures::Ball &ball, const Texture sprite)
     }
     ball.Position.Y = SPAWN_Y_HEIGTH;
 
-    x = cos((PI * angle) / 180); // hypotenuse = 1
-    y = sin((PI * angle) / 180);
+    x = cos(PI * angle / 180); // hypotenuse = 1
+    y = sin(PI * angle / 180);
 
     ball.Direction = {x, y};
 }

@@ -51,8 +51,8 @@ void Pause::Pause()
 
 void Pause::MakeButtons(Button buttons[MAX_BUTTONS])
 {
-    const int width = 360;
-    const int height = 100;
+    constexpr int width = 360;
+    constexpr int height = 100;
 
     for (int i = 0; i < MAX_BUTTONS; i++)
     {
@@ -82,7 +82,6 @@ void Pause::MakeButtons(Button buttons[MAX_BUTTONS])
     }
 
 }
-
 
 
 void Pause::Draw(Button buttons[MAX_BUTTONS])

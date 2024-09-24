@@ -1,13 +1,12 @@
 ﻿#include "Collisions.h"
 
-#include "GameManager.h"
 #include "Structures.h"
 
 
 bool Collisions::DoesWallPlayer(const Structures::Player &player)
 {
-    return player.FuturePosition.X - player.Width/2.0F  <= LEFT ||
-        player.FuturePosition.X + player.Width/2.0F  >= RIGHT ;
+    return player.FuturePosition.X - player.Width / 2.0F <= LEFT ||
+        player.FuturePosition.X + player.Width / 2.0F >= RIGHT;
 }
 
 
@@ -32,8 +31,8 @@ bool Collisions::DoesWallBall(const Structures::Ball &ball, WhereCollides &colli
 }
 
 bool Collisions::DoesAABB(const VectorMath::Vector2 &position, const VectorMath::Vector2 &size,
-                                const Structures::Ball &ball,
-                                WhereCollides &collisionPlace)
+                          const Structures::Ball &ball,
+                          WhereCollides &collisionPlace)
 {
 
     float minDistance = 0;
@@ -54,12 +53,12 @@ bool Collisions::DoesAABB(const VectorMath::Vector2 &position, const VectorMath:
         if (uEdge < ball.FuturePosition.Y)
         {
             collisionPlace = WhereCollides::Up;
-            distance = ball.FuturePosition.Y - position.Y ;
+            distance = ball.FuturePosition.Y - position.Y;
         }
-        else if(dEdge > ball.FuturePosition.Y)
+        else if (dEdge > ball.FuturePosition.Y)
         {
             collisionPlace = WhereCollides::Down;
-            distance = position.Y  - ball.FuturePosition.Y;
+            distance = position.Y - ball.FuturePosition.Y;
         }
         return minDistance > distance;
     }
@@ -86,12 +85,13 @@ bool Collisions::DoesAABB(const VectorMath::Vector2 &position, const VectorMath:
 
 void Collisions::AvoidsCrushing(const Structures::Ball &ball, Structures::Player &player)
 {
-    float width = player.Width / 2.0F;
-    float height = player.Height / 2.0F;
+    const float width = player.Width / 2.0F;
+    const float height = player.Height / 2.0F;
 
-    if (player.Position.Y + height > ball.Position.Y - ball.Radius && player.Position.Y - height < ball.Position.Y + ball.Radius)
+    if (player.Position.Y + height > ball.Position.Y - ball.Radius && player.Position.Y - height < ball.Position.Y +
+        ball.Radius)
     {
-        if (player.Position.X + width> RIGHT - ball.Radius * 2.0F )
+        if (player.Position.X + width > RIGHT - ball.Radius * 2.0F)
         {
             player.Position.X = RIGHT - ball.Radius * 2.0F - width - 1.0F;
         }

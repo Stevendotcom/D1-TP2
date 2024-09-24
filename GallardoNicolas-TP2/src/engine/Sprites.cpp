@@ -37,7 +37,7 @@ namespace Sprites
     }
 
 
-    void SetSpriteScroll(VectorMath::Vector2 position)
+    void SetSpriteScroll(const VectorMath::Vector2 position)
     {
         if (position.X > FLT_EPSILON + 1.0f && position.X < 0 && position.Y < 0 && position.Y > FLT_EPSILON + 1.0f)
         {
@@ -48,7 +48,7 @@ namespace Sprites
     }
 
 
-    void LoadSprite(const Texture texture, const VectorMath::Vector2 position, VectorMath::Vector2 size)
+    void LoadSprite(const Texture texture, const VectorMath::Vector2 position, const VectorMath::Vector2 size)
     {
         slSprite(texture, position.X, position.Y, size.X, size.Y);
     }

@@ -18,6 +18,7 @@ namespace Structures
         float Radius;
         float Speed;
     };
+
     enum class Direction
     {
         Left,
@@ -25,6 +26,7 @@ namespace Structures
         Idle,
         Hit
     };
+
     struct Player
     {
         VectorMath::Vector2 Position;

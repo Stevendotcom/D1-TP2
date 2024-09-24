@@ -14,8 +14,8 @@ void PlayerWon::AfterScene(const bool playerWon)
 {
     while (!Input::IsKeyReleasing(SL_KEY_ENTER) && !GameManager::ShouldWindowClose())
     {
-        const int TITLE_SIZE = 40;
-        const int BODY_SIZE = 20;
+        constexpr int TITLE_SIZE = 40;
+        constexpr int BODY_SIZE = 20;
 
         Background::Draw();
 

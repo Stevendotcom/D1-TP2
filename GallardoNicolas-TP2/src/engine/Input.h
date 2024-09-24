@@ -3,7 +3,7 @@
 
 namespace Input
 {
-    const int MAX_ACTIVE_KEYS = 26;
+    constexpr int MAX_ACTIVE_KEYS = 26;
     static int activeKeys[MAX_ACTIVE_KEYS];
 
     /**

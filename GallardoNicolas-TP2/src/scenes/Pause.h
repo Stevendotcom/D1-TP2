@@ -3,7 +3,7 @@
 
 namespace Pause
 {
-    const int MAX_BUTTONS = 3;
+    constexpr int MAX_BUTTONS = 3;
 
     void Pause();
     void MakeButtons(Buttons::Button buttons[MAX_BUTTONS]);

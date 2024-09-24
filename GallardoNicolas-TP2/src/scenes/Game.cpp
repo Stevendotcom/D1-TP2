@@ -21,14 +21,14 @@ bool Game::Play()
     bool endMatch = false;
     bool playerWon = false;
 
-	int activeBricks = Brick::MAX_BRICKS;
+    int activeBricks = Brick::MAX_BRICKS;
 
     Structures::Player player;
     Structures::Ball ball;
     Structures::Brick bricks[Brick::MAX_BRICKS];
 
     timeAtStart = GameManager::GetTime();
-	
+
     Init(player, ball, bricks);
     Draw(player, ball, bricks);
     do
@@ -71,7 +71,7 @@ void Game::Input(Structures::Player &player)
 
 
 void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool &playerWon,
-                  bool &endMatch, int& activeBricks)
+                  bool &endMatch, int &activeBricks)
 {
 
     Player::Update(player, ball);
@@ -113,7 +113,7 @@ void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::
     slSetForeColor(1, 0, 0, 1);
     slRectangleOutline(player.Position.X, player.Position.Y, player.Width, player.Height);
     slRectangleOutline(ball.Position.X, ball.Position.Y, ball.Radius, ball.Radius);
-    for(int i = 0; i < Brick::MAX_BRICKS; i++)
+    for (int i = 0; i < Brick::MAX_BRICKS; i++)
     {
         slRectangleOutline(bricks[i].Position.X, bricks[i].Position.Y, bricks[i].Size.X, bricks[i].Size.Y);
     }
@@ -129,8 +129,8 @@ void Game::UpdateScore(Structures::Player &player, const float currentTime)
 {
     int score = 40;
 
-    const float MIN_TIME = 60.0F;
-    const int MAX_SCORE_PER_BLOCK = 100;
+    constexpr float MIN_TIME = 60.0F;
+    constexpr int MAX_SCORE_PER_BLOCK = 100;
     if (currentTime - timeAtStart < MIN_TIME)
     {
         score = MAX_SCORE_PER_BLOCK - (currentTime - timeAtStart);
@@ -143,12 +143,12 @@ void Game::UpdateScore(Structures::Player &player, const float currentTime)
 
 void Game::DrawUI(const Structures::Player &player)
 {
-    const float MARGIN = 20.0F;
-    const float WIDTH = 40.0F;
-    const float HEIGHT = 40.0F;
-    const float PADDING = 5.0F;
-    const float BORDER_PADDING = 9.5F;
-    const int FONT_SIZE = 60;
+    constexpr float MARGIN = 20.0F;
+    constexpr float WIDTH = 40.0F;
+    constexpr float HEIGHT = 40.0F;
+    constexpr float PADDING = 5.0F;
+    constexpr float BORDER_PADDING = 9.5F;
+    constexpr int FONT_SIZE = 60;
 
     SetForeColor(Color::white, 1.0);
 
@@ -156,7 +156,7 @@ void Game::DrawUI(const Structures::Player &player)
     {
         Sprites::LoadSprite(
             sprites.HeartsBorder,
-            {MARGIN + (WIDTH * heart) + BORDER_PADDING * (heart + 1) / 2.0F, SCREEN_HEIGHT - MARGIN},
+            {MARGIN + WIDTH * heart + BORDER_PADDING * (heart + 1) / 2.0F, SCREEN_HEIGHT - MARGIN},
             {WIDTH, HEIGHT}
             );
     }
