@@ -1,6 +1,6 @@
 # Installation
 
-Download latests from Releases or head to my [itch page]{}, and execute Sheep&Knight.exe
+Download latests from Releases or head to my [itch page](https://projectbifron.itch.io/sheepknight), and execute Sheep&Knight.exe
 
 # Clone this repository
 
