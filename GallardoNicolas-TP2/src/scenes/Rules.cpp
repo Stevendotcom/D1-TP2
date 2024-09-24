@@ -49,8 +49,8 @@ void Rules::Rules()
                   "Press Enter key to return");
 
         TextAlignLeft();
-        TextPrint({MARGIN_X, SCREEN_HEIGHT / 2.0F},
-                  "Your objective, is to destroy the most amount of blocks possible, \nin the least amount of time");
+        TextPrint({MARGIN_X, SCREEN_HEIGHT / 2.0F + 100},
+                  "Your objective, is to destroy the most amount of blocks possible, \nin the least amount of time. But if the sheep escapes, you loose \na life!");
         TextPrint({MARGIN_X, SCREEN_HEIGHT / 2.0F - BODY_SIZE - MARGIN_Y_BODY}, "Controls: ");
 
         TextPrint({BLEED + MARGIN_X + BUTTONS_SIZE.X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y_BODY) * 2.0F}, "To move left");
