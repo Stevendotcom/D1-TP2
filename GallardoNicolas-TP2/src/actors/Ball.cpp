@@ -42,35 +42,37 @@ void Ball::Update(const Structures::Player &player, Structures::Ball &ball)
     }
 
     if (Collisions::DoesAABB(player.Position,
-                                   {player.Width, player.Height}, ball,
-                                   collisionPlaceP1))
+                             {player.Width, player.Height}, ball,
+                             collisionPlaceP1))
     {
         CollisionResult(player, ball, collisionPlaceP1);
     }
-
-
-    ball.Position = ball.FuturePosition;
-    ball.FuturePosition = ball.Position;
-
 }
 
 void Ball::CollisionResult(const Structures::Player &player, Structures::Ball &ball,
                            const Collisions::WhereCollides collisionPlace)
 {
+    float movement = ball.Speed * GameManager::GetFrameTime() > ball.Radius
+        ? ball.Speed * GameManager::GetFrameTime()
+        : ball.Radius;
     switch (collisionPlace)
     {
     case Collisions::WhereCollides::Left:
         // if it is pushing the ball rather than repelling it
         if (ball.Direction.X < 0)
         {
+            ball.Direction.Y -= BOUNCE;
             ball.Direction.X -= BOUNCE;
+            float mag = sqrt(ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
+            ball.Direction.X /= mag;
+            ball.Direction.Y /= mag;
         }
         else
         {
             ball.Direction.X *= -1;
         }
 
-        ball.FuturePosition.X = player.Position.X - (player.Width / 2.0F + ball.Radius + 1.0F); // moves to the border
+        ball.FuturePosition.X = player.Position.X - (player.Width / 2.0F + movement); // moves to the border
 
         break;
     case Collisions::WhereCollides::Right:
@@ -78,19 +80,23 @@ void Ball::CollisionResult(const Structures::Player &player, Structures::Ball &b
         // if it is pushing the ball rather than repelling it
         if (ball.Direction.X > 0)
         {
+            ball.Direction.Y -= BOUNCE;
             ball.Direction.X += BOUNCE;
+            float mag = sqrt(ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
+            ball.Direction.X /= mag;
+            ball.Direction.Y /= mag;
         }
         else
         {
             ball.Direction.X *= -1;
         }
 
-        ball.FuturePosition.X = player.Position.X + player.Width/2.0F + ball.Radius + 1.0F; // moves to the border
+        ball.FuturePosition.X = player.Position.X + player.Width / 2.0F + movement; // moves to the border
         break;
 
     case Collisions::WhereCollides::Up:
         ChangeDirectionAfterCollision(ball, player);
-        ball.FuturePosition.Y = player.Position.Y + player.Height / 2.0F + ball.Radius;
+        ball.FuturePosition.Y = player.Position.Y + player.Height / 2.0F + movement;
 
         break;
     case Collisions::WhereCollides::None:
@@ -119,10 +125,10 @@ float Ball::GetWidthCollision(const Structures::Ball &ball, const Structures::Pl
 void Ball::Draw(Structures::Ball &ball)
 {
     Sprites::SetSpriteTiling({1 / 6.0F, 1});
-    Sprites::SetSpriteScroll({0.13F,1});
+    Sprites::SetSpriteScroll({0.13F, 1});
     Sprites::LoadSprite(ball.Sprite, ball.Position, {ball.Radius * 2.2F, ball.Radius * 2.0F});
     Sprites::SetSpriteTiling({1, 1});
-    Sprites::SetSpriteScroll({1,1});
+    Sprites::SetSpriteScroll({1, 1});
 }
 
 

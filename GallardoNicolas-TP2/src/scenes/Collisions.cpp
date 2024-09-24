@@ -39,45 +39,43 @@ bool Collisions::DoesAABB(const VectorMath::Vector2 &position, const VectorMath:
     float minDistance = 0;
     float distance = 0;
 
-    float width = size.X / 2.0F;
-    float height = size.Y / 2.0F;
+    const float width = size.X / 2.0F;
+    const float height = size.Y / 2.0F;
 
-    float rEdge = position.X + width;
-    float lEdge = position.X - width;
-    float uEdge = position.Y + height;
-    float dEdge = position.Y - height;
+    const float rEdge = position.X + width;
+    const float lEdge = position.X - width;
+    const float uEdge = position.Y + height;
+    const float dEdge = position.Y - height;
 
     // if it touches up/down and within x bounds
     if (!(lEdge < ball.Position.X && rEdge < ball.Position.X) && !(lEdge > ball.Position.X && rEdge > ball.Position.X))
     {
+        minDistance = ball.Radius + height;
         if (uEdge < ball.FuturePosition.Y)
         {
             collisionPlace = WhereCollides::Up;
-            minDistance = ball.Radius;
-            distance = ball.FuturePosition.Y - (position.Y + height);
+            distance = ball.FuturePosition.Y - position.Y ;
         }
         else if(dEdge > ball.FuturePosition.Y)
         {
             collisionPlace = WhereCollides::Down;
-            minDistance = ball.Radius;
-            distance = (position.Y - height) - ball.FuturePosition.Y;
+            distance = position.Y  - ball.FuturePosition.Y;
         }
         return minDistance > distance;
     }
     // if it touches right/left and within y bounds
     if (!(uEdge < ball.Position.Y && dEdge < ball.Position.Y) && !(uEdge > ball.Position.Y && dEdge > ball.Position.Y))
     {
+        minDistance = ball.Radius + width;
         if (rEdge < ball.FuturePosition.X)
         {
             collisionPlace = WhereCollides::Right;
-            minDistance = ball.Radius + width;
             distance = ball.FuturePosition.X - position.X;
         }
 
         else if (lEdge > ball.FuturePosition.X)
         {
             collisionPlace = WhereCollides::Left;
-            minDistance = ball.Radius + width;
             distance = position.X - ball.FuturePosition.X;
         }
         return minDistance > distance;

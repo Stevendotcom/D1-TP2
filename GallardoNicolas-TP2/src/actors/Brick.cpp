@@ -8,8 +8,9 @@ void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
     const int rows = 4;
     const int cols = MAX_BRICKS / rows;
 
-    const VectorMath::Vector2 sizeEach  = { 80.0F ,80.0F};
-    const VectorMath::Vector2 origin = { SCREEN_WIDTH / 2.0f - (cols * sizeEach.X) / 2.0F, static_cast<float>(SCREEN_HEIGHT) - 150.0F}; // starts by upper left corner
+    const VectorMath::Vector2 sizeEach = {80.0F, 80.0F};
+    const VectorMath::Vector2 origin = {SCREEN_WIDTH / 2.0f - (cols * sizeEach.X) / 2.0F,
+                                        static_cast<float>(SCREEN_HEIGHT) - 150.0F}; // starts by upper left corner
 
 
     for (int row = 0; row < rows; row++)
@@ -20,7 +21,8 @@ void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
             {
                 Structures::Powers::None,
                 true,
-                {origin.X + (sizeEach.X / 2.0F) + (sizeEach.X * col), origin.Y - (sizeEach.Y / 2.0F) - (sizeEach.Y * row)},
+                {origin.X + (sizeEach.X / 2.0F) + (sizeEach.X * col),
+                 origin.Y - (sizeEach.Y / 2.0F) - (sizeEach.Y * row)},
                 sizeEach,
             };
 
@@ -52,9 +54,11 @@ void Brick::ToggleVisible(Structures::Brick &brick)
 }
 
 
-bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball, int& activeBricks)
+bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball, int &activeBricks)
 {
+    const float BOUNCE = 0.4F;
     Collisions::WhereCollides whereCollides = Collisions::WhereCollides::None;
+
     for (int i = 0; i < MAX_BRICKS; i++)
     {
         if (bricks[i].IsVisible)
@@ -68,19 +72,39 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
                 switch (whereCollides)
                 {
                 case Collisions::WhereCollides::Up:
-                    ball.FuturePosition.Y = bricks[i].Position.Y + bricks[i].Size.Y / 2.0f + ball.Radius + 1;
-                    ball.Direction.Y *= -1;
+                    ball.FuturePosition.Y = bricks[i].Position.Y + bricks[i].Size.Y / 2.0f + ball.Radius;
+                    if (ball.Direction.Y > 0)
+                    {
+                        ball.Direction.Y *= -1;
+                    }
+                    else
+                    {
+                        ball.Direction.Y += BOUNCE;
+                        float mag = sqrt(ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
+                        ball.Direction.X /= mag;
+                        ball.Direction.Y /= mag;
+                    }
                     break;
                 case Collisions::WhereCollides::Down:
-                    ball.FuturePosition.Y = bricks[i].Position.Y - bricks[i].Size.Y / 2.0f - ball.Radius - 1;
-                    ball.Direction.Y *= -1;
+                    ball.FuturePosition.Y = bricks[i].Position.Y - bricks[i].Size.Y / 2.0f - ball.Radius;
+                    if (ball.Direction.Y > 0)
+                    {
+                        ball.Direction.Y *= -1;
+                    }
+                    else
+                    {
+                        ball.Direction.Y -= BOUNCE;
+                        float mag = sqrt(ball.Direction.X * ball.Direction.X + ball.Direction.Y * ball.Direction.Y);
+                        ball.Direction.X /= mag;
+                        ball.Direction.Y /= mag;
+                    }
                     break;
                 case Collisions::WhereCollides::Left:
-                    ball.FuturePosition.X = bricks[i].Position.X - bricks[i].Size.X / 2.0f - ball.Radius - 1;
+                    ball.FuturePosition.X = bricks[i].Position.X - bricks[i].Size.X / 2.0f - ball.Radius;
                     ball.Direction.X *= -1;
                     break;
                 case Collisions::WhereCollides::Right:
-                    ball.FuturePosition.X = bricks[i].Position.X + bricks[i].Size.X / 2.0f + ball.Radius + 1;
+                    ball.FuturePosition.X = bricks[i].Position.X + bricks[i].Size.X / 2.0f + ball.Radius;
                     ball.Direction.X *= -1;
                     break;
                 case Collisions::WhereCollides::None:
@@ -92,7 +116,6 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
             }
         }
     }
-    ball.Position = ball.FuturePosition;
     return false;
 
 }

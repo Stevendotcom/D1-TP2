@@ -76,11 +76,13 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
 
     Player::Update(player, ball);
     Ball::Update(player, ball);
-
     if (Brick::Update(bricks, ball, activeBricks))
     {
         UpdateScore(player, GameManager::GetTime());
     }
+    ball.Position = ball.FuturePosition;
+    ball.FuturePosition = ball.Position;
+
     if (ball.Position.Y < 0)
     {
         player.Hearts--;
