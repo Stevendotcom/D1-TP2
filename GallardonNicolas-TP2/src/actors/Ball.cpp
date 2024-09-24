@@ -41,7 +41,7 @@ void Ball::Update(const Structures::Player &player, Structures::Ball &ball)
         }
     }
 
-    if (Collisions::DoesRectCircle(player.Position,
+    if (Collisions::DoesAABB(player.Position,
                                    {player.Width, player.Height}, ball,
                                    collisionPlaceP1))
     {

@@ -59,38 +59,40 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
     {
         if (bricks[i].IsVisible)
         {
-            if (Collisions::DoesRectCircle(bricks[i].Position, bricks[i].Size, ball, whereCollides))
+            if (Collisions::DoesAABB(bricks[i].Position, bricks[i].Size, ball, whereCollides))
             {
                 activeBricks--;
                 ToggleVisible(bricks[i]);
                 ActivatePower(bricks[i]);
 
-                //TODO ACCOUNT FOR BALL SPEED
                 switch (whereCollides)
                 {
                 case Collisions::WhereCollides::Up:
-                    ball.Position.Y = bricks[i].Position.Y + bricks[i].Size.Y / 2.0f + ball.Radius;
+                    ball.FuturePosition.Y = bricks[i].Position.Y + bricks[i].Size.Y / 2.0f + ball.Radius + 1;
                     ball.Direction.Y *= -1;
                     break;
                 case Collisions::WhereCollides::Down:
-                    ball.Position.Y = bricks[i].Position.Y - bricks[i].Size.Y / 2.0f - ball.Radius;
+                    ball.FuturePosition.Y = bricks[i].Position.Y - bricks[i].Size.Y / 2.0f - ball.Radius - 1;
                     ball.Direction.Y *= -1;
                     break;
                 case Collisions::WhereCollides::Left:
-                    ball.Position.X = bricks[i].Position.X - bricks[i].Size.X / 2.0f - ball.Radius;
+                    ball.FuturePosition.X = bricks[i].Position.X - bricks[i].Size.X / 2.0f - ball.Radius - 1;
                     ball.Direction.X *= -1;
                     break;
                 case Collisions::WhereCollides::Right:
-                    ball.Position.X = bricks[i].Position.X + bricks[i].Size.X / 2.0f + ball.Radius;
+                    ball.FuturePosition.X = bricks[i].Position.X + bricks[i].Size.X / 2.0f + ball.Radius + 1;
                     ball.Direction.X *= -1;
                     break;
                 case Collisions::WhereCollides::None:
                     break;
                 }
+                ball.Position = ball.FuturePosition;
+                ball.FuturePosition = ball.Position;
                 return true;
             }
         }
     }
+    ball.Position = ball.FuturePosition;
     return false;
 
 }

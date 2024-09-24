@@ -59,6 +59,7 @@
     <ClCompile Include="src\scenes\AfterGame.cpp" />
     <ClCompile Include="src\scenes\Pause.cpp" />
     <ClCompile Include="src\scenes\Rules.cpp" />
+    <ClCompile Include="src\engine\Shapes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\actors\Player.h">
@@ -122,6 +123,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\scenes\Rules.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\Shapes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
