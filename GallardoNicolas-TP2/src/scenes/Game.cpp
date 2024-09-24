@@ -69,8 +69,12 @@ void Game::Init(PlayerType &player, BallType &ball, BrickType bricks[])
     Player::Spawn(player, sprites.PlayerIdle);
     player.Score = 0;
     player.Won = false;
+
     Ball::Spawn(ball, sprites.Ball);
+
     Brick::Generate(bricks);
+    Brick::SetActivePower(SpecialBricks::None);
+    timer = 0;
 }
 
 
