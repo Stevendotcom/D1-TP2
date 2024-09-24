@@ -5,11 +5,11 @@ namespace Brick
 {
     constexpr int MAX_BRICKS = 20;
 
-    void Generate(Structures::Brick bricks[MAX_BRICKS]);
-    void Draw(Structures::Brick bricks[MAX_BRICKS]);
-    void ToggleVisible(Structures::Brick &brick);
-    bool Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball, int &activeBricks);
-    void ActivatePower(const Structures::Brick &brick);
+    void Generate(Structures::BrickType bricks[MAX_BRICKS]);
+    void Draw(Structures::BrickType bricks[MAX_BRICKS]);
+    void ToggleVisible(Structures::BrickType &brick);
+    bool Update(Structures::BrickType bricks[MAX_BRICKS], Structures::BallType &ball, int &activeBricks);
+    void ActivatePower(const Structures::BrickType &brick);
     Structures::SpecialBricks GetActivePower();
     void SetActivePower(const Structures::SpecialBricks& power);
 };

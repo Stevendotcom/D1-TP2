@@ -46,5 +46,5 @@ void PlayerWon::AfterScene(const bool playerWon)
         GameManager::Render();
 
     }
-    SceneManager::ChangeScene(SceneManager::Scenes::MainMenu);
+    ChangeScene(SceneManager::Scenes::MainMenu);
 }

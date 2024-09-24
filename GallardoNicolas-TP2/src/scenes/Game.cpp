@@ -13,6 +13,8 @@
 #include "Pause.h"
 #include "SceneManager.h"
 
+using namespace Structures;
+using namespace Sprites;
 
 float timeAtStart;
 float timer;
@@ -25,9 +27,9 @@ bool Game::Play()
     bool rotated = false;
     int activeBricks = Brick::MAX_BRICKS;
 
-    Structures::Player player;
-    Structures::Ball ball;
-    Structures::Brick bricks[Brick::MAX_BRICKS];
+    PlayerType player;
+    BallType ball;
+    BrickType bricks[Brick::MAX_BRICKS];
 
     timeAtStart = GameManager::GetTime();
 
@@ -53,8 +55,8 @@ bool Game::Play()
 
     if (rotated)
     {
-        Sprites::Translate({static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
-        Sprites::Rotate(180);
+        Translate({static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
+        Rotate(180);
         rotated = false;
     }
 
@@ -62,7 +64,7 @@ bool Game::Play()
 }
 
 
-void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
+void Game::Init(PlayerType &player, BallType &ball, BrickType bricks[])
 {
     Player::Spawn(player, sprites.PlayerIdle);
     player.Score = 0;
@@ -72,13 +74,13 @@ void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::
 }
 
 
-void Game::Input(Structures::Player &player, bool &returnMain)
+void Game::Input(PlayerType &player, bool &returnMain)
 {
     using namespace Input;
 
     constexpr float INVERT_TIME = 3.0F;
 
-    if (Brick::GetActivePower() == Structures::SpecialBricks::InvertControls)
+    if (Brick::GetActivePower() == SpecialBricks::InvertControls)
     {
         if (timer >= 0 && timer < INVERT_TIME)
         {
@@ -93,7 +95,7 @@ void Game::Input(Structures::Player &player, bool &returnMain)
         }
         else
         {
-            Brick::SetActivePower(Structures::SpecialBricks::None);
+            Brick::SetActivePower(SpecialBricks::None);
             timer = 0;
         }
     }
@@ -115,7 +117,7 @@ void Game::Input(Structures::Player &player, bool &returnMain)
 }
 
 
-void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool &playerWon,
+void Game::Update(PlayerType &player, BallType &ball, BrickType bricks[], bool &playerWon,
                   bool &endMatch, int &activeBricks)
 {
 
@@ -147,44 +149,43 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
 
     switch (Brick::GetActivePower())
     {
-    case Structures::SpecialBricks::RotateScreen:
+    case SpecialBricks::RotateScreen:
         __fallthrough
-    case Structures::SpecialBricks::InvertControls:
+    case SpecialBricks::InvertControls:
         timer += GameManager::GetFrameTime();
         break;
-    case Structures::SpecialBricks::OneUp:
+    case SpecialBricks::OneUp:
         if (player.Hearts < Player::HEARTS)
         {
             player.Hearts++;
         }
-        Brick::SetActivePower(Structures::SpecialBricks::None);
+        Brick::SetActivePower(SpecialBricks::None);
         break;
-    case Structures::SpecialBricks::FasterPlayer:
+    case SpecialBricks::FasterPlayer:
         player.Speed += 180;
-        Brick::SetActivePower(Structures::SpecialBricks::None);
+        Brick::SetActivePower(SpecialBricks::None);
         break;
     }
 }
 
 
-void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool &rotated)
+void Game::Draw(PlayerType &player, BallType &ball, BrickType bricks[], bool &rotated)
 {
-    using namespace Sprites;
     constexpr float ROTATE_TIME = 5.0f;
-    if (Brick::GetActivePower() == Structures::SpecialBricks::RotateScreen)
+    if (Brick::GetActivePower() == SpecialBricks::RotateScreen)
     {
         if (timer > ROTATE_TIME)
         {
-            Sprites::Translate({static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
-            Sprites::Rotate(180);
+            Translate({static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
+            Rotate(180);
             timer = 0;
-            Brick::SetActivePower(Structures::SpecialBricks::None);
+            Brick::SetActivePower(SpecialBricks::None);
             rotated = false;
         }
         else if (!rotated)
         {
-            Sprites::Translate({static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
-            Sprites::Rotate(180);
+            Translate({static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
+            Rotate(180);
             rotated = true;
         }
     }
@@ -211,7 +212,7 @@ void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::
 }
 
 
-void Game::UpdateScore(Structures::Player &player, const float currentTime)
+void Game::UpdateScore(PlayerType &player, const float currentTime)
 {
     int score = 40;
 
@@ -227,7 +228,7 @@ void Game::UpdateScore(Structures::Player &player, const float currentTime)
 }
 
 
-void Game::DrawUI(const Structures::Player &player)
+void Game::DrawUI(const PlayerType &player)
 {
     using namespace Sprites;
 

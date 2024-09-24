@@ -16,6 +16,7 @@ constexpr int AMOUNT = 4;
 using namespace Buttons;
 using namespace Fonts;
 using namespace Color;
+using namespace SceneManager;
 
 void MainMenu::Menu()
 {
@@ -36,7 +37,7 @@ void MainMenu::Menu()
         Draw(buttons);
     }
 
-    ChangeScene(static_cast<SceneManager::Scenes>(selected + 1));
+    ChangeScene(static_cast<Scenes>(selected + 1));
 }
 
 
@@ -52,24 +53,24 @@ void MainMenu::MakeButtons(Button buttons[])
             {SCREEN_WIDTH / 2.0F, height * static_cast<float>(AMOUNT - i) + 50.0F},
             {width, height},
             sprites.Button,
-            Color::DIM_GRAY,
-            Color::WHITE,
+            DIM_GRAY,
+            WHITE,
         };
-        switch (static_cast<SceneManager::Scenes>(i + 1))
+        switch (static_cast<Scenes>(i + 1))
         {
-        case SceneManager::Scenes::Play:
+        case Scenes::Play:
             buttons[i].Text = "Play";
             buttons[i].Selected = true;
             break;
-        case SceneManager::Scenes::Credits:
+        case Scenes::Credits:
             buttons[i].Text = "Credits";
             buttons[i].Selected = false;
             break;
-        case SceneManager::Scenes::Rules:
+        case Scenes::Rules:
             buttons[i].Text = "Rules";
             buttons[i].Selected = false;
             break;
-        case SceneManager::Scenes::Exit:
+        case Scenes::Exit:
             buttons[i].Text = "Exit";
             buttons[i].Selected = false;
             break;

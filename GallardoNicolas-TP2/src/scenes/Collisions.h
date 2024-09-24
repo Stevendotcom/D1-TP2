@@ -18,9 +18,9 @@ namespace Collisions
     };
 
 
-    bool DoesWallPlayer(const Structures::Player &player);
-    bool DoesWallBall(const Structures::Ball &ball, WhereCollides &collisionPlace);
+    bool DoesWallPlayer(const Structures::PlayerType &player);
+    bool DoesWallBall(const Structures::BallType &ball, WhereCollides &collisionPlace);
     bool DoesAABB(const VectorMath::Vector2 &position, const VectorMath::Vector2 &size,
-                  const Structures::Ball &ball, WhereCollides &collisionPlace);
-    void AvoidsCrushing(const Structures::Ball &ball, Structures::Player &player);
+                  const Structures::BallType &ball, WhereCollides &collisionPlace);
+    void AvoidsCrushing(const Structures::BallType &ball, Structures::PlayerType &player);
 };

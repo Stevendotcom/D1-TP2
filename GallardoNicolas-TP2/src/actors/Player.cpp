@@ -4,21 +4,22 @@
 #include "GameManager.h"
 #include "Structures.h"
 
+using namespace Structures;
+using namespace Sprites;
 
-void Player::MoveRight(Structures::Player &player)
+void Player::MoveRight(PlayerType &player)
 {
     player.FuturePosition.X += player.Speed * GameManager::GetFrameTime();
 }
 
-void Player::MoveLeft(Structures::Player &player)
+void Player::MoveLeft(PlayerType &player)
 {
     player.FuturePosition.X -= player.Speed * GameManager::GetFrameTime();
 }
 
 
-void Player::Update(Structures::Player &player, const Structures::Ball &ball)
+void Player::Update(PlayerType &player, const BallType &ball)
 {
-    using namespace Structures;
 
     if (!Collisions::DoesWallPlayer(player))
     {
@@ -41,7 +42,7 @@ void Player::Update(Structures::Player &player, const Structures::Ball &ball)
 
 }
 
-void Player::Spawn(Structures::Player &player, const Texture sprite)
+void Player::Spawn(PlayerType &player, const Texture sprite)
 {
     player.Height = HEIGHT;
     player.Width = WIDTH;
@@ -53,10 +54,8 @@ void Player::Spawn(Structures::Player &player, const Texture sprite)
 }
 
 
-void Player::Draw(Structures::Player &player)
+void Player::Draw(PlayerType &player)
 {
-    using namespace Structures;
-    using namespace Sprites;
 
     SetSpriteScroll({0.13F, 1});
     SetSpriteTiling({1 / 6.0F, 1});

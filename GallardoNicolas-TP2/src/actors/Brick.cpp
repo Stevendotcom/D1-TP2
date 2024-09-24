@@ -3,9 +3,12 @@
 #include "Collisions.h"
 #include "GameManager.h"
 
-auto activePower = Structures::SpecialBricks::None;
+using namespace Structures;
+using namespace Collisions;
 
-void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
+auto activePower = SpecialBricks::None;
+
+void Brick::Generate(BrickType bricks[MAX_BRICKS])
 {
     using namespace Structures;
 
@@ -66,7 +69,7 @@ void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
     }
 }
 
-void Brick::Draw(Structures::Brick bricks[MAX_BRICKS])
+void Brick::Draw(BrickType bricks[MAX_BRICKS])
 {
     for (int i = 0; i < MAX_BRICKS; i++)
     {
@@ -78,16 +81,16 @@ void Brick::Draw(Structures::Brick bricks[MAX_BRICKS])
 }
 
 
-void Brick::ToggleVisible(Structures::Brick &brick)
+void Brick::ToggleVisible(BrickType &brick)
 {
     brick.IsVisible = !brick.IsVisible;
 }
 
 
-bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball, int &activeBricks)
+bool Brick::Update(BrickType bricks[MAX_BRICKS], BallType &ball, int &activeBricks)
 {
     constexpr float BOUNCE = 0.4F;
-    auto whereCollides = Collisions::WhereCollides::None;
+    auto whereCollides = WhereCollides::None;
 
     for (int i = 0; i < MAX_BRICKS; i++)
     {
@@ -101,7 +104,7 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
 
                 switch (whereCollides)
                 {
-                case Collisions::WhereCollides::Up:
+                case WhereCollides::Up:
                     ball.FuturePosition.Y = bricks[i].Position.Y + bricks[i].Size.Y / 2.0f + ball.Radius;
                     if (ball.Direction.Y > 0)
                     {
@@ -116,7 +119,7 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
                         ball.Direction.Y /= mag;
                     }
                     break;
-                case Collisions::WhereCollides::Down:
+                case WhereCollides::Down:
                     ball.FuturePosition.Y = bricks[i].Position.Y - bricks[i].Size.Y / 2.0f - ball.Radius;
                     if (ball.Direction.Y > 0)
                     {
@@ -131,15 +134,15 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
                         ball.Direction.Y /= mag;
                     }
                     break;
-                case Collisions::WhereCollides::Left:
+                case WhereCollides::Left:
                     ball.FuturePosition.X = bricks[i].Position.X - bricks[i].Size.X / 2.0f - ball.Radius;
                     ball.Direction.X *= -1;
                     break;
-                case Collisions::WhereCollides::Right:
+                case WhereCollides::Right:
                     ball.FuturePosition.X = bricks[i].Position.X + bricks[i].Size.X / 2.0f + ball.Radius;
                     ball.Direction.X *= -1;
                     break;
-                case Collisions::WhereCollides::None:
+                case WhereCollides::None:
                     break;
                 }
                 ball.Position = ball.FuturePosition;
@@ -152,7 +155,7 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
 
 }
 
-void Brick::ActivatePower(const Structures::Brick &brick)
+void Brick::ActivatePower(const BrickType &brick)
 {
     using namespace Structures;
 
@@ -174,12 +177,12 @@ void Brick::ActivatePower(const Structures::Brick &brick)
     }
 }
 
-Structures::SpecialBricks Brick::GetActivePower()
+SpecialBricks Brick::GetActivePower()
 {
     return activePower;
 }
 
-void Brick::SetActivePower(const Structures::SpecialBricks& power)
+void Brick::SetActivePower(const SpecialBricks& power)
 {
     activePower = power;
 }

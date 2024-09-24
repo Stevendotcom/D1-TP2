@@ -8,9 +8,11 @@
 #include "VectorMath.h"
 
 
+using namespace Structures;
+
 constexpr float BOUNCE = 0.4F;
 
-void Ball::Update(const Structures::Player &player, Structures::Ball &ball)
+void Ball::Update(const PlayerType &player, BallType &ball)
 {
     auto collisionPlaceP1 = Collisions::WhereCollides::None;
     auto collisionPlaceBall = Collisions::WhereCollides::None;
@@ -47,7 +49,7 @@ void Ball::Update(const Structures::Player &player, Structures::Ball &ball)
     }
 }
 
-void Ball::CollisionResult(const Structures::Player &player, Structures::Ball &ball,
+void Ball::CollisionResult(const PlayerType &player, BallType &ball,
                            const Collisions::WhereCollides collisionPlace)
 {
     const float movement = ball.Speed * GameManager::GetFrameTime() > ball.Radius
@@ -104,24 +106,24 @@ void Ball::CollisionResult(const Structures::Player &player, Structures::Ball &b
 }
 
 
-void Ball::ChangeDirectionAfterCollision(Structures::Ball &ball, const Structures::Player &player)
+void Ball::ChangeDirectionAfterCollision(BallType &ball, const PlayerType &player)
 {
 
     ball.Direction.X = (static_cast<float>(player.Width) / 2.0F - GetWidthCollision(ball, player)) /
         (static_cast<float>(player.Width) / 2.0F); // returns a value between 1 and -1
 
     ball.Direction.Y *= -1;
-    VectorMath::Normalize(ball.Direction);
+    Normalize(ball.Direction);
 
 }
 
-float Ball::GetWidthCollision(const Structures::Ball &ball, const Structures::Player &player)
+float Ball::GetWidthCollision(const BallType &ball, const PlayerType &player)
 {
     return static_cast<float>(player.Width) + player.Position.X - ball.Position.X;
 }
 
 
-void Ball::Draw(Structures::Ball &ball)
+void Ball::Draw(BallType &ball)
 {
     using namespace Sprites;
     SetSpriteTiling({1 / 6.0F, 1});
@@ -132,7 +134,7 @@ void Ball::Draw(Structures::Ball &ball)
 }
 
 
-void Ball::Spawn(Structures::Ball &ball, const Texture sprite)
+void Ball::Spawn(BallType &ball, const Texture sprite)
 {
     float angle;
     float x;

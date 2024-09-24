@@ -8,11 +8,11 @@ namespace Ball
     const float SPAWN_Y_HEIGTH = SCREEN_HEIGHT / 2.0f - 40.0f;
     constexpr float RADIUS = 45.0f;
 
-    void Spawn(Structures::Ball &ball, Texture sprite);
-    void Update(const Structures::Player &player, Structures::Ball &ball);
-    void CollisionResult(const Structures::Player &player, Structures::Ball &ball,
+    void Spawn(Structures::BallType &ball, Texture sprite);
+    void Update(const Structures::PlayerType &player, Structures::BallType &ball);
+    void CollisionResult(const Structures::PlayerType &player, Structures::BallType &ball,
                          Collisions::WhereCollides collisionPlace);
-    void ChangeDirectionAfterCollision(Structures::Ball &ball, const Structures::Player &player);
-    float GetWidthCollision(const Structures::Ball &ball, const Structures::Player &player);
-    void Draw(Structures::Ball &ball);
+    void ChangeDirectionAfterCollision(Structures::BallType &ball, const Structures::PlayerType &player);
+    float GetWidthCollision(const Structures::BallType &ball, const Structures::PlayerType &player);
+    void Draw(Structures::BallType &ball);
 };

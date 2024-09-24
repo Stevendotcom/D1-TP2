@@ -4,12 +4,12 @@
 namespace Game
 {
     bool Play();
-    void Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[]);
-    void Input(Structures::Player &player, bool& returnMain);
-    void Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool &playerWon,
+    void Init(Structures::PlayerType &player, Structures::BallType &ball, Structures::BrickType bricks[]);
+    void Input(Structures::PlayerType &player, bool& returnMain);
+    void Update(Structures::PlayerType &player, Structures::BallType &ball, Structures::BrickType bricks[], bool &playerWon,
                 bool &endMatch, int &
                 activeBricks);
-    void Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool& rotated);
-    void DrawUI(const Structures::Player &player);
-    void UpdateScore(Structures::Player &player, float currentTime);
+    void Draw(Structures::PlayerType &player, Structures::BallType &ball, Structures::BrickType bricks[], bool& rotated);
+    void DrawUI(const Structures::PlayerType &player);
+    void UpdateScore(Structures::PlayerType &player, float currentTime);
 } // namespace Game

@@ -35,7 +35,7 @@ void Buttons::RenderButtons(Button buttons[], const int amount)
 }
 
 
-void Buttons::Input(Buttons::Button buttons[], int &selected, const int amount)
+void Buttons::Input(Button buttons[], int &selected, const int amount)
 {
     buttons[selected].Selected = false;
     if (Input::IsKeyReleasing(SL_KEY_DOWN))

@@ -2,15 +2,16 @@
 
 #include "Structures.h"
 
+using namespace Structures;
 
-bool Collisions::DoesWallPlayer(const Structures::Player &player)
+bool Collisions::DoesWallPlayer(const PlayerType &player)
 {
     return player.FuturePosition.X - player.Width / 2.0F <= LEFT ||
         player.FuturePosition.X + player.Width / 2.0F >= RIGHT;
 }
 
 
-bool Collisions::DoesWallBall(const Structures::Ball &ball, WhereCollides &collisionPlace)
+bool Collisions::DoesWallBall(const BallType &ball, WhereCollides &collisionPlace)
 {
     if (ball.FuturePosition.X < ball.Radius + LEFT)
     {
@@ -31,7 +32,7 @@ bool Collisions::DoesWallBall(const Structures::Ball &ball, WhereCollides &colli
 }
 
 bool Collisions::DoesAABB(const VectorMath::Vector2 &position, const VectorMath::Vector2 &size,
-                          const Structures::Ball &ball,
+                          const BallType &ball,
                           WhereCollides &collisionPlace)
 {
 
@@ -83,7 +84,7 @@ bool Collisions::DoesAABB(const VectorMath::Vector2 &position, const VectorMath:
 
 }
 
-void Collisions::AvoidsCrushing(const Structures::Ball &ball, Structures::Player &player)
+void Collisions::AvoidsCrushing(const BallType &ball, PlayerType &player)
 {
     const float width = player.Width / 2.0F;
     const float height = player.Height / 2.0F;

@@ -4,6 +4,7 @@
 
 namespace Structures
 {
+
     enum class SpecialBricks
     {
         RotateScreen,
@@ -13,7 +14,14 @@ namespace Structures
         None
     };
 
-    struct Ball
+    enum class Direction
+    {
+        Left,
+        Right,
+        Idle
+    };
+
+    struct BallType
     {
         VectorMath::Vector2 Position;
         VectorMath::Vector2 FuturePosition;
@@ -23,14 +31,7 @@ namespace Structures
         float Speed;
     };
 
-    enum class Direction
-    {
-        Left,
-        Right,
-        Idle
-    };
-
-    struct Player
+    struct PlayerType
     {
         VectorMath::Vector2 Position;
         VectorMath::Vector2 FuturePosition;
@@ -44,7 +45,7 @@ namespace Structures
         bool Won;
     };
 
-    struct Brick
+    struct BrickType
     {
         SpecialBricks Power;
         bool IsVisible;
