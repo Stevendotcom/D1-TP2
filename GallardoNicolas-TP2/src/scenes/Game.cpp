@@ -1,6 +1,6 @@
-#include <sl.h>
-
 #include "Game.h"
+
+#include <sl.h>
 
 #include "Background.h"
 #include "Ball.h"
@@ -19,6 +19,7 @@ float timer;
 
 bool Game::Play()
 {
+
     bool endMatch = false;
     bool returnMain = false;
     bool rotated = false;
@@ -73,6 +74,7 @@ void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::
 
 void Game::Input(Structures::Player &player, bool &returnMain)
 {
+    using namespace Input;
 
     constexpr float INVERT_TIME = 3.0F;
 
@@ -80,11 +82,11 @@ void Game::Input(Structures::Player &player, bool &returnMain)
     {
         if (timer >= 0 && timer < INVERT_TIME)
         {
-            if (Input::IsKeyDown(SL_KEY_RIGHT))
+            if (IsKeyDown(SL_KEY_RIGHT))
             {
                 Player::MoveLeft(player);
             }
-            else if (Input::IsKeyDown(SL_KEY_LEFT))
+            else if (IsKeyDown(SL_KEY_LEFT))
             {
                 Player::MoveRight(player);
             }
@@ -97,16 +99,16 @@ void Game::Input(Structures::Player &player, bool &returnMain)
     }
     else
     {
-        if (Input::IsKeyDown(SL_KEY_LEFT))
+        if (IsKeyDown(SL_KEY_LEFT))
         {
             Player::MoveLeft(player);
         }
-        else if (Input::IsKeyDown(SL_KEY_RIGHT))
+        else if (IsKeyDown(SL_KEY_RIGHT))
         {
             Player::MoveRight(player);
         }
     }
-    if (Input::IsKeyDown('P'))
+    if (IsKeyDown('P'))
     {
         Pause::Pause(returnMain);
     }
@@ -167,6 +169,7 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
 
 void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool &rotated)
 {
+    using namespace Sprites;
     constexpr float ROTATE_TIME = 5.0f;
     if (Brick::GetActivePower() == Structures::SpecialBricks::RotateScreen)
     {
@@ -226,6 +229,8 @@ void Game::UpdateScore(Structures::Player &player, const float currentTime)
 
 void Game::DrawUI(const Structures::Player &player)
 {
+    using namespace Sprites;
+
     constexpr float MARGIN = 20.0F;
     constexpr float WIDTH = 40.0F;
     constexpr float HEIGHT = 40.0F;
@@ -238,7 +243,7 @@ void Game::DrawUI(const Structures::Player &player)
 
     for (int heart = 0; heart < Player::HEARTS; heart++)
     {
-        Sprites::LoadSprite(
+        LoadSprite(
             sprites.HeartsBorder,
             {MARGIN + WIDTH * heart + BORDER_PADDING * (heart + 1) / 2.0F, SCREEN_HEIGHT - MARGIN},
             {WIDTH, HEIGHT}
@@ -247,7 +252,7 @@ void Game::DrawUI(const Structures::Player &player)
 
     for (int heart = 0; heart < player.Hearts; heart++)
     {
-        Sprites::LoadSprite(
+        LoadSprite(
             sprites.Heart,
             {MARGIN + WIDTH * heart + PADDING * (heart + 1), SCREEN_HEIGHT - MARGIN},
             {WIDTH, HEIGHT}
@@ -259,7 +264,7 @@ void Game::DrawUI(const Structures::Player &player)
     SetForeColor(Color::WHITE, 1.0);
     Fonts::SetFont(fonts.Body);
     Fonts::ChangeFontSize(FONT_SIZE);
-    Sprites::LoadSprite(
+    LoadSprite(
         sprites.ScoreBack,
         {SCREEN_WIDTH - FONT_SIZE, SCREEN_HEIGHT - FONT_SIZE},
         BANNER_SIZE

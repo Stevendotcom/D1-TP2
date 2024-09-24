@@ -18,19 +18,21 @@ void Player::MoveLeft(Structures::Player &player)
 
 void Player::Update(Structures::Player &player, const Structures::Ball &ball)
 {
+    using namespace Structures;
+
     if (!Collisions::DoesWallPlayer(player))
     {
         if (player.FuturePosition.X > player.Position.X)
         {
-            player.Direction = Structures::Direction::Left;
+            player.Direction = Direction::Left;
         }
         else if (player.FuturePosition.X < player.Position.X)
         {
-            player.Direction = Structures::Direction::Right;
+            player.Direction = Direction::Right;
         }
         else
         {
-            player.Direction = Structures::Direction::Idle;
+            player.Direction = Direction::Idle;
         }
         player.Position.X = player.FuturePosition.X;
     }
@@ -53,25 +55,28 @@ void Player::Spawn(Structures::Player &player, const Texture sprite)
 
 void Player::Draw(Structures::Player &player)
 {
-    Sprites::SetSpriteScroll({0.13F, 1});
-    Sprites::SetSpriteTiling({1 / 6.0F, 1});
+    using namespace Structures;
+    using namespace Sprites;
+
+    SetSpriteScroll({0.13F, 1});
+    SetSpriteTiling({1 / 6.0F, 1});
     switch (player.Direction)
     {
-    case Structures::Direction::Left:
+    case Direction::Left:
         player.Sprite = sprites.PlayerLeft;
         break;
-    case Structures::Direction::Right:
+    case Direction::Right:
         player.Sprite = sprites.PlayerRight;
         break;
-    case Structures::Direction::Idle:
-        Sprites::SetSpriteTiling({1 / 2.0F, 1});
-        Sprites::SetSpriteScroll({0.03F, 1});
+    case Direction::Idle:
+        SetSpriteTiling({1 / 2.0F, 1});
+        SetSpriteScroll({0.03F, 1});
         player.Sprite = sprites.PlayerIdle;
         break;
     }
-    Sprites::LoadSprite(player.Sprite, player.Position, {player.Width, player.Height});
-    Sprites::SetSpriteTiling({1, 1});
-    Sprites::SetSpriteScroll({1, 1});
+    LoadSprite(player.Sprite, player.Position, {player.Width, player.Height});
+    SetSpriteTiling({1, 1});
+    SetSpriteScroll({1, 1});
 
 
 }

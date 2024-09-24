@@ -7,6 +7,8 @@ auto activePower = Structures::SpecialBricks::None;
 
 void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
 {
+    using namespace Structures;
+
     constexpr int rows = 4;
     constexpr int cols = MAX_BRICKS / rows;
 
@@ -19,6 +21,7 @@ void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
     const int specialBrick2[] = {GameManager::GetRandom(0, rows - 1), GameManager::GetRandom(0, cols - 1)};
 
     int pos = 0;
+
     for (int row = 0; row < rows; row++)
     {
         for (int col = 0; col < cols; col++)
@@ -34,28 +37,28 @@ void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
             if ((row == specialBrick1[0] && col == specialBrick1[1]) || (row == specialBrick2[0] &&
                 col == specialBrick2[1]))
             {
-                bricks[pos].Power = static_cast<Structures::SpecialBricks>(GameManager::GetRandom(0, 4));
+                bricks[pos].Power = static_cast<SpecialBricks>(GameManager::GetRandom(0, 4));
             }
             else
             {
-                bricks[pos].Power = Structures::SpecialBricks::None;
+                bricks[pos].Power = SpecialBricks::None;
             }
 
             switch (bricks[pos].Power)
             {
-            case Structures::SpecialBricks::None:
+            case SpecialBricks::None:
                 bricks[pos].Sprite = sprites.Grass;
                 break;
-            case Structures::SpecialBricks::RotateScreen:
+            case SpecialBricks::RotateScreen:
                 bricks[pos].Sprite = sprites.Rotate;
                 break;
-            case Structures::SpecialBricks::InvertControls:
+            case SpecialBricks::InvertControls:
                 bricks[pos].Sprite = sprites.Invert;
                 break;
-            case Structures::SpecialBricks::OneUp:
+            case SpecialBricks::OneUp:
                 bricks[pos].Sprite = sprites.OneUp;
                 break;
-            case Structures::SpecialBricks::FasterPlayer:
+            case SpecialBricks::FasterPlayer:
                 bricks[pos].Sprite = sprites.Faster;
                 break;
             }
@@ -151,20 +154,22 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
 
 void Brick::ActivatePower(const Structures::Brick &brick)
 {
+    using namespace Structures;
+
     switch (brick.Power)
     {
 
-    case Structures::SpecialBricks::RotateScreen:
-        activePower = Structures::SpecialBricks::RotateScreen;
+    case SpecialBricks::RotateScreen:
+        activePower = SpecialBricks::RotateScreen;
         break;
-    case Structures::SpecialBricks::InvertControls:
-        activePower = Structures::SpecialBricks::InvertControls;
+    case SpecialBricks::InvertControls:
+        activePower = SpecialBricks::InvertControls;
         break;
-    case Structures::SpecialBricks::OneUp:
-        activePower = Structures::SpecialBricks::OneUp;
+    case SpecialBricks::OneUp:
+        activePower = SpecialBricks::OneUp;
         break;
-    case Structures::SpecialBricks::FasterPlayer:
-        activePower = Structures::SpecialBricks::FasterPlayer;
+    case SpecialBricks::FasterPlayer:
+        activePower = SpecialBricks::FasterPlayer;
         break;
     }
 }

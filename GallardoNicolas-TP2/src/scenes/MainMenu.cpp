@@ -14,7 +14,8 @@
 constexpr int AMOUNT = 4;
 
 using namespace Buttons;
-
+using namespace Fonts;
+using namespace Color;
 
 void MainMenu::Menu()
 {
@@ -23,8 +24,8 @@ void MainMenu::Menu()
 
     MakeButtons(buttons);
 
-    Color::SetBackColor({1, 1, 1});
-    Fonts::CenterText();
+    SetBackColor({1, 1, 1});
+    CenterText();
 
 
     Draw(buttons);
@@ -35,11 +36,11 @@ void MainMenu::Menu()
         Draw(buttons);
     }
 
-    SceneManager::ChangeScene(static_cast<SceneManager::Scenes>(selected + 1));
+    ChangeScene(static_cast<SceneManager::Scenes>(selected + 1));
 }
 
 
-void MainMenu::MakeButtons(Buttons::Button buttons[])
+void MainMenu::MakeButtons(Button buttons[])
 {
     constexpr int width = 360;
     constexpr int height = 100;
@@ -90,20 +91,20 @@ void MainMenu::Draw(Button buttons[])
 
     Background::Draw();
 
-    SetForeColor(Color::WHITE, 1.0);
+    SetForeColor(WHITE, 1.0);
     Sprites::LoadSprite(sprites.TitleBack, {SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - BANNER_HEIGTH}, SIZE);
 
-    Fonts::SetFont(fonts.Title);
+    SetFont(fonts.Title);
 
-    Fonts::ChangeFontSize(TITLE_FONT_SIZE + SHADE_SIZE);
-    titleSize = Fonts::GetTextSize(GAME_TITLE);
-    Color::SetForeColor({0, 0, 0}, 0.2F);
-    Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y + SHADE_SIZE - MARGIN}, GAME_TITLE);
+    ChangeFontSize(TITLE_FONT_SIZE + SHADE_SIZE);
+    titleSize = GetTextSize(GAME_TITLE);
+    SetForeColor({0, 0, 0}, 0.2F);
+    TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y + SHADE_SIZE - MARGIN}, GAME_TITLE);
 
-    Fonts::ChangeFontSize(TITLE_FONT_SIZE);
-    titleSize = Fonts::GetTextSize(GAME_TITLE);
-    SetForeColor(Color::COFFEE, 1.0);
-    Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y - MARGIN}, GAME_TITLE);
+    ChangeFontSize(TITLE_FONT_SIZE);
+    titleSize = GetTextSize(GAME_TITLE);
+    SetForeColor(COFFEE, 1.0);
+    TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y - MARGIN}, GAME_TITLE);
 
     RenderButtons(buttons, AMOUNT);
 

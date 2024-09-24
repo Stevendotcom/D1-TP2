@@ -10,7 +10,6 @@
 
 constexpr float BOUNCE = 0.4F;
 
-
 void Ball::Update(const Structures::Player &player, Structures::Ball &ball)
 {
     auto collisionPlaceP1 = Collisions::WhereCollides::None;
@@ -21,7 +20,7 @@ void Ball::Update(const Structures::Player &player, Structures::Ball &ball)
     ball.FuturePosition.Y = ball.Position.Y + ball.Direction.Y * ball.Speed * GameManager::GetFrameTime();
 
 
-    if (Collisions::DoesWallBall(ball, collisionPlaceBall))
+    if (DoesWallBall(ball, collisionPlaceBall))
     {
         if (collisionPlaceBall == Collisions::WhereCollides::Up)
         {
@@ -40,7 +39,7 @@ void Ball::Update(const Structures::Player &player, Structures::Ball &ball)
         }
     }
 
-    if (Collisions::DoesAABB(player.Position,
+    if (DoesAABB(player.Position,
                              {player.Width, player.Height}, ball,
                              collisionPlaceP1))
     {
@@ -54,6 +53,7 @@ void Ball::CollisionResult(const Structures::Player &player, Structures::Ball &b
     const float movement = ball.Speed * GameManager::GetFrameTime() > ball.Radius
         ? ball.Speed * GameManager::GetFrameTime()
         : ball.Radius;
+
     switch (collisionPlace)
     {
     case Collisions::WhereCollides::Left:
@@ -123,11 +123,12 @@ float Ball::GetWidthCollision(const Structures::Ball &ball, const Structures::Pl
 
 void Ball::Draw(Structures::Ball &ball)
 {
-    Sprites::SetSpriteTiling({1 / 6.0F, 1});
-    Sprites::SetSpriteScroll({0.13F, 1});
-    Sprites::LoadSprite(ball.Sprite, ball.Position, {ball.Radius * 2.8F, ball.Radius * 2.0F});
-    Sprites::SetSpriteTiling({1, 1});
-    Sprites::SetSpriteScroll({1, 1});
+    using namespace Sprites;
+    SetSpriteTiling({1 / 6.0F, 1});
+    SetSpriteScroll({0.13F, 1});
+    LoadSprite(ball.Sprite, ball.Position, {ball.Radius * 2.8F, ball.Radius * 2.0F});
+    SetSpriteTiling({1, 1});
+    SetSpriteScroll({1, 1});
 }
 
 

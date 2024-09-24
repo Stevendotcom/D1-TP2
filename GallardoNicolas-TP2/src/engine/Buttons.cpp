@@ -8,11 +8,12 @@
 
 void Buttons::RenderButtons(Button buttons[], const int amount)
 {
+    using namespace Fonts;
     const float margin = buttons[0].Size.Y * 0.6;
 
-    Fonts::ChangeFontSize(buttons[0].Size.Y - margin);
-    Fonts::SetFont(fonts.Body);
-    Fonts::CenterText();
+    ChangeFontSize(buttons[0].Size.Y - margin);
+    SetFont(fonts.Body);
+    CenterText();
 
     for (int i = 0; i < amount; i++)
     {
@@ -29,7 +30,7 @@ void Buttons::RenderButtons(Button buttons[], const int amount)
         {
             SetForeColor(buttons[i].Color, 1.0F);
         }
-        Fonts::TextPrint({buttons[i].Position.X, buttons[i].Position.Y}, buttons[i].Text);
+        TextPrint({buttons[i].Position.X, buttons[i].Position.Y}, buttons[i].Text);
     }
 }
 

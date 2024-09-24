@@ -6,6 +6,6 @@
 void Background::Draw()
 {
     SetForeColor(Color::WHITE, 1.0);
-    Sprites::LoadSprite(sprites.Background, {SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F}, {
-                            static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
+    Sprites::LoadSprite(sprites.Background, {SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F},
+        {static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
 }

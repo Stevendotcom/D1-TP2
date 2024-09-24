@@ -13,6 +13,8 @@
 
 void PlayerWon::AfterScene(const bool playerWon)
 {
+    using namespace Fonts;
+
     while (!Input::IsKeyReleasing(SL_KEY_ENTER) && !GameManager::ShouldWindowClose())
     {
         constexpr int TITLE_SIZE = 40;
@@ -32,14 +34,14 @@ void PlayerWon::AfterScene(const bool playerWon)
             text = "Oh no! You lost";
         }
         SetForeColor(Color::COFFEE, 1.0);
-        Fonts::ChangeFontSize(TITLE_SIZE);
-        Fonts::SetFont(fonts.Title);
-        Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F}, text);
+        ChangeFontSize(TITLE_SIZE);
+        SetFont(fonts.Title);
+        TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F}, text);
 
         SetForeColor(Color::DIM_GRAY, 1.0);
-        Fonts::ChangeFontSize(BODY_SIZE);
-        Fonts::SetFont(fonts.Body);
-        Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F - TITLE_SIZE}, "Press enter key to continue");
+        ChangeFontSize(BODY_SIZE);
+        SetFont(fonts.Body);
+        TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F - TITLE_SIZE}, "Press enter key to continue");
 
         GameManager::Render();
 
