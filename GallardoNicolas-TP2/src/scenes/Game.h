@@ -6,7 +6,7 @@ namespace Game
 
     bool Play();
     void Init(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[]);
-    void Input(Structures::Player &player);
+    void Input(Structures::Player &player, bool& returnMain);
     void Update(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool &playerWon,
                 bool &endMatch, int &
                 activeBricks);

@@ -20,6 +20,7 @@ bool Game::Play()
 {
     bool endMatch = false;
     bool playerWon = false;
+    bool returnMain = false;
 
     int activeBricks = Brick::MAX_BRICKS;
 
@@ -33,13 +34,21 @@ bool Game::Play()
     Draw(player, ball, bricks);
     do
     {
-        Input(player);
-        Update(player, ball, bricks, playerWon, endMatch, activeBricks);
-        Draw(player, ball, bricks);
-    }
-    while (!GameManager::ShouldWindowClose() && !endMatch);
+        Input(player, returnMain);
+        Update(player, ball, bricks, playerWon, returnMain, activeBricks);
 
-    ChangeScene(SceneManager::Scenes::AfterGame);
+        if(returnMain)
+            continue;
+
+        Draw(player, ball, bricks);
+
+    }
+    while (!GameManager::ShouldWindowClose() && !endMatch && !returnMain);
+
+    if(!returnMain)
+    {
+        ChangeScene(SceneManager::Scenes::AfterGame);
+    }
     return playerWon;
 }
 
@@ -53,7 +62,7 @@ void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::
 }
 
 
-void Game::Input(Structures::Player &player)
+void Game::Input(Structures::Player &player, bool& returnMain)
 {
     if (Input::IsKeyDown(SL_KEY_LEFT))
     {
@@ -65,7 +74,7 @@ void Game::Input(Structures::Player &player)
     }
     if (Input::IsKeyDown('P'))
     {
-        Pause::Pause();
+        Pause::Pause(returnMain);
     }
 }
 

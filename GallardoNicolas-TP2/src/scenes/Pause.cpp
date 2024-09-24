@@ -2,6 +2,7 @@
 
 #include <sl.h>
 
+#include "Background.h"
 #include "Fonts.h"
 #include "GameManager.h"
 #include "Input.h"
@@ -9,14 +10,8 @@
 
 using namespace Buttons;
 
-enum class Selection
-{
-    Return,
-    GoToMain,
-    Exit
-};
 
-void Pause::Pause()
+void Pause::Pause(bool &returnMain)
 {
     int selected = 0;
     Button buttons[MAX_BUTTONS];
@@ -28,22 +23,13 @@ void Pause::Pause()
         Buttons::Input(buttons, selected, MAX_BUTTONS);
         Draw(buttons);
     }
-    while (!Input::IsKeyDown(SL_KEY_ENTER) && !GameManager::ShouldWindowClose());
+    while (!Input::IsKeyReleasing(SL_KEY_ENTER) && !GameManager::ShouldWindowClose());
 
 
-    switch (static_cast<Selection>(selected))
+    if (static_cast<Selection>(selected) == Selection::GoToMain)
     {
-    case Selection::Return:
-        //do nothing
-        break;
-    case Selection::GoToMain:
+        returnMain = true;
         ChangeScene(SceneManager::Scenes::MainMenu);
-        break;
-    case Selection::Exit:
-        //todo cannot be set to this
-        GameManager::CloseWindow();
-        break;
-
     }
 
 
@@ -64,19 +50,15 @@ void Pause::MakeButtons(Button buttons[MAX_BUTTONS])
             Color::dimGray,
             Color::french,
         };
-        switch (static_cast<Selection>(i + 1))
+        switch (static_cast<Selection>(i))
         {
-        case Selection::Return:
-            buttons[i].Selected = true;
-            buttons[i].Text = "Return to Game";
-            break;
         case Selection::GoToMain:
-            buttons[i].Selected = false;
+            buttons[i].Selected = true;
             buttons[i].Text = "Return to Main Menu";
             break;
-        case Selection::Exit:
+        case Selection::Return:
             buttons[i].Selected = false;
-            buttons[i].Text = "Exit Game";
+            buttons[i].Text = "Return to Game";
             break;
         }
     }
@@ -87,7 +69,11 @@ void Pause::MakeButtons(Button buttons[MAX_BUTTONS])
 void Pause::Draw(Button buttons[MAX_BUTTONS])
 {
     using namespace Fonts;
+
+    Background::Draw();
+
     ChangeFontSize(60);
+    SetForeColor(Color::coffee, 1.0);
     SetFont(fonts.Title);
     TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F}, "Pause");
 
