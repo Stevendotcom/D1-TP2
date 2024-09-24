@@ -54,6 +54,7 @@ bool Game::Play()
     {
         Sprites::Translate({static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
         Sprites::Rotate(180);
+        rotated = false;
     }
 
     return player.Won;
@@ -91,6 +92,7 @@ void Game::Input(Structures::Player &player, bool &returnMain)
         else
         {
             Brick::SetActivePower(Structures::SpecialBricks::None);
+            timer = 0;
         }
     }
     else
@@ -149,14 +151,14 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
         timer += GameManager::GetFrameTime();
         break;
     case Structures::SpecialBricks::OneUp:
-        if (player.Hearts < 3)
+        if (player.Hearts < Player::HEARTS)
         {
             player.Hearts++;
         }
         Brick::SetActivePower(Structures::SpecialBricks::None);
         break;
     case Structures::SpecialBricks::FasterPlayer:
-        player.Speed += 100;
+        player.Speed += 180;
         Brick::SetActivePower(Structures::SpecialBricks::None);
         break;
     }

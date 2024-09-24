@@ -88,8 +88,8 @@ void Collisions::AvoidsCrushing(const Structures::Ball &ball, Structures::Player
     const float width = player.Width / 2.0F;
     const float height = player.Height / 2.0F;
 
-    if (player.Position.Y + height > ball.Position.Y - ball.Radius && player.Position.Y - height < ball.Position.Y +
-        ball.Radius)
+    if (player.Position.Y + height > ball.Position.Y &&
+        player.Position.Y - height < ball.Position.Y)
     {
         if (player.Position.X + width > RIGHT - ball.Radius * 2.0F)
         {
