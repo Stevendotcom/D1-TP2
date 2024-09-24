@@ -31,12 +31,12 @@ void PlayerWon::AfterScene(const bool playerWon)
         {
             text = "Oh no! You lost";
         }
-        SetForeColor(Color::coffee, 1.0);
+        SetForeColor(Color::COFFEE, 1.0);
         Fonts::ChangeFontSize(TITLE_SIZE);
         Fonts::SetFont(fonts.Title);
         Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F}, text);
 
-        SetForeColor(Color::dimGray, 1.0);
+        SetForeColor(Color::DIM_GRAY, 1.0);
         Fonts::ChangeFontSize(BODY_SIZE);
         Fonts::SetFont(fonts.Body);
         Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F - TITLE_SIZE}, "Press enter key to continue");

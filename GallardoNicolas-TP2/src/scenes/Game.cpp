@@ -234,7 +234,7 @@ void Game::DrawUI(const Structures::Player &player)
     constexpr float FONT_SIZE = 60;
     constexpr VectorMath::Vector2 BANNER_SIZE = {150, 120};
 
-    SetForeColor(Color::white, 1.0);
+    SetForeColor(Color::WHITE, 1.0);
 
     for (int heart = 0; heart < Player::HEARTS; heart++)
     {
@@ -256,7 +256,7 @@ void Game::DrawUI(const Structures::Player &player)
     }
 
 
-    SetForeColor(Color::white, 1.0);
+    SetForeColor(Color::WHITE, 1.0);
     Fonts::SetFont(fonts.Body);
     Fonts::ChangeFontSize(FONT_SIZE);
     Sprites::LoadSprite(

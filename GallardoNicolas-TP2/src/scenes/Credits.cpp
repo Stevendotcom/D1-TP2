@@ -25,17 +25,17 @@ void Credits::Credits()
 
         Background::Draw();
 
-        SetForeColor(Color::white, 1.0);
+        SetForeColor(Color::WHITE, 1.0);
         Sprites::LoadSprite(sprites.TitleBack, {SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - BANNER_HEIGTH}, SIZE);
 
-        SetForeColor(Color::coffee, 1.0);
+        SetForeColor(Color::COFFEE, 1.0);
         ChangeFontSize(TITLE_SIZE);
         SetFont(fonts.Title);
         TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - MARGIN - TITLE_SIZE}, "Thanks for playing!");
 
         ChangeFontSize(BODY_SIZE);
         SetFont(fonts.Body);
-        SetForeColor(Color::dimGray, 1.0);
+        SetForeColor(Color::DIM_GRAY, 1.0);
 
         TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT - MARGIN - TITLE_SIZE * 2.0F}, "Press Enter key to return");
         TextPrint({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0F}, "Made by Nico Gallardo!");

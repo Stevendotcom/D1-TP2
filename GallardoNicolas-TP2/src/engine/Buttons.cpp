@@ -16,7 +16,7 @@ void Buttons::RenderButtons(Button buttons[], const int amount)
 
     for (int i = 0; i < amount; i++)
     {
-        SetForeColor(Color::white, 1.0);
+        SetForeColor(Color::WHITE, 1.0);
         Sprites::LoadSprite(buttons[i].Sprite,
                             {buttons[i].Position.X, buttons[i].Position.Y },
                             buttons[i].Size);

@@ -51,8 +51,8 @@ void MainMenu::MakeButtons(Buttons::Button buttons[])
             {SCREEN_WIDTH / 2.0F, height * static_cast<float>(AMOUNT - i) + 50.0F},
             {width, height},
             sprites.Button,
-            Color::dimGray,
-            Color::white,
+            Color::DIM_GRAY,
+            Color::WHITE,
         };
         switch (static_cast<SceneManager::Scenes>(i + 1))
         {
@@ -90,7 +90,7 @@ void MainMenu::Draw(Button buttons[])
 
     Background::Draw();
 
-    SetForeColor(Color::white, 1.0);
+    SetForeColor(Color::WHITE, 1.0);
     Sprites::LoadSprite(sprites.TitleBack, {SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - BANNER_HEIGTH}, SIZE);
 
     Fonts::SetFont(fonts.Title);
@@ -102,7 +102,7 @@ void MainMenu::Draw(Button buttons[])
 
     Fonts::ChangeFontSize(TITLE_FONT_SIZE);
     titleSize = Fonts::GetTextSize(GAME_TITLE);
-    SetForeColor(Color::coffee, 1.0);
+    SetForeColor(Color::COFFEE, 1.0);
     Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y - MARGIN}, GAME_TITLE);
 
     RenderButtons(buttons, AMOUNT);

@@ -22,7 +22,7 @@ void Rules::Rules()
     constexpr float MARGIN_X = 90.0f;
     constexpr float ALIGN = 10.0F;
     constexpr float BLEED = 25.0F;
-    constexpr float BANNER_HEIGTH = 110.0F;
+    constexpr float BANNER_HEIGHT = 110.0F;
     constexpr float POWERS_IN_DIST = 190;
     constexpr VectorMath::Vector2 SIZE = {800, 200};
     constexpr VectorMath::Vector2 BUTTONS_SIZE = {40.0F, 40.0F};
@@ -32,16 +32,16 @@ void Rules::Rules()
     {
         Background::Draw();
 
-        LoadSprite(sprites.TitleBack, {SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - BANNER_HEIGTH}, SIZE);
+        LoadSprite(sprites.TitleBack, {SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - BANNER_HEIGHT}, SIZE);
 
-        SetForeColor(Color::coffee, 1);
+        SetForeColor(Color::COFFEE, 1);
 
         ChangeFontSize(TITLE_SIZE);
         CenterText();
         SetFont(fonts.Title);
         TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - MARGIN_Y - TITLE_SIZE}, "Rules");
 
-        SetForeColor(Color::dimGray, 1);
+        SetForeColor(Color::DIM_GRAY, 1);
 
         ChangeFontSize(BODY_SIZE);
         SetFont(fonts.Body);
@@ -64,7 +64,7 @@ void Rules::Rules()
         TextPrint({SCREEN_WIDTH / 2.0F + POWERS_IN_DIST, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y_BODY + 20) * 2.0F}, "Increase lives");
         TextPrint({SCREEN_WIDTH / 2.0F + POWERS_IN_DIST, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y_BODY + 20) * 3.0F}, "Go faster");
 
-        SetForeColor(Color::white, 1);
+        SetForeColor(Color::WHITE, 1);
         LoadSprite(sprites.LeftArrow, { BLEED + MARGIN_X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y_BODY) * 2.0F + ALIGN}, BUTTONS_SIZE);
         LoadSprite(sprites.RightArrow, {BLEED + MARGIN_X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y_BODY) * 3.0F + ALIGN}, BUTTONS_SIZE);
         LoadSprite(sprites.P, {BLEED + MARGIN_X, SCREEN_HEIGHT / 2.0F - (BODY_SIZE + MARGIN_Y_BODY) * 4.0F + ALIGN}, BUTTONS_SIZE);

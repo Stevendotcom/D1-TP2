@@ -47,8 +47,8 @@ void Pause::MakeButtons(Button buttons[MAX_BUTTONS])
             {SCREEN_WIDTH / 2.0F, height * static_cast<float>(MAX_BUTTONS - i) + 50.0F},
             {width, height},
             sprites.Button,
-            Color::dimGray,
-            Color::french,
+            Color::DIM_GRAY,
+            Color::FRENCH,
         };
         switch (static_cast<Selection>(i))
         {
@@ -73,7 +73,7 @@ void Pause::Draw(Button buttons[MAX_BUTTONS])
     Background::Draw();
 
     ChangeFontSize(60);
-    SetForeColor(Color::coffee, 1.0);
+    SetForeColor(Color::COFFEE, 1.0);
     SetFont(fonts.Title);
     TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F}, "Pause");
 
