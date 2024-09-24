@@ -15,83 +15,7 @@
     <ClCompile Include="src\actors\Ball.cpp" />
     <ClCompile Include="src\actors\Brick.cpp" />
     <ClCompile Include="src\actors\Player.cpp" />
-    <ClCompile Include="src\engine\Buttons.cpp">
-      <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <Optimization>Disabled</Optimization>
-      <SupportJustMyCode>true</SupportJustMyCode>
-      <AssemblerOutput>NoListing</AssemblerOutput>
-      <AssemblerListingLocation>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\obj\Debug\</AssemblerListingLocation>
-      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
-      <BrowseInformation>false</BrowseInformation>
-      <BrowseInformationFile>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\obj\Debug\</BrowseInformationFile>
-      <CompileAs>Default</CompileAs>
-      <ConformanceMode>true</ConformanceMode>
-      <DiagnosticsFormat>Column</DiagnosticsFormat>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <ErrorReporting>Prompt</ErrorReporting>
-      <ExpandAttributedSource>false</ExpandAttributedSource>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <EnableASAN>false</EnableASAN>
-      <EnableFuzzer>false</EnableFuzzer>
-      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <FloatingPointModel>Precise</FloatingPointModel>
-      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <GenerateModuleDependencies>false</GenerateModuleDependencies>
-      <GenerateSourceDependencies>false</GenerateSourceDependencies>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
-      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>Default</LanguageStandard>
-      <LanguageStandard_C>Default</LanguageStandard_C>
-      <MinimalRebuild>false</MinimalRebuild>
-      <ModuleDependenciesFile>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\obj\Debug\</ModuleDependenciesFile>
-      <ModuleOutputFile>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\obj\Debug\</ModuleOutputFile>
-      <OmitDefaultLibName>false</OmitDefaultLibName>
-      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
-      <ObjectFileName>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\obj\Debug\</ObjectFileName>
-      <CallingConvention>Cdecl</CallingConvention>
-      <ProgramDataBaseFileName>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\obj\Debug\vc143.pdb</ProgramDataBaseFileName>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\obj\Debug\GallardonNicolas-TP2.pch</PrecompiledHeaderOutputFile>
-      <PreprocessToFile>false</PreprocessToFile>
-      <PreprocessKeepComments>false</PreprocessKeepComments>
-      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
-      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
-      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
-      <ShowIncludes>false</ShowIncludes>
-      <SourceDependenciesFile>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\obj\Debug\</SourceDependenciesFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <SpectreMitigation>false</SpectreMitigation>
-      <StructMemberAlignment>Default</StructMemberAlignment>
-      <TrackerLogDirectory>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\obj\Debug\Gallardo.87B7D0F6.tlog\</TrackerLogDirectory>
-      <TranslateIncludes>false</TranslateIncludes>
-      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <UseFullPaths>true</UseFullPaths>
-      <WarningLevel>Level3</WarningLevel>
-      <XMLDocumentationFileName>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\obj\Debug\</XMLDocumentationFileName>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <IntelJCCErratum>false</IntelJCCErratum>
-      <BuildStlModules>false</BuildStlModules>
-      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
-      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
-      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
-      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_UNICODE;UNICODE;</PreprocessorDefinitions>
-      <EnablePREfast>false</EnablePREfast>
-      <OmitFramePointers>false</OmitFramePointers>
-      <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\lib\sigil\include\;H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\src\engine\;H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\src\scenes\;H:\IC\2024\2C\Desarrollo 1\TP2\GallardonNicolas-TP2\src\actors\</AdditionalIncludeDirectories>
-      <LinkCompiled>true</LinkCompiled>
-    </ClCompile>
+    <ClCompile Include="src\engine\Buttons.cpp"/>
     <ClCompile Include="src\engine\ColorPalette.cpp" />
     <ClCompile Include="src\engine\Fonts.cpp" />
     <ClCompile Include="src\engine\Input.cpp" />
@@ -138,7 +62,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{87B7D0F6-1AA7-436D-A9FB-1F91F7856A61}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>GallardonNicolas_TP2</RootNamespace>
+    <RootNamespace>GallardoNicolas_TP2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
