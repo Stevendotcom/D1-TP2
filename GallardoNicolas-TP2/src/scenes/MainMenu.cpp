@@ -11,7 +11,6 @@
 #include "SceneManager.h"
 #include "VectorMath.h"
 
-constexpr int TITLE_FONT_SIZE = 80;
 constexpr int AMOUNT = 4;
 
 using namespace Buttons;
@@ -53,7 +52,7 @@ void MainMenu::MakeButtons(Buttons::Button buttons[])
             {width, height},
             sprites.Button,
             Color::dimGray,
-            Color::french,
+            Color::white,
         };
         switch (static_cast<SceneManager::Scenes>(i + 1))
         {
@@ -82,22 +81,29 @@ void MainMenu::MakeButtons(Buttons::Button buttons[])
 
 void MainMenu::Draw(Button buttons[])
 {
-    constexpr int margin = 30;
-    constexpr int shadeSize = 3;
+    constexpr int TITLE_FONT_SIZE = 80;
+    constexpr int SHADE_SIZE = 3;
+    constexpr float MARGIN = 30;
+    constexpr float BANNER_HEIGTH = 110.0F;
+    constexpr VectorMath::Vector2 SIZE = {800, 200};
     VectorMath::Vector2 titleSize;
 
     Background::Draw();
 
+    SetForeColor(Color::white, 1.0);
+    Sprites::LoadSprite(sprites.TitleBack, {SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - BANNER_HEIGTH}, SIZE);
+
     Fonts::SetFont(fonts.Title);
-    Fonts::ChangeFontSize(TITLE_FONT_SIZE + shadeSize);
+
+    Fonts::ChangeFontSize(TITLE_FONT_SIZE + SHADE_SIZE);
     titleSize = Fonts::GetTextSize(GAME_TITLE);
     Color::SetForeColor({0, 0, 0}, 0.2F);
-    Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y + shadeSize - margin}, GAME_TITLE);
+    Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y + SHADE_SIZE - MARGIN}, GAME_TITLE);
 
     Fonts::ChangeFontSize(TITLE_FONT_SIZE);
     titleSize = Fonts::GetTextSize(GAME_TITLE);
     SetForeColor(Color::coffee, 1.0);
-    Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y - margin}, GAME_TITLE);
+    Fonts::TextPrint({SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT - titleSize.Y - MARGIN}, GAME_TITLE);
 
     RenderButtons(buttons, AMOUNT);
 

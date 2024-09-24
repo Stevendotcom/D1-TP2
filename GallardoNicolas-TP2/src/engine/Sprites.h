@@ -26,6 +26,7 @@ namespace Sprites
         Texture Invert;
         Texture OneUp;
         Texture Rotate;
+        Texture ScoreBack;
 
     };
 

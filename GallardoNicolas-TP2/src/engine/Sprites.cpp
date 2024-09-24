@@ -27,6 +27,7 @@ namespace Sprites
         sprites.Invert = LoadTexture(ASSETS_DIR + "Tiny-Swords/Invert.png");
         sprites.OneUp = LoadTexture(ASSETS_DIR + "Tiny-Swords/OneUp.png");
         sprites.Rotate = LoadTexture(ASSETS_DIR + "Tiny-Swords/Rotate.png");
+        sprites.ScoreBack = LoadTexture(ASSETS_DIR + "Tiny-Swords/ScoreBack.png");
         sprites.HeartsBorder = LoadTexture(ASSETS_DIR + "Health-Stamina/HeartsBorder.png");
         sprites.Heart = LoadTexture(ASSETS_DIR + "Health-Stamina/Heart.png");
         sprites.LeftArrow = LoadTexture(ASSETS_DIR + "SimpleKeys/ARROWLEFT.png");

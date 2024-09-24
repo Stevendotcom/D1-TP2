@@ -50,7 +50,7 @@ bool Game::Play()
         ChangeScene(SceneManager::Scenes::AfterGame);
     }
 
-    if(rotated)
+    if (rotated)
     {
         Sprites::Translate({static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
         Sprites::Rotate(180);
@@ -90,7 +90,7 @@ void Game::Input(Structures::Player &player, bool &returnMain)
         }
         else
         {
-            Brick::SetActivePower( Structures::SpecialBricks::None);
+            Brick::SetActivePower(Structures::SpecialBricks::None);
         }
     }
     else
@@ -163,7 +163,7 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
 }
 
 
-void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool& rotated)
+void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool &rotated)
 {
     constexpr float ROTATE_TIME = 5.0f;
     if (Brick::GetActivePower() == Structures::SpecialBricks::RotateScreen)
@@ -229,7 +229,8 @@ void Game::DrawUI(const Structures::Player &player)
     constexpr float HEIGHT = 40.0F;
     constexpr float PADDING = 5.0F;
     constexpr float BORDER_PADDING = 9.5F;
-    constexpr int FONT_SIZE = 60;
+    constexpr float FONT_SIZE = 60;
+    constexpr VectorMath::Vector2 BANNER_SIZE = {150, 120};
 
     SetForeColor(Color::white, 1.0);
 
@@ -252,9 +253,15 @@ void Game::DrawUI(const Structures::Player &player)
 
     }
 
-    SetForeColor(Color::coffee, 1.0);
+
+    SetForeColor(Color::white, 1.0);
     Fonts::SetFont(fonts.Body);
     Fonts::ChangeFontSize(FONT_SIZE);
-    Fonts::TextPrint({static_cast<float>(SCREEN_WIDTH - FONT_SIZE), SCREEN_HEIGHT - MARGIN - FONT_SIZE},
+    Sprites::LoadSprite(
+        sprites.ScoreBack,
+        {SCREEN_WIDTH - FONT_SIZE, SCREEN_HEIGHT - FONT_SIZE},
+        BANNER_SIZE
+        );
+    Fonts::TextPrint({(SCREEN_WIDTH - FONT_SIZE), SCREEN_HEIGHT - MARGIN - FONT_SIZE},
                      std::to_string(player.Score));
 }

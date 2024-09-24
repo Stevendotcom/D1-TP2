@@ -8,6 +8,7 @@
 #include "GameManager.h"
 #include "Input.h"
 #include "SceneManager.h"
+#include "Sprites.h"
 
 
 void PlayerWon::AfterScene(const bool playerWon)
@@ -16,9 +17,10 @@ void PlayerWon::AfterScene(const bool playerWon)
     {
         constexpr int TITLE_SIZE = 40;
         constexpr int BODY_SIZE = 20;
-
+        constexpr VectorMath::Vector2 SIZE = {800, 200};
         Background::Draw();
 
+        Sprites::LoadSprite(sprites.TitleBack, {SCREEN_WIDTH / 2.0F, SCREEN_HEIGHT / 2.0F}, SIZE);
         std::string text;
 
         if (playerWon)
