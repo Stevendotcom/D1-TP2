@@ -18,11 +18,15 @@ namespace Sprites
         sprites.PlayerLeft = LoadTexture(ASSETS_DIR + "Tiny-Swords/WarriorLeft.png");
         sprites.PlayerRight = LoadTexture(ASSETS_DIR + "Tiny-Swords/WarriorRight.png");
         sprites.PlayerIdle = LoadTexture(ASSETS_DIR + "Tiny-Swords/WarriorIdle.png");
-        sprites.PlayerHit = LoadTexture(ASSETS_DIR + "Tiny-Swords/WarriorHit.png");
         sprites.Grass = LoadTexture(ASSETS_DIR + "Tiny-Swords/Grass.png");
         sprites.Background = LoadTexture(ASSETS_DIR + "Tiny-Swords/Background.png");
         sprites.Ball = LoadTexture(ASSETS_DIR + "Tiny-Swords/Sheep.png");
-        sprites.Button = LoadTexture(ASSETS_DIR + "Pixelarium/banner.png");
+        sprites.Button = LoadTexture(ASSETS_DIR + "Tiny-Swords/Ribbon.png");
+        sprites.TitleBack = LoadTexture(ASSETS_DIR + "Tiny-Swords/TitleBack.png");
+        sprites.Faster = LoadTexture(ASSETS_DIR + "Tiny-Swords/Faster.png");
+        sprites.Invert = LoadTexture(ASSETS_DIR + "Tiny-Swords/Invert.png");
+        sprites.OneUp = LoadTexture(ASSETS_DIR + "Tiny-Swords/OneUp.png");
+        sprites.Rotate = LoadTexture(ASSETS_DIR + "Tiny-Swords/Rotate.png");
         sprites.HeartsBorder = LoadTexture(ASSETS_DIR + "Health-Stamina/HeartsBorder.png");
         sprites.Heart = LoadTexture(ASSETS_DIR + "Health-Stamina/Heart.png");
         sprites.LeftArrow = LoadTexture(ASSETS_DIR + "SimpleKeys/ARROWLEFT.png");
@@ -51,5 +55,15 @@ namespace Sprites
     void LoadSprite(const Texture texture, const VectorMath::Vector2 position, const VectorMath::Vector2 size)
     {
         slSprite(texture, position.X, position.Y, size.X, size.Y);
+    }
+
+    void Rotate(const float angle)
+    {
+        slRotate(angle);
+    }
+
+    void Translate(const VectorMath::Vector2 &position)
+    {
+        slTranslate(position.X, position.Y);
     }
 }

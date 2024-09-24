@@ -4,8 +4,12 @@
 
 namespace Structures
 {
-    enum class Powers
+    enum class SpecialBricks
     {
+        RotateScreen,
+        InvertControls,
+        OneUp,
+        FasterPlayer,
         None
     };
 
@@ -23,8 +27,7 @@ namespace Structures
     {
         Left,
         Right,
-        Idle,
-        Hit
+        Idle
     };
 
     struct Player
@@ -38,11 +41,12 @@ namespace Structures
         int Speed;
         int Score;
         int Hearts;
+        bool Won;
     };
 
     struct Brick
     {
-        Powers Power;
+        SpecialBricks Power;
         bool IsVisible;
         VectorMath::Vector2 Position;
         VectorMath::Vector2 Size;

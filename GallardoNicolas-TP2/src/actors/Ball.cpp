@@ -125,7 +125,7 @@ void Ball::Draw(Structures::Ball &ball)
 {
     Sprites::SetSpriteTiling({1 / 6.0F, 1});
     Sprites::SetSpriteScroll({0.13F, 1});
-    Sprites::LoadSprite(ball.Sprite, ball.Position, {ball.Radius * 2.2F, ball.Radius * 2.0F});
+    Sprites::LoadSprite(ball.Sprite, ball.Position, {ball.Radius * 2.8F, ball.Radius * 2.0F});
     Sprites::SetSpriteTiling({1, 1});
     Sprites::SetSpriteScroll({1, 1});
 }

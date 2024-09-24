@@ -15,13 +15,13 @@
 
 
 float timeAtStart;
+float timer;
 
 bool Game::Play()
 {
     bool endMatch = false;
-    bool playerWon = false;
     bool returnMain = false;
-
+    bool rotated = false;
     int activeBricks = Brick::MAX_BRICKS;
 
     Structures::Player player;
@@ -31,25 +31,32 @@ bool Game::Play()
     timeAtStart = GameManager::GetTime();
 
     Init(player, ball, bricks);
-    Draw(player, ball, bricks);
+    Draw(player, ball, bricks, rotated);
     do
     {
         Input(player, returnMain);
-        Update(player, ball, bricks, playerWon, returnMain, activeBricks);
+        Update(player, ball, bricks, player.Won, endMatch, activeBricks);
 
-        if(returnMain)
+        if (returnMain)
             continue;
 
-        Draw(player, ball, bricks);
+        Draw(player, ball, bricks, rotated);
 
     }
     while (!GameManager::ShouldWindowClose() && !endMatch && !returnMain);
 
-    if(!returnMain)
+    if (!returnMain)
     {
         ChangeScene(SceneManager::Scenes::AfterGame);
     }
-    return playerWon;
+
+    if(rotated)
+    {
+        Sprites::Translate({static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
+        Sprites::Rotate(180);
+    }
+
+    return player.Won;
 }
 
 
@@ -57,20 +64,45 @@ void Game::Init(Structures::Player &player, Structures::Ball &ball, Structures::
 {
     Player::Spawn(player, sprites.PlayerIdle);
     player.Score = 0;
+    player.Won = false;
     Ball::Spawn(ball, sprites.Ball);
     Brick::Generate(bricks);
 }
 
 
-void Game::Input(Structures::Player &player, bool& returnMain)
+void Game::Input(Structures::Player &player, bool &returnMain)
 {
-    if (Input::IsKeyDown(SL_KEY_LEFT))
+
+    constexpr float INVERT_TIME = 3.0F;
+
+    if (Brick::GetActivePower() == Structures::SpecialBricks::InvertControls)
     {
-        Player::MoveLeft(player);
+        if (timer >= 0 && timer < INVERT_TIME)
+        {
+            if (Input::IsKeyDown(SL_KEY_RIGHT))
+            {
+                Player::MoveLeft(player);
+            }
+            else if (Input::IsKeyDown(SL_KEY_LEFT))
+            {
+                Player::MoveRight(player);
+            }
+        }
+        else
+        {
+            Brick::SetActivePower( Structures::SpecialBricks::None);
+        }
     }
-    else if (Input::IsKeyDown(SL_KEY_RIGHT))
+    else
     {
-        Player::MoveRight(player);
+        if (Input::IsKeyDown(SL_KEY_LEFT))
+        {
+            Player::MoveLeft(player);
+        }
+        else if (Input::IsKeyDown(SL_KEY_RIGHT))
+        {
+            Player::MoveRight(player);
+        }
     }
     if (Input::IsKeyDown('P'))
     {
@@ -85,6 +117,7 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
 
     Player::Update(player, ball);
     Ball::Update(player, ball);
+
     if (Brick::Update(bricks, ball, activeBricks))
     {
         UpdateScore(player, GameManager::GetTime());
@@ -107,11 +140,50 @@ void Game::Update(Structures::Player &player, Structures::Ball &ball, Structures
         playerWon = true;
         endMatch = true;
     }
+
+    switch (Brick::GetActivePower())
+    {
+    case Structures::SpecialBricks::RotateScreen:
+        __fallthrough
+    case Structures::SpecialBricks::InvertControls:
+        timer += GameManager::GetFrameTime();
+        break;
+    case Structures::SpecialBricks::OneUp:
+        if (player.Hearts < 3)
+        {
+            player.Hearts++;
+        }
+        Brick::SetActivePower(Structures::SpecialBricks::None);
+        break;
+    case Structures::SpecialBricks::FasterPlayer:
+        player.Speed += 100;
+        Brick::SetActivePower(Structures::SpecialBricks::None);
+        break;
+    }
 }
 
 
-void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[])
+void Game::Draw(Structures::Player &player, Structures::Ball &ball, Structures::Brick bricks[], bool& rotated)
 {
+    constexpr float ROTATE_TIME = 5.0f;
+    if (Brick::GetActivePower() == Structures::SpecialBricks::RotateScreen)
+    {
+        if (timer > ROTATE_TIME)
+        {
+            Sprites::Translate({static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
+            Sprites::Rotate(180);
+            timer = 0;
+            Brick::SetActivePower(Structures::SpecialBricks::None);
+            rotated = false;
+        }
+        else if (!rotated)
+        {
+            Sprites::Translate({static_cast<float>(SCREEN_WIDTH), static_cast<float>(SCREEN_HEIGHT)});
+            Sprites::Rotate(180);
+            rotated = true;
+        }
+    }
+
     Background::Draw();
     Player::Draw(player);
     Ball::Draw(ball);

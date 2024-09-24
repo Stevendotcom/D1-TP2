@@ -12,7 +12,6 @@ namespace Sprites
         Texture PlayerLeft;
         Texture PlayerRight;
         Texture PlayerIdle;
-        Texture PlayerHit;
         Texture Grass;
         Texture Background;
         Texture Ball;
@@ -22,6 +21,12 @@ namespace Sprites
         Texture LeftArrow;
         Texture RightArrow;
         Texture P;
+        Texture TitleBack;
+        Texture Faster;
+        Texture Invert;
+        Texture OneUp;
+        Texture Rotate;
+
     };
 
     void LoadSprites(Sprites &sprites);
@@ -29,6 +34,8 @@ namespace Sprites
     void SetSpriteTiling(VectorMath::Vector2 position);
     void SetSpriteScroll(VectorMath::Vector2 position);
     void LoadSprite(Texture texture, VectorMath::Vector2 position, VectorMath::Vector2 size);
+    void Rotate(float angle);
+    void Translate(const VectorMath::Vector2& position);
 };
 
 extern Sprites::Sprites sprites;

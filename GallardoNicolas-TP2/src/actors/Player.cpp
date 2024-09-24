@@ -68,9 +68,6 @@ void Player::Draw(Structures::Player &player)
         Sprites::SetSpriteScroll({0.03F, 1});
         player.Sprite = sprites.PlayerIdle;
         break;
-    case Structures::Direction::Hit:
-        player.Sprite = sprites.PlayerHit;
-        break;
     }
     Sprites::LoadSprite(player.Sprite, player.Position, {player.Width, player.Height});
     Sprites::SetSpriteTiling({1, 1});

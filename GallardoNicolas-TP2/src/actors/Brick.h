@@ -9,5 +9,7 @@ namespace Brick
     void Draw(Structures::Brick bricks[MAX_BRICKS]);
     void ToggleVisible(Structures::Brick &brick);
     bool Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball, int &activeBricks);
-    void ActivatePower(Structures::Brick &brick);
+    void ActivatePower(const Structures::Brick &brick);
+    Structures::SpecialBricks GetActivePower();
+    void SetActivePower(const Structures::SpecialBricks& power);
 };

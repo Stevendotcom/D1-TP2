@@ -1,7 +1,9 @@
 #include "Brick.h"
 
 #include "Collisions.h"
+#include "GameManager.h"
 
+auto activePower = Structures::SpecialBricks::None;
 
 void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
 {
@@ -13,23 +15,48 @@ void Brick::Generate(Structures::Brick bricks[MAX_BRICKS])
                                         static_cast<float>(SCREEN_HEIGHT) - 150.0F}; // starts by upper left corner
 
 
+    const int specialBrick1[] = {GameManager::GetRandom(0, rows - 1), GameManager::GetRandom(0, cols - 1)};
+    const int specialBrick2[] = {GameManager::GetRandom(0, rows - 1), GameManager::GetRandom(0, cols - 1)};
+
+    int pos = 0;
     for (int row = 0; row < rows; row++)
     {
         for (int col = 0; col < cols; col++)
         {
-            bricks[row * cols + col] =
-            {
-                Structures::Powers::None,
-                true,
-                {origin.X + sizeEach.X / 2.0F + sizeEach.X * col,
-                 origin.Y - sizeEach.Y / 2.0F - sizeEach.Y * row},
-                sizeEach,
-            };
+            pos = row * cols + col;
+            bricks[pos].IsVisible = true;
+            bricks[pos].Position = {
+                                    origin.X + sizeEach.X / 2.0F + sizeEach.X * col,
+                                    origin.Y - sizeEach.Y / 2.0F - sizeEach.Y * row
+                                    };
 
-            switch (bricks[row * cols + col].Power)
+            bricks[pos].Size = sizeEach;
+            if ((row == specialBrick1[0] && col == specialBrick1[1]) || (row == specialBrick2[0] &&
+                col == specialBrick2[1]))
             {
-            case Structures::Powers::None:
-                bricks[row * cols + col].Sprite = sprites.Grass;
+                bricks[pos].Power = static_cast<Structures::SpecialBricks>(GameManager::GetRandom(0, 4));
+            }
+            else
+            {
+                bricks[pos].Power = Structures::SpecialBricks::None;
+            }
+
+            switch (bricks[pos].Power)
+            {
+            case Structures::SpecialBricks::None:
+                bricks[pos].Sprite = sprites.Grass;
+                break;
+            case Structures::SpecialBricks::RotateScreen:
+                bricks[pos].Sprite = sprites.Rotate;
+                break;
+            case Structures::SpecialBricks::InvertControls:
+                bricks[pos].Sprite = sprites.Invert;
+                break;
+            case Structures::SpecialBricks::OneUp:
+                bricks[pos].Sprite = sprites.OneUp;
+                break;
+            case Structures::SpecialBricks::FasterPlayer:
+                bricks[pos].Sprite = sprites.Faster;
                 break;
             }
         }
@@ -63,7 +90,7 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
     {
         if (bricks[i].IsVisible)
         {
-            if (Collisions::DoesAABB(bricks[i].Position, bricks[i].Size, ball, whereCollides))
+            if (DoesAABB(bricks[i].Position, bricks[i].Size, ball, whereCollides))
             {
                 activeBricks--;
                 ToggleVisible(bricks[i]);
@@ -122,7 +149,32 @@ bool Brick::Update(Structures::Brick bricks[MAX_BRICKS], Structures::Ball &ball,
 
 }
 
-void Brick::ActivatePower(Structures::Brick &brick)
+void Brick::ActivatePower(const Structures::Brick &brick)
 {
-    //todo
+    switch (brick.Power)
+    {
+
+    case Structures::SpecialBricks::RotateScreen:
+        activePower = Structures::SpecialBricks::RotateScreen;
+        break;
+    case Structures::SpecialBricks::InvertControls:
+        activePower = Structures::SpecialBricks::InvertControls;
+        break;
+    case Structures::SpecialBricks::OneUp:
+        activePower = Structures::SpecialBricks::OneUp;
+        break;
+    case Structures::SpecialBricks::FasterPlayer:
+        activePower = Structures::SpecialBricks::FasterPlayer;
+        break;
+    }
+}
+
+Structures::SpecialBricks Brick::GetActivePower()
+{
+    return activePower;
+}
+
+void Brick::SetActivePower(const Structures::SpecialBricks& power)
+{
+    activePower = power;
 }
